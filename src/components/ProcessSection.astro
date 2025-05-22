@@ -1,6 +1,6 @@
+---
 import ProcessCard from './ProcessCard';
 import { UnderstandIcon, PrototypeIcon, DeliveryIcon } from './icons/ProcessIcons';
-import StorytellingSection from './StorytellingSection';
 
 interface Props {
   title?: string;
@@ -42,6 +42,7 @@ const processSteps = [
     delay: 0.5
   }
 ];
+---
 
 <section id="process" class={`py-20 md:py-32 bg-[#0B0F1A] relative overflow-hidden ${className}`}>
   <!-- Tło z gradientem -->
@@ -92,12 +93,6 @@ const processSteps = [
         </svg>
       </a>
     </div>
-  </div>
-</section>
-
-<section id="jak-pracujemy" class="bg-[#0B0F1A] text-white">
-  <div class="container">
-    <StorytellingSection client:visible />
   </div>
 </section>
 

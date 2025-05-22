@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface StorySlideProps {
@@ -23,17 +23,29 @@ export default function StorySlide({
   const slideRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(slideRef, { once: false, amount: 0.5 });
   
+  // Force reset of slide visibility when no longer active
+  useEffect(() => {
+    if (!isActive && slideRef.current) {
+      const slideElement = slideRef.current;
+      slideElement.style.opacity = '0';
+      slideElement.style.visibility = 'hidden';
+      slideElement.classList.remove('story-slide-visible');
+    } else if (isActive && slideRef.current) {
+      slideRef.current.classList.add('story-slide-visible');
+    }
+  }, [isActive]);
+  
   // Oblicz opóźnienie dla animacji wejścia
   const getAnimationDelay = (order: number) => 0.1 + (order * 0.15);
   
   return (
     <div
       ref={slideRef}
-      className="fixed inset-0 h-screen flex items-center justify-center px-4 md:px-6"
+      className={`fixed inset-0 h-screen flex items-center justify-center px-4 md:px-6 transition-all duration-500 ${isActive ? 'story-slide-visible' : ''}`}
       style={{
         opacity: isActive ? 1 : 0,
-        visibility: isActive ? 'visible' : 'hidden',
-        transition: 'opacity 0.5s ease, visibility 0.5s ease'
+        visibility: isInView && isActive ? 'visible' : 'hidden',
+        pointerEvents: isActive ? 'auto' : 'none'
       }}
     >
       {/* Abstract background */}
@@ -52,7 +64,7 @@ export default function StorySlide({
         {/* Step indicator */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: getAnimationDelay(0) }}
           className="mb-6"
         >
@@ -64,7 +76,7 @@ export default function StorySlide({
         {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: getAnimationDelay(1) }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-montserrat"
         >
@@ -74,7 +86,7 @@ export default function StorySlide({
         {/* Subtitle */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: getAnimationDelay(2) }}
           className="text-xl md:text-2xl text-blue-100 mb-6 font-light max-w-2xl mx-auto"
         >
@@ -84,7 +96,7 @@ export default function StorySlide({
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: getAnimationDelay(3) }}
           className="text-lg md:text-xl text-blue-200/80 max-w-xl mx-auto"
         >
@@ -96,7 +108,7 @@ export default function StorySlide({
       {index === 3 && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: getAnimationDelay(4) }}
           className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center"
         >

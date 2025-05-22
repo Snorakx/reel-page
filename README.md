@@ -145,3 +145,81 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+# REELS PAGE - Project Structure
+
+## Overview
+This project is built with Astro and React, featuring animated sections and multi-language support. The application is structured into several key sections, each with its own set of components.
+
+## Sections and Components
+
+### 1. Hero Section
+The first section users see when they visit the page.
+
+**Components:**
+- `HeroSection.astro` - Container component that sets up the hero section
+- `HeroReel.tsx` - React component handling animations and main content display for the hero section
+
+### 2. Process Section
+Describes the workflow and process steps.
+
+**Components:**
+- `ProcessSection.astro` - Main container for the process section
+- `ProcessCard.tsx` - Individual cards for each step in the process
+- Icons:
+  - `ProcessIcons.tsx` in `components/icons/` - Contains icons used in the process cards (UnderstandIcon, PrototypeIcon, DeliveryIcon)
+
+### 3. Storytelling Section
+Section that tells the story/narrative of the service.
+
+**Components:**
+- `StorySection.astro` - Container wrapper for the storytelling section
+- `StorytellingSection.tsx` - Main React component with the storytelling functionality
+- `StorySlide.tsx` - Individual slides within the storytelling section
+
+### 4. Navigation and Footer
+Core layout components that appear across the site.
+
+**Components:**
+- `Navigation.tsx` - Main navigation component
+- `Footer.astro` - Footer component
+
+### 5. Animation Components
+Reusable animation utilities.
+
+**Components:**
+- `FadeIn.tsx` - Component that provides fade-in animation functionality
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── icons/                 # Icon components
+│   ├── animations/            # Animation components
+│   │   └── FadeIn.tsx         # Fade-in animation utility
+│   ├── HeroSection.astro      # Hero section container
+│   ├── HeroReel.tsx           # Main hero content component
+│   ├── ProcessSection.astro   # Process section container
+│   ├── ProcessCard.tsx        # Individual process step cards
+│   ├── StorySection.astro     # Storytelling section wrapper
+│   ├── StorytellingSection.tsx # Main storytelling component
+│   ├── StorySlide.tsx         # Individual story slides
+│   ├── Navigation.tsx         # Main navigation
+│   └── Footer.astro           # Footer component
+├── pages/                     # Route pages
+├── layouts/                   # Layout components
+├── utils/                     # Utility functions
+├── i18n/                      # Internationalization files
+├── hooks/                     # Custom React hooks
+├── assets/                    # Static assets
+└── styles/                    # Global styles
+```
+
+## Component Relationships
+
+- `HeroSection.astro` uses `HeroReel.tsx`
+- `ProcessSection.astro` uses `ProcessCard.tsx` and references `StorytellingSection.tsx`
+- `StorySection.astro` uses `StorytellingSection.tsx`
+- `StorytellingSection.tsx` likely uses `StorySlide.tsx`
+- Many components may use `FadeIn.tsx` for animations

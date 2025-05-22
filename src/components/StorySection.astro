@@ -1,10 +1,110 @@
-import StorytellingSection from './StorytellingSection.jsx';
-
-<section id="jak-pracujemy" class="bg-[#0B0F1A] text-white">
-  <div class="container">
-    <StorytellingSection client:visible />
+---
+import StorytellingSection from './StorytellingSection.tsx';
+---
+<section id="jak-pracujemy" class="bg-[#0B0F1A] text-white relative snap-section">
+  <div class="container mx-auto relative z-10">
+    <div id="storytelling-placeholder" class="h-screen flex items-center justify-center">
+      <div class="text-center py-10">
+        <div class="animate-pulse inline-flex h-16 w-16 rounded-full bg-blue-500/20"></div>
+      </div>
+    </div>
+    <div id="storytelling-content" class="hidden">
+      <StorytellingSection client:visible />
+    </div>
   </div>
 </section>
+
+<script>
+  // Use Intersection Observer to detect when the section is fully in view
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.getElementById('hero');
+    const storySection = document.getElementById('jak-pracujemy');
+    const placeholder = document.getElementById('storytelling-placeholder');
+    const content = document.getElementById('storytelling-content');
+    
+    if (storySection && placeholder && content) {
+      // Ensure the section has correct positioning data attributes
+      if (heroSection) {
+        storySection.setAttribute('data-hero-height', heroSection.offsetHeight.toString());
+      }
+      storySection.setAttribute('data-offset-top', storySection.offsetTop.toString());
+      
+      // Observer for the storytelling section
+      const storyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Check if section is sufficiently in view
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            // Show content and remove placeholder after a small delay
+            setTimeout(() => {
+              content.classList.remove('hidden');
+              placeholder.classList.add('hidden');
+              
+              // Trigger a custom event to notify the StorytellingSection that measurements should be updated
+              const event = new CustomEvent('storytelling-section-visible', { 
+                detail: { 
+                  sectionOffsetTop: storySection.offsetTop,
+                  heroHeight: heroSection ? heroSection.offsetHeight : 0
+                } 
+              });
+              window.dispatchEvent(event);
+            }, 300);
+          }
+        });
+      }, {
+        root: null, // viewport
+        threshold: 0.5, // 50% of the element must be visible
+        rootMargin: '0px'
+      });
+      
+      storyObserver.observe(storySection);
+      
+      // Observer for the hero section (to hide storytelling when returning to top)
+      if (heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            // If hero is in view, ensure storytelling is hidden
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+              // Hide any storytelling elements that might be visible
+              document.querySelectorAll('.story-slide-visible').forEach(el => {
+                (el as HTMLElement).style.opacity = '0';
+                (el as HTMLElement).style.visibility = 'hidden';
+              });
+              
+              // Optionally, reset the content container itself
+              const container = document.getElementById('storytelling-container');
+              if (container) {
+                container.setAttribute('data-reset', 'true');
+              }
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0.6,
+          rootMargin: '0px'
+        });
+        
+        heroObserver.observe(heroSection);
+      }
+      
+      // Update section offset values on resize
+      window.addEventListener('resize', () => {
+        if (heroSection) {
+          storySection.setAttribute('data-hero-height', heroSection.offsetHeight.toString());
+        }
+        storySection.setAttribute('data-offset-top', storySection.offsetTop.toString());
+        
+        // Notify the StorytellingSection that measurements changed
+        const event = new CustomEvent('storytelling-measurements-updated', { 
+          detail: { 
+            sectionOffsetTop: storySection.offsetTop,
+            heroHeight: heroSection ? heroSection.offsetHeight : 0
+          } 
+        });
+        window.dispatchEvent(event);
+      });
+    }
+  });
+</script>
 
 <style>
   section {

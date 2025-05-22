@@ -154,11 +154,11 @@ export default function HeroReel({
             transition={{ delay: 1.5, duration: 0.5 }}
             className="flex justify-center"
           >
-            <button 
+            <a href='tel:+48453418428'
               className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-all duration-300 text-lg hover:shadow-[0_0_15px_rgba(37,99,235,0.5)]"
             >
               Porozmawiajmy
-            </button>
+            </a>
           </motion.div>
         </div>
       </div>
