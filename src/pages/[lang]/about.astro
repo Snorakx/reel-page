@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation';
+import FadeIn from '../../components/animations/FadeIn';
+import { useTranslations, defaultLanguage } from '../../i18n/config';
+import { generateLanguagePaths } from '../../utils/page';
+
+// Define all possible language routes at build time
+export function getStaticPaths() {
+  return generateLanguagePaths();
+}
+
+// Get language from props
+const { lang = defaultLanguage } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout title={`About - Animation Hub`} lang={lang}>
+  <Navigation currentLang={lang} t={t} client:load />
+  
+  <main class="pt-24">
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <FadeIn client:load>
+            <h1 class="text-4xl md:text-5xl font-bold mb-8">About Us</h1>
+          </FadeIn>
+          
+          <FadeIn delay={0.2} client:load>
+            <div class="prose prose-lg dark:prose-invert">
+              <p>
+                This is an example About page for the Animation Hub template. In a real project, you would replace this content
+                with information about your company, project, or team.
+              </p>
+              
+              <p>
+                This template is built with Astro and React, focusing on smooth animations and multi-language support.
+                It's designed to be lightweight yet highly interactive, providing an excellent user experience across all devices.
+              </p>
+              
+              <h2>Our Technology Stack</h2>
+              
+              <ul>
+                <li>Astro for static site generation with dynamic islands</li>
+                <li>React for interactive components</li>
+                <li>Framer Motion and GSAP for animations</li>
+                <li>TailwindCSS for styling</li>
+                <li>Lenis for smooth scrolling</li>
+              </ul>
+              
+              <h2>Multi-language Support</h2>
+              
+              <p>
+                This template supports multiple languages through URL-based routing. You can easily add more languages
+                by updating the translations in the i18n configuration.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 

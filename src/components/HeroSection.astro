@@ -1,0 +1,62 @@
+---
+import HeroReel from './HeroReel';
+
+interface Props {
+  headlines?: string[];
+  bulletPoints?: string[];
+  headlineDuration?: number;
+  scrollCueText?: string;
+  logoText?: string;
+  className?: string;
+}
+
+const {
+  headlines = [
+    "Masz pomysł, ale nie wiesz od czego zacząć?",
+    "Masz problem, który zjada Twój czas i pieniądze?",
+    "Potrzebujesz wsparcia doświadczonego zespołu?"
+  ],
+  bulletPoints = [
+    "Potrzebujesz MVP, ale nikt nie robi tego szybciej niż w 3 miesiące?",
+    "Masz aplikację, która ledwo zipie i nikt jej nie chce dotykać?",
+    "Masz produkt, ale brakuje Ci feature'a, który przekona inwestorów?"
+  ],
+  headlineDuration = 4000,
+  scrollCueText = "Scrolluj dalej",
+  logoText = "CODERNO",
+  className = ""
+} = Astro.props;
+---
+
+<section id="hero" class={`relative h-screen ${className}`}>
+  <HeroReel
+    client:load
+    headlines={headlines}
+    bulletPoints={bulletPoints}
+    headlineDuration={headlineDuration}
+    scrollCueText={scrollCueText}
+    logoText={logoText}
+  />
+</section>
+
+<style>
+  /* Dodatkowe style specyficzne dla Astro */
+  #hero {
+    isolation: isolate; /* Tworzy nowy kontekst stosu dla lepszego zarządzania z-index */
+  }
+  
+  /* Opcjonalny efekt parallax dla tła */
+  @media (prefers-reduced-motion: no-preference) {
+    #hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(25, 118, 210, 0.05), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+  }
+</style> 

@@ -1,0 +1,111 @@
+import ProcessCard from './ProcessCard';
+import { UnderstandIcon, PrototypeIcon, DeliveryIcon } from './icons/ProcessIcons';
+import StorytellingSection from './StorytellingSection';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  className?: string;
+}
+
+const {
+  title = "Nie musisz mieć wszystkiego gotowego.",
+  subtitle = "Wystarczy ziarno pomysłu, szkic, voice message lub PDF.",
+  ctaText = "Zobacz, co zrobiliśmy dla innych.",
+  ctaLink = "#portfolio",
+  className = ""
+} = Astro.props;
+
+// Dane dla kart procesów
+const processSteps = [
+  {
+    step: 1,
+    title: "Zrozumienie",
+    description: "Krótka rozmowa, feedback, mapa myśli.",
+    icon: UnderstandIcon,
+    delay: 0.1
+  },
+  {
+    step: 2,
+    title: "Prototyp",
+    description: "Interaktywny szkic, coś, co można kliknąć.",
+    icon: PrototypeIcon,
+    delay: 0.3
+  },
+  {
+    step: 3,
+    title: "Realizacja",
+    description: "MVP w tygodnie, nie miesiące.",
+    icon: DeliveryIcon,
+    delay: 0.5
+  }
+];
+
+<section id="process" class={`py-20 md:py-32 bg-[#0B0F1A] relative overflow-hidden ${className}`}>
+  <!-- Tło z gradientem -->
+  <div class="absolute inset-0 bg-gradient-to-b from-blue-900/5 to-transparent opacity-50"></div>
+  
+  <!-- Subtelny wzór siatki -->
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBoMzB2MzBIMzB6IiBzdHJva2U9InJnYmEoNTksMTMwLDI0NiwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIuNSIvPjxwYXRoIGQ9Ik0wIDMwaDMwdjMwSDB6IiBzdHJva2U9InJnYmEoNTksMTMwLDI0NiwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIuNSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-montserrat">{title}</h2>
+      <p class="text-xl text-blue-100/80 leading-relaxed">{subtitle}</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
+      {processSteps.map((step) => (
+        <ProcessCard
+          client:visible
+          step={step.step}
+          title={step.title}
+          description={step.description}
+          icon={<step.icon />}
+          delay={step.delay}
+        />
+      ))}
+    </div>
+    
+    <div class="text-center">
+      <a 
+        href={ctaLink} 
+        class="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-lg group transition-all duration-300"
+      >
+        <span>{ctaText}</span>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="ml-2 group-hover:translate-x-2 transition-transform duration-300"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="jak-pracujemy" class="bg-[#0B0F1A] text-white">
+  <div class="container">
+    <StorytellingSection client:visible />
+  </div>
+</section>
+
+<style>
+  section {
+    /* Dodatkowe style dla sekcji */
+    scroll-margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+</style> 
