@@ -5,7 +5,7 @@ export const languages = {
   fr: 'Français',
 };
 
-export const defaultLanguage = 'en';
+export const defaultLanguage = 'pl';
 
 export function getLanguageFromURL(url: URL): string {
   const [, lang] = url.pathname.split('/');
