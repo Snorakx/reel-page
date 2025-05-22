@@ -63,27 +63,80 @@ import StorytellingSection from './StorytellingSection.tsx';
         const heroObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             // If hero is in view, ensure storytelling is hidden
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-              // Hide any storytelling elements that might be visible
-              document.querySelectorAll('.story-slide-visible').forEach(el => {
-                (el as HTMLElement).style.opacity = '0';
-                (el as HTMLElement).style.visibility = 'hidden';
-              });
-              
-              // Optionally, reset the content container itself
-              const container = document.getElementById('storytelling-container');
-              if (container) {
-                container.setAttribute('data-reset', 'true');
-              }
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.3) { 
+              // More aggressive cleanup - remove content from DOM entirely when hero section is visible
+              setTimeout(() => {
+                // Force hide any storytelling elements that might be visible
+                document.querySelectorAll('.story-slide-visible').forEach(el => {
+                  (el as HTMLElement).style.opacity = '0';
+                  (el as HTMLElement).style.visibility = 'hidden';
+                  el.classList.remove('story-slide-visible');
+                });
+                
+                // Reset the container and ensure storytelling content is properly hidden
+                const container = document.getElementById('storytelling-container');
+                if (container) {
+                  container.setAttribute('data-reset', 'true');
+                  
+                  // Force reset all slides within the container
+                  const slides = container.querySelectorAll('div[style*="visibility"]');
+                  slides.forEach(slide => {
+                    (slide as HTMLElement).style.opacity = '0';
+                    (slide as HTMLElement).style.visibility = 'hidden';
+                  });
+                  
+                  // If we're near the top, hide content and show placeholder
+                  if (window.scrollY < window.innerHeight * 0.5) {
+                    content.classList.add('hidden');
+                    placeholder.classList.remove('hidden');
+                  }
+                }
+                
+                // Also hide any progress bars that might still be visible
+                const progressBars = document.querySelectorAll('#storytelling-container .fixed');
+                progressBars.forEach(bar => {
+                  (bar as HTMLElement).style.opacity = '0';
+                  (bar as HTMLElement).style.visibility = 'hidden';
+                });
+              }, 100); // Short delay to ensure cleanup happens properly
             }
           });
         }, {
           root: null,
-          threshold: 0.6,
+          threshold: 0.3, // Lower threshold to be more aggressive with cleanup
           rootMargin: '0px'
         });
         
         heroObserver.observe(heroSection);
+        
+        // Additional scroll handler to ensure cleanup when scrolling back up
+        window.addEventListener('scroll', () => {
+          // If we're at the top of the page, make sure all storytelling elements are hidden
+          if (window.scrollY < window.innerHeight * 0.5) {
+            document.querySelectorAll('.story-slide-visible').forEach(el => {
+              (el as HTMLElement).style.opacity = '0';
+              (el as HTMLElement).style.visibility = 'hidden';
+              el.classList.remove('story-slide-visible');
+            });
+            
+            const container = document.getElementById('storytelling-container');
+            if (container) {
+              container.setAttribute('data-reset', 'true');
+            }
+            
+            // If we're near the top, hide content and show placeholder
+            if (window.scrollY < window.innerHeight * 0.3) {
+              content.classList.add('hidden');
+              placeholder.classList.remove('hidden');
+            }
+          }
+        });
+        
+        // Force check on page load if we're at the top
+        if (window.scrollY < window.innerHeight * 0.5) {
+          content.classList.add('hidden');
+          placeholder.classList.remove('hidden');
+        }
       }
       
       // Update section offset values on resize

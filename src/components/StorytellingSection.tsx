@@ -48,6 +48,8 @@ export default function StorytellingSection() {
   const [heroHeight, setHeroHeight] = useState(0);
   const [sectionOffsetTop, setSectionOffsetTop] = useState(0);
   const [firstRender, setFirstRender] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [shouldRenderSlides, setShouldRenderSlides] = useState(false);
   
   // Inicjalizacja po załadowaniu komponentu
   useEffect(() => {
@@ -70,6 +72,17 @@ export default function StorytellingSection() {
       
       // Force first slide to be active on first render
       setActiveIndex(0);
+      
+      // Store initial scroll position
+      setLastScrollY(window.scrollY);
+
+      // Check if we should render slides based on initial position
+      const initialScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const initialSectionOffset = jakPracujemySection?.offsetTop || 0;
+      
+      // Only render slides if we're near the storytelling section
+      setShouldRenderSlides(initialScrollY > initialSectionOffset - viewportHeight);
     }, 100);
     
     return () => clearTimeout(timer);
@@ -88,6 +101,7 @@ export default function StorytellingSection() {
     const handleSectionVisible = (event: CustomEvent<{sectionOffsetTop: number, heroHeight: number}>) => {
       handleMeasurementsUpdate(event);
       setIsVisible(true);
+      setShouldRenderSlides(true);
       
       // Reset to first slide when section becomes visible
       setActiveIndex(0);
@@ -112,7 +126,22 @@ export default function StorytellingSection() {
   // Track if the section is in viewport
   useEffect(() => {
     setIsVisible(isInView);
-  }, [isInView]);
+    
+    // If section leaves view while scrolling up, explicitly hide all slides
+    if (!isInView && window.scrollY < lastScrollY) {
+      const slides = document.querySelectorAll('.story-slide-visible');
+      slides.forEach(slide => {
+        (slide as HTMLElement).style.opacity = '0';
+        (slide as HTMLElement).style.visibility = 'hidden';
+        slide.classList.remove('story-slide-visible');
+      });
+      
+      // If scrolling up towards hero, don't render slides at all
+      if (window.scrollY < sectionOffsetTop - window.innerHeight) {
+        setShouldRenderSlides(false);
+      }
+    }
+  }, [isInView, lastScrollY, sectionOffsetTop]);
   
   // Listen for reset signal from the hero section observer
   useEffect(() => {
@@ -122,6 +151,15 @@ export default function StorytellingSection() {
       const container = containerRef.current;
       if (container?.getAttribute('data-reset') === 'true') {
         setIsVisible(false);
+        setShouldRenderSlides(false);
+        
+        // Explicitly hide all slides
+        const slides = container.querySelectorAll('div[style*="visibility"]');
+        slides.forEach(slide => {
+          (slide as HTMLElement).style.opacity = '0';
+          (slide as HTMLElement).style.visibility = 'hidden';
+        });
+        
         container.setAttribute('data-reset', 'false');
       }
     };
@@ -164,6 +202,11 @@ export default function StorytellingSection() {
     const handleScroll = () => {
       if (!containerRef.current) return;
       
+      // Track scroll direction
+      const currentScrollY = window.scrollY;
+      const isScrollingUp = currentScrollY < lastScrollY;
+      setLastScrollY(currentScrollY);
+      
       const container = containerRef.current;
       const containerRect = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -183,8 +226,29 @@ export default function StorytellingSection() {
       const isInSectionRange = scrollY >= sectionTop && 
                                scrollY <= sectionStartPos + containerHeight;
       
+      // Update shouldRenderSlides state based on scroll position
+      const shouldRender = scrollY >= sectionTop - windowHeight * 0.5;
+      if (shouldRender !== shouldRenderSlides) {
+        setShouldRenderSlides(shouldRender);
+      }
+      
+      // If scrolling up and approaching the hero section, force hide all slides
+      if (isScrollingUp && scrollY < sectionStartPos - (windowHeight * 0.3)) {
+        setIsVisible(false);
+        setShouldRenderSlides(false);
+        
+        // Force hide all slides when scrolling up towards hero
+        document.querySelectorAll('.story-slide-visible').forEach(el => {
+          (el as HTMLElement).style.opacity = '0';
+          (el as HTMLElement).style.visibility = 'hidden';
+          el.classList.remove('story-slide-visible');
+        });
+        return;
+      }
+      
       if (isInSectionRange) {
         setIsVisible(true);
+        setShouldRenderSlides(true);
         
         // Calculate scroll position relative to the section start
         const relativeScrollPos = scrollY - sectionStartPos + windowHeight;
@@ -233,7 +297,30 @@ export default function StorytellingSection() {
     handleScroll(); // Inicjalne ustawienie
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isInitialized, firstRender]);
+  }, [isInitialized, firstRender, lastScrollY, shouldRenderSlides]);
+
+  // Listen for window visibility changes to handle hidden tabs
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is not visible
+        return;
+      }
+      
+      // Page became visible again, check position
+      const scrollY = window.scrollY;
+      const sectionPos = getSectionOffset();
+      
+      // If we're not near the storytelling section, don't render slides
+      if (scrollY < sectionPos - window.innerHeight) {
+        setShouldRenderSlides(false);
+        setIsVisible(false);
+      }
+    };
+    
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
 
   // Progres bar
   const { scrollYProgress } = useScroll({
@@ -281,19 +368,23 @@ export default function StorytellingSection() {
         </div>
       )}
 
-      {/* Stories - tylko gdy sekcja jest w widoku */}
-      {storySteps.map((step, index) => (
-        <StorySlide
-          key={step.id}
-          index={index}
-          title={step.title}
-          subtitle={step.subtitle}
-          description={step.description}
-          color={step.color}
-          blur={step.blur}
-          isActive={hasEntered && isVisible && index === activeIndex}
-        />
-      ))}
+      {/* Only render slides when necessary - critical fix for overlap issues */}
+      {shouldRenderSlides && (
+        <>
+          {storySteps.map((step, index) => (
+            <StorySlide
+              key={step.id}
+              index={index}
+              title={step.title}
+              subtitle={step.subtitle}
+              description={step.description}
+              color={step.color}
+              blur={step.blur}
+              isActive={hasEntered && isVisible && index === activeIndex}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 } 

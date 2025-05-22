@@ -29,11 +29,70 @@ export default function StorySlide({
       const slideElement = slideRef.current;
       slideElement.style.opacity = '0';
       slideElement.style.visibility = 'hidden';
+      slideElement.style.display = 'none'; // Add display none to completely remove from rendering
       slideElement.classList.remove('story-slide-visible');
     } else if (isActive && slideRef.current) {
-      slideRef.current.classList.add('story-slide-visible');
+      const slideElement = slideRef.current;
+      slideElement.style.opacity = '1';
+      slideElement.style.visibility = 'visible';
+      slideElement.style.display = 'flex'; // Restore display
+      slideElement.classList.add('story-slide-visible');
     }
   }, [isActive]);
+  
+  // Additional listener for scroll direction, to clear slide when scrolling back up
+  useEffect(() => {
+    let prevScrollY = window.scrollY;
+    
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingUp = currentScrollY < prevScrollY;
+      prevScrollY = currentScrollY;
+      
+      // If we're scrolling up and this slide should be hidden, or we're near the top of the page
+      if ((isScrollingUp && !isActive && slideRef.current) || currentScrollY < window.innerHeight * 0.7) {
+        const slideElement = slideRef.current;
+        if (slideElement) {
+          slideElement.style.opacity = '0';
+          slideElement.style.visibility = 'hidden';
+          slideElement.style.display = 'none';
+          slideElement.classList.remove('story-slide-visible');
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isActive]);
+  
+  // Add a special check for hero section visibility
+  useEffect(() => {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // If hero section is visible, force hide this slide
+        if (entry.isIntersecting && slideRef.current) {
+          const slideElement = slideRef.current;
+          slideElement.style.opacity = '0';
+          slideElement.style.visibility = 'hidden';
+          slideElement.style.display = 'none';
+          slideElement.classList.remove('story-slide-visible');
+        }
+      });
+    }, { 
+      threshold: 0.2 // Even slight visibility of hero should hide slides
+    });
+    
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+      heroObserver.observe(heroSection);
+    }
+    
+    return () => {
+      if (heroSection) {
+        heroObserver.disconnect();
+      }
+    };
+  }, []);
   
   // Oblicz opóźnienie dla animacji wejścia
   const getAnimationDelay = (order: number) => 0.1 + (order * 0.15);
@@ -45,8 +104,11 @@ export default function StorySlide({
       style={{
         opacity: isActive ? 1 : 0,
         visibility: isInView && isActive ? 'visible' : 'hidden',
-        pointerEvents: isActive ? 'auto' : 'none'
+        display: isActive ? 'flex' : 'none', // Add display none when not active
+        pointerEvents: isActive ? 'auto' : 'none',
+        zIndex: isActive ? 10 : -1  // Add z-index to prevent overlap issues
       }}
+      data-slide-index={index}
     >
       {/* Abstract background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
