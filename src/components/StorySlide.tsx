@@ -160,34 +160,29 @@ export default function StorySlide({
           initial={{ opacity: 0, y: 30 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: getAnimationDelay(3) }}
-          className="text-lg md:text-xl text-blue-200/80 max-w-xl mx-auto"
+          className="text-lg md:text-xl text-blue-200/80 max-w-xl mx-auto mb-8"
         >
           {description}
         </motion.p>
+        
+        {/* CTA button dla ostatniego slajdu */}
+        {index === 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.7, delay: getAnimationDelay(4) }}
+            className="mt-8"
+          >
+            <a 
+              href="tel:+48453418428"
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-all duration-300 text-lg hover:shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+            >
+              Zróbmy to razem
+            </a>
+          </motion.div>
+        )}
       </div>
       
-      {/* Scroll indicator (tylko na ostatnim slajdzie) */}
-      {index === 3 && (
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: getAnimationDelay(4) }}
-          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center"
-        >
-          <div className="flex flex-col items-center">
-            <p className="text-blue-300 mb-2 text-sm">Kontynuuj</p>
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                <path d="M7 13l5 5 5-5"/>
-                <path d="M7 6l5 5 5-5"/>
-              </svg>
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 } 
