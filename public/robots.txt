@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+
+# Sitemap
+Sitemap: https://coderno.pl/sitemap.xml
+
+# Crawl delay (opcjonalnie)
+Crawl-delay: 1 

@@ -1,0 +1,469 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Structured data dla strony MVP development
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "MVP Development - Minimum Viable Product",
+  "description": "Szybkie tworzenie MVP w 3 miesiące. Testowanie pomysłów biznesowych z minimalnym ryzykiem i kosztem. Profesjonalne prototypy i aplikacje.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Coderno"
+  },
+  "areaServed": "PL",
+  "serviceOutput": "Gotowe MVP do testów z użytkownikami",
+  "offers": {
+    "@type": "Offer",
+    "description": "Kompleksowe tworzenie MVP od pomysłu do gotowego produktu",
+    "price": "Od 15000 PLN",
+    "priceCurrency": "PLN"
+  }
+};
+
+const pageTitle = "MVP Development - Szybko od Pomysłu do Produktu | Coderno";
+const pageDescription = "Tworzymy MVP w 3 miesiące! Minimum Viable Product do testowania pomysłów biznesowych. Niskie ryzyko, szybka walidacja. Sprawdzone podejście startup'owe.";
+const pageKeywords = "MVP, minimum viable product, prototyp, startup, walidacja pomysłu, szybkie tworzenie aplikacji, testowanie produktu, lean startup";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang="pl"
+  jsonLd={jsonLd}
+  canonical="https://coderno.pl/mvp-development"
+>
+  <main class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <span class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              MVP Development
+            </span>
+            <br />
+            w 3 Miesiące
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            Od pomysłu do działającego produktu. 
+            <strong class="text-emerald-400">Minimalne ryzyko</strong>, 
+            <strong class="text-teal-400">maksymalna wartość</strong>.
+            Sprawdź swój pomysł zanim zainwestujesz fortunę.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#wycena" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Bezpłatna Wycena MVP
+            </a>
+            <a href="#proces" class="border border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Zobacz Proces
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problemy przedsiębiorców -->
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Czy to brzmi znajomo?
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-red-400 mb-4">😰 Typowe Obawy</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                "Mam świetny pomysł, ale nie wiem czy się sprawdzi"
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                "Boję się zainwestować 200k+ w niepewny projekt"
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                "Konkurencja może mnie wyprzedzić"
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                "Nikt nie chce budować bez gwarancji sukcesu"
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                "Wszyscy mówią, że to potrwa rok lub więcej"
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-green-400 mb-4">✅ Rozwiązanie MVP</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Testuj pomysł z prawdziwymi użytkownikami
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Inwestycja 10x mniejsza niż pełny produkt
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Szybko na rynek - 3 miesiące vs 12+
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Sprawdzone podejście używane przez Google, Airbnb
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Iteracyjny rozwój oparty na feedbacku
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Co to jest MVP -->
+    <section class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Czym jest MVP?
+          </h2>
+          <p class="text-xl text-gray-300">
+            Minimum Viable Product to najprośtsza wersja produktu, która dostarcza wartość
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-slate-900 p-8 rounded-xl border border-emerald-500/20">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Szybko</h3>
+            <p class="text-gray-300 mb-6">
+              3 miesiące od startu do pierwszych użytkowników. Bez zbędnych funkcji i komplikacji.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Fokus na kluczowej funkcjonalności</li>
+              <li>• Sprawdzone technologie</li>
+              <li>• Zwinny proces rozwoju</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-teal-500/20">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Tanio</h3>
+            <p class="text-gray-300 mb-6">
+              Koszt 10-20x mniejszy niż pełny produkt. Minimalne ryzyko finansowe przy testowaniu pomysłu.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Bez zbędnych funkcji</li>
+              <li>• Optymalne wykorzystanie budżetu</li>
+              <li>• ROI już po pierwszych testach</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-cyan-500/20">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Skutecznie</h3>
+            <p class="text-gray-300 mb-6">
+              Prawdziwe dane od użytkowników zamiast domysłów. Walidacja przed dużymi inwestycjami.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Testowanie z prawdziwymi użytkownikami</li>
+              <li>• Dane do podejmowania decyzji</li>
+              <li>• Redukcja ryzyka niepowodzenia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proces tworzenia MVP -->
+    <section id="proces" class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Nasz Proces MVP w 3 Miesiące
+          </h2>
+          <p class="text-xl text-gray-300">
+            Sprawdzona metodologia, która zadziałała dla 50+ projektów
+          </p>
+        </div>
+        
+        <div class="space-y-8">
+          <!-- Miesiąc 1 -->
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <div class="flex items-center mb-6">
+              <div class="bg-emerald-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-4">1</div>
+              <h3 class="text-2xl font-bold text-white">Miesiąc 1: Discovery & Design</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold text-emerald-400 mb-3">Tydzień 1-2: Analiza</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Warsztat produktowy</li>
+                  <li>• Analiza konkurencji</li>
+                  <li>• Definicja MVP scope</li>
+                  <li>• User stories</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-emerald-400 mb-3">Tydzień 2-3: UX/UI</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Wireframes</li>
+                  <li>• User journey mapping</li>
+                  <li>• Prototypy klikalne</li>
+                  <li>• Design system</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-emerald-400 mb-3">Tydzień 4: Setup</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Architektura techniczna</li>
+                  <li>• Setup środowiska</li>
+                  <li>• CI/CD pipeline</li>
+                  <li>• Plan sprintów</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Miesiąc 2 -->
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <div class="flex items-center mb-6">
+              <div class="bg-teal-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-4">2</div>
+              <h3 class="text-2xl font-bold text-white">Miesiąc 2: Development</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold text-teal-400 mb-3">Core Features</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Główna funkcjonalność</li>
+                  <li>• Autoryzacja użytkowników</li>
+                  <li>• Podstawowy panel</li>
+                  <li>• API endpoints</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-teal-400 mb-3">Integracje</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Płatności (Stripe/PayU)</li>
+                  <li>• Email marketing</li>
+                  <li>• Analytics</li>
+                  <li>• Monitoring</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-teal-400 mb-3">Testing</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Unit testing</li>
+                  <li>• E2E testing</li>
+                  <li>• Performance testing</li>
+                  <li>• Security audit</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Miesiąc 3 -->
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <div class="flex items-center mb-6">
+              <div class="bg-cyan-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-4">3</div>
+              <h3 class="text-2xl font-bold text-white">Miesiąc 3: Launch & Optimize</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold text-cyan-400 mb-3">Pre-launch</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Beta testing</li>
+                  <li>• Bug fixing</li>
+                  <li>• Performance optimization</li>
+                  <li>• Landing page</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-cyan-400 mb-3">Launch</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• Deployment na production</li>
+                  <li>• Monitoring setup</li>
+                  <li>• User onboarding</li>
+                  <li>• Support documentation</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-cyan-400 mb-3">Post-launch</h4>
+                <ul class="text-gray-300 space-y-1 text-sm">
+                  <li>• User feedback collection</li>
+                  <li>• Analytics analysis</li>
+                  <li>• Iteration planning</li>
+                  <li>• Growth recommendations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pakiety MVP -->
+    <section class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Pakiety MVP
+          </h2>
+          <p class="text-xl text-gray-300">
+            Wybierz pakiet dopasowany do Twojego budżetu i potrzeb
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-slate-900 p-8 rounded-xl border border-gray-500/20">
+            <h3 class="text-2xl font-bold text-white mb-4">MVP Starter</h3>
+            <div class="text-3xl font-bold text-gray-300 mb-6">15 000 PLN</div>
+            <ul class="space-y-3 text-gray-300 mb-8">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Webapp lub mobile app
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                3-5 kluczowych funkcji
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Responsywny design
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Basic analytics
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                3 miesięcy support
+              </li>
+            </ul>
+            <p class="text-gray-400 text-sm">Idealne dla prostych pomysłów SaaS</p>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-emerald-500/50 relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+              Najpopularniejszy
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">MVP Pro</h3>
+            <div class="text-3xl font-bold text-emerald-400 mb-6">35 000 PLN</div>
+            <ul class="space-y-3 text-gray-300 mb-8">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Wszystko z Starter +
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                5-8 funkcji
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Integracje (płatności, email)
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Admin panel
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Advanced analytics
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                6 miesięcy support
+              </li>
+            </ul>
+            <p class="text-gray-400 text-sm">Dla średniej złożoności produktów</p>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-cyan-500/20">
+            <h3 class="text-2xl font-bold text-white mb-4">MVP Enterprise</h3>
+            <div class="text-3xl font-bold text-cyan-400 mb-6">55 000 PLN</div>
+            <ul class="space-y-3 text-gray-300 mb-8">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Wszystko z Pro +
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                8-12 funkcji
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                AI/ML components
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Advanced integrations
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                Custom design system
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">✓</span>
+                12 miesięcy support
+              </li>
+            </ul>
+            <p class="text-gray-400 text-sm">Dla złożonych systemów B2B</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="wycena" class="py-16 px-4">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Gotowy na Stworzenie MVP?
+        </h2>
+        <p class="text-xl text-gray-300 mb-8">
+          Umów się na bezpłatną konsultację i otrzymaj szczegółową wycenę Twojego MVP
+        </p>
+        <div class="bg-slate-800 p-8 rounded-xl">
+          <h3 class="text-2xl font-bold text-emerald-400 mb-4">
+            Bezpłatna Konsultacja MVP
+          </h3>
+          <p class="text-gray-300 mb-6">
+            45 minut warsztatów nad Twoim pomysłem + szczegółowa wycena i plan działania
+          </p>
+          <div class="space-y-4">
+            <a href="mailto:kontakt@coderno.pl" class="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all">
+              Zarezerwuj Konsultację
+            </a>
+            <p class="text-gray-400 text-sm">
+              ✓ Bez zobowiązań ✓ Konkretny plan ✓ Wycena w 24h
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Dodatkowe animacje dla strony MVP */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+  .border-emerald-500\/50 {
+    animation: pulse 2s ease-in-out infinite;
+  }
+</style> 

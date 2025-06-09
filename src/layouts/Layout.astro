@@ -6,13 +6,23 @@ interface Props {
   title: string;
   description?: string;
   lang?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+  jsonLd?: object;
 }
 
 const { 
   title, 
-  description = "Interactive animation-heavy website", 
-  lang = "en" 
+  description = "Coderno - Tworzymy zaawansowane oprogramowanie, MVP i aplikacje. AI, automatyzacja procesów, optymalizacja firm. Doświadczony zespół, szybka realizacja.", 
+  lang = "pl",
+  keywords = "software, AI, automatyzacja procesów, optymalizacja firmy, MVP, aplikacje, programowanie, rozwój oprogramowania, sztuczna inteligencja, przyśpieszenie procesów",
+  ogImage = "/og-image.jpg",
+  canonical = Astro.url.href,
+  jsonLd
 } = Astro.props;
+
+const siteUrl = "https://coderno.pl"; // Zakładam domenę - można to później zmienić
 ---
 
 <!DOCTYPE html>
@@ -22,8 +32,36 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    
+    <!-- SEO Meta Tags -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Coderno" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Coderno" />
+    <meta property="og:locale" content={lang === 'pl' ? 'pl_PL' : 'en_US'} />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#1976D2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Coderno" />
+    
     <!-- Preload Inter font -->
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -31,6 +69,11 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- JSON-LD Structured Data -->
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
   </head>
   <body>
     <slot />

@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Structured data dla strony AI i automatyzacji
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI i Automatyzacja Procesów Biznesowych",
+  "description": "Kompleksowe rozwiązania AI i automatyzacji procesów dla firm. Optymalizacja, przyśpieszenie operacji i redukcja kosztów dzięki sztucznej inteligencji.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Coderno"
+  },
+  "areaServed": "PL",
+  "serviceOutput": "Zautomatyzowane procesy biznesowe",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Usługi AI i Automatyzacji",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Chatboty AI"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Automatyzacja dokumentów"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Optymalizacja procesów"
+        }
+      }
+    ]
+  }
+};
+
+const pageTitle = "AI i Automatyzacja Procesów - Optymalizacja Firm | Coderno";
+const pageDescription = "Przyspieszamy Twoją firmę dzięki AI i automatyzacji procesów. Chatboty, analiza danych, optymalizacja operacji. Redukcja kosztów do 40%. Skontaktuj się z nami!";
+const pageKeywords = "AI, sztuczna inteligencja, automatyzacja procesów, optymalizacja firm, chatboty AI, machine learning, przyspieszenie procesów, redukcja kosztów, cyfrowa transformacja";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang="pl"
+  jsonLd={jsonLd}
+  canonical="https://coderno.pl/ai-automatyzacja"
+>
+  <main class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              AI i Automatyzacja
+            </span>
+            <br />
+            Procesów Biznesowych
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            Przyspieszamy Twoją firmę dzięki inteligentnym rozwiązaniom. 
+            <strong class="text-blue-400">Redukcja kosztów do 40%</strong> i 
+            <strong class="text-cyan-400">oszczędność czasu do 60%</strong>.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#konsultacja" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Bezpłatna Konsultacja
+            </a>
+            <a href="#case-studies" class="border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Zobacz Realizacje
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problemy i rozwiązania -->
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Czy Twoja firma zmaga się z tymi problemami?
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-red-400 mb-4">⚠️ Obecne Problemy</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Powtarzalne zadania zabierają zbyt dużo czasu zespołu
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Błędy ludzkie w procesach krytycznych
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Brak analizy danych w czasie rzeczywistym
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Wysokie koszty operacyjne i wolne procesy
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Konkurencja wyprzedza Cię technologicznie
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-green-400 mb-4">✅ Nasze Rozwiązania AI</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Inteligentne chatboty obsługujące klientów 24/7
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Automatyzacja dokumentów i raportowania
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Analiza predykcyjna i machine learning
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Optymalizacja procesów w czasie rzeczywistym
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Przewaga konkurencyjna dzięki AI
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usługi AI -->
+    <section class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Nasze Rozwiązania AI i Automatyzacji
+          </h2>
+          <p class="text-xl text-gray-300">
+            Kompleksowe usługi dostosowane do potrzeb Twojej firmy
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-slate-900 p-8 rounded-xl border border-blue-500/20">
+            <div class="text-4xl mb-4">🤖</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Chatboty AI</h3>
+            <p class="text-gray-300 mb-6">
+              Inteligentne asystenci obsługujący klientów, odpowiadający na pytania i realizujący sprzedaż automatycznie.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Obsługa 24/7 bez przerw</li>
+              <li>• Integracja z istniejącymi systemami</li>
+              <li>• Wielojęzyczność</li>
+              <li>• Analiza sentymentu klientów</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-cyan-500/20">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Analiza Danych AI</h3>
+            <p class="text-gray-300 mb-6">
+              Machine learning do analizy trendów, przewidywania sprzedaży i optymalizacji decyzji biznesowych.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Predykcja sprzedaży</li>
+              <li>• Analiza zachowań klientów</li>
+              <li>• Optymalizacja cen</li>
+              <li>• Wykrywanie anomalii</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-green-500/20">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Automatyzacja Procesów</h3>
+            <p class="text-gray-300 mb-6">
+              RPA i AI do automatyzacji powtarzalnych zadań, raportowania i obiegu dokumentów.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Automatyzacja fakturowania</li>
+              <li>• Przetwarzanie zamówień</li>
+              <li>• Generowanie raportów</li>
+              <li>• Synchronizacja systemów</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="konsultacja" class="py-16 px-4">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Gotowy na Cyfrową Transformację?
+        </h2>
+        <p class="text-xl text-gray-300 mb-8">
+          Umów się na bezpłatną konsultację i dowiedz się, jak AI może przyśpieszyć Twoją firmę
+        </p>
+        <div class="bg-slate-800 p-8 rounded-xl">
+          <h3 class="text-2xl font-bold text-blue-400 mb-4">
+            Bezpłatna Analiza Procesów
+          </h3>
+          <p class="text-gray-300 mb-6">
+            W ciągu 30 minut przeanalizujemy Twoje procesy i pokażemy konkretne możliwości automatyzacji
+          </p>
+          <a href="mailto:kontakt@coderno.pl" class="inline-block bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-cyan-700 transition-all">
+            Umów Konsultację
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Dodatkowe animacje dla strony AI */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .container > div {
+    animation: fadeInUp 0.6s ease-out;
+  }
+</style> 

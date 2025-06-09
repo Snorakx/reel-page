@@ -15,9 +15,48 @@ const bulletPoints = [
   "Masz aplikację, która ledwo zipie i nikt jej nie chce dotykać?",
   "Masz produkt, ale brakuje Ci feature'a, który przekona inwestorów?"
 ];
+
+// Structured data dla SEO
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Coderno",
+  "description": "Firma programistyczna specjalizująca się w tworzeniu oprogramowania, MVP, aplikacji AI i automatyzacji procesów biznesowych",
+  "url": "https://coderno.pl",
+  "logo": "https://coderno.pl/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "availableLanguage": ["Polish", "English"]
+  },
+  "areaServed": "PL",
+  "serviceType": [
+    "Rozwój oprogramowania",
+    "Tworzenie MVP",
+    "Aplikacje AI",
+    "Automatyzacja procesów",
+    "Optymalizacja systemów firmowych",
+    "Konsultacje technologiczne"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "serviceType": "Software Development",
+    "description": "Kompleksowe usługi rozwoju oprogramowania, od MVP po zaawansowane systemy AI"
+  }
+};
+
+const pageTitle = "Coderno - Rozwój Oprogramowania, AI i Automatyzacja Procesów | Software House";
+const pageDescription = "Tworzymy zaawansowane oprogramowanie, MVP i aplikacje AI. Specjalizujemy się w automatyzacji procesów biznesowych i optymalizacji firm. Szybka realizacja projektów - MVP w 3 miesiące.";
+const pageKeywords = "software house, AI, automatyzacja procesów, MVP, aplikacje, optymalizacja firm, rozwój oprogramowania, sztuczna inteligencja, przyśpieszenie procesów biznesowych, programowanie";
 ---
 
-<Layout title="Coderno - Twój partner w rozwoju oprogramowania" lang="pl">
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang="pl"
+  jsonLd={jsonLd}
+>
   <!-- Hero Section -->
   <HeroSection
     headlines={headlines}
