@@ -229,7 +229,7 @@ const pageKeywords = "software house, AI, automatyzacja procesów, MVP, aplikacj
     </section>
 
     <!-- Social Media Links -->
-    <div class="fixed right-6 md:right-8 top-1/2 transform -translate-y-1/2 z-40 mix-blend-difference">
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 mix-blend-difference md:right-8 hidden md:block">
       <div class="flex flex-col space-y-6">
         <a href="#" class="social-link text-white hover:text-cyan-400">
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -278,20 +278,30 @@ const pageKeywords = "software house, AI, automatyzacja procesów, MVP, aplikacj
       }
     }
 
-    function updateIndicators() {
-      document.querySelectorAll('.reel-indicator').forEach((indicator, index) => {
-        const indicatorElement = indicator as HTMLElement;
-        if (index === currentReel) {
-          indicatorElement.classList.add('active');
-          indicatorElement.classList.remove('bg-white/30');
-          indicatorElement.classList.add('bg-white');
-        } else {
-          indicatorElement.classList.remove('active');
-          indicatorElement.classList.remove('bg-white');
-          indicatorElement.classList.add('bg-white/30');
-        }
-      });
-    }
+         function updateIndicators() {
+       document.querySelectorAll('.reel-indicator').forEach((indicator, index) => {
+         const indicatorElement = indicator as HTMLElement;
+         if (index === currentReel) {
+           indicatorElement.classList.add('active');
+           indicatorElement.classList.remove('bg-white/30');
+           indicatorElement.classList.add('bg-white');
+         } else {
+           indicatorElement.classList.remove('active');
+           indicatorElement.classList.remove('bg-white');
+           indicatorElement.classList.add('bg-white/30');
+         }
+       });
+       
+       // Show/hide footer based on current reel
+       const footer = document.querySelector('footer') as HTMLElement;
+       if (footer) {
+         if (currentReel === totalReels - 1) {
+           footer.style.display = 'block';
+         } else {
+           footer.style.display = 'none';
+         }
+       }
+     }
 
     // Wheel scroll handling
     document.addEventListener('wheel', (e: WheelEvent) => {
@@ -341,10 +351,16 @@ const pageKeywords = "software house, AI, automatyzacja procesów, MVP, aplikacj
       });
     });
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      updateIndicators();
-    });
+         // Initialize
+     document.addEventListener('DOMContentLoaded', () => {
+       updateIndicators();
+       
+       // Hide footer initially
+       const footer = document.querySelector('footer') as HTMLElement;
+       if (footer) {
+         footer.style.display = 'none';
+       }
+     });
 
     // Make scrollToSection available globally for nav buttons
     (window as any).scrollToSection = scrollToSection;
