@@ -7,9 +7,15 @@ import Reel4Contact from './Reel4Contact.tsx';
 import SocialLinks from './SocialLinks.tsx';
 import ReelIndicators from './ReelIndicators.tsx';
 
-export default function HomeContainer() {
+
+interface HomeContainerProps {
+  lang?: string;
+}
+
+export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
   const [currentReel, setCurrentReel] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [showFooter, setShowFooter] = useState(false);
   const totalReels = 4;
 
   const scrollToSection = (index: number) => {
@@ -30,23 +36,9 @@ export default function HomeContainer() {
   };
 
   useEffect(() => {
-    // Show/hide footer based on current reel with a small delay to ensure DOM is ready
-    const updateFooter = () => {
-      const footer = document.querySelector('footer') as HTMLElement;
-      if (footer) {
-        if (currentReel === totalReels - 1) {
-          footer.style.display = 'block';
-          footer.style.opacity = '1';
-        } else {
-          footer.style.display = 'none';
-          footer.style.opacity = '0';
-        }
-      }
-    };
-    
-    // Small delay to ensure DOM is fully rendered
-    setTimeout(updateFooter, 100);
-  }, [currentReel]);
+    // Footer pokazuje się po ostatnim reel (Contact)
+    setShowFooter(currentReel === totalReels - 1);
+  }, [currentReel, totalReels]);
 
   useEffect(() => {
     // Wheel scroll handling
@@ -55,10 +47,20 @@ export default function HomeContainer() {
       
       if (isScrolling) return;
       
+      // Sprawdź czy footer jest widoczny w viewport
+      const footerElement = document.querySelector('footer');
+      const isActuallyInFooter = showFooter && footerElement && 
+        footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
+      
       if (e.deltaY > 0 && currentReel < totalReels - 1) {
         scrollToSection(currentReel + 1);
-      } else if (e.deltaY < 0 && currentReel > 0) {
-        scrollToSection(currentReel - 1);
+      } else if (e.deltaY < 0) {
+        if (isActuallyInFooter) {
+          // Jeśli footer jest widoczny i scrollujemy w górę, wróć do ostatniego reel (Contact)
+          scrollToSection(totalReels - 1);
+        } else if (currentReel > 0) {
+          scrollToSection(currentReel - 1);
+        }
       }
     };
 
@@ -73,20 +75,40 @@ export default function HomeContainer() {
       const diff = touchStartY - touchEndY;
       
       if (Math.abs(diff) > 50) {
+        // Sprawdź czy footer jest widoczny w viewport
+        const footerElement = document.querySelector('footer');
+        const isActuallyInFooter = showFooter && footerElement && 
+          footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
+        
         if (diff > 0 && currentReel < totalReels - 1) {
           scrollToSection(currentReel + 1);
-        } else if (diff < 0 && currentReel > 0) {
-          scrollToSection(currentReel - 1);
+        } else if (diff < 0) {
+          if (isActuallyInFooter) {
+            // Jeśli footer jest widoczny i swipe w dół, wróć do ostatniego reel (Contact)
+            scrollToSection(totalReels - 1);
+          } else if (currentReel > 0) {
+            scrollToSection(currentReel - 1);
+          }
         }
       }
     };
 
     // Keyboard navigation
     const handleKeydown = (e: KeyboardEvent) => {
+      // Sprawdź czy footer jest widoczny w viewport
+      const footerElement = document.querySelector('footer');
+      const isActuallyInFooter = showFooter && footerElement && 
+        footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
+      
       if (e.key === 'ArrowDown' && currentReel < totalReels - 1) {
         scrollToSection(currentReel + 1);
-      } else if (e.key === 'ArrowUp' && currentReel > 0) {
-        scrollToSection(currentReel - 1);
+      } else if (e.key === 'ArrowUp') {
+        if (isActuallyInFooter) {
+          // Jeśli footer jest widoczny i strzałka w górę, wróć do ostatniego reel (Contact)
+          scrollToSection(totalReels - 1);
+        } else if (currentReel > 0) {
+          scrollToSection(currentReel - 1);
+        }
       }
     };
 
@@ -96,26 +118,11 @@ export default function HomeContainer() {
     document.addEventListener('touchend', handleTouchEnd);
     document.addEventListener('keydown', handleKeydown);
 
-    // Initialize footer with proper delay
-    const initializeFooter = () => {
-      const footer = document.querySelector('footer') as HTMLElement;
-      if (footer) {
-        footer.style.transition = 'opacity 0.3s ease-in-out';
-        if (currentReel === totalReels - 1) {
-          footer.style.display = 'block';
-          footer.style.opacity = '1';
-        } else {
-          footer.style.display = 'none';
-          footer.style.opacity = '0';
-        }
-      }
-    };
-    
-    // Delay to ensure footer is in DOM
-    setTimeout(initializeFooter, 500);
-
     // Make scrollToSection available globally for footer navigation
     (window as any).scrollToSection = scrollToSection;
+    
+    // Make showFooter available globally
+    (window as any).shouldShowFooter = showFooter;
 
     // Cleanup
     return () => {
@@ -124,15 +131,15 @@ export default function HomeContainer() {
       document.removeEventListener('touchend', handleTouchEnd);
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [currentReel, isScrolling]);
+  }, [currentReel, isScrolling, showFooter]);
 
   return (
     <>
-      <Navigation scrollToSection={scrollToSection} />
-      <Reel1Hero />
-      <Reel2Services />
-      <Reel3Process />
-      <Reel4Contact />
+      <Navigation scrollToSection={scrollToSection} lang={lang} />
+      <Reel1Hero lang={lang} />
+      <Reel2Services lang={lang} />
+      <Reel3Process lang={lang} />
+      <Reel4Contact lang={lang} />
       <SocialLinks />
       <ReelIndicators currentReel={currentReel} scrollToSection={scrollToSection} />
     </>

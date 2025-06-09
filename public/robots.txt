@@ -1,11 +1,28 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_astro/
 
 # Sitemap
 Sitemap: https://coderno.pl/sitemap.xml
 
-# Crawl delay (opcjonalnie)
+# Block certain bots from specific paths
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Allow all other crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay
 Crawl-delay: 1 

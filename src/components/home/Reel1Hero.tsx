@@ -1,4 +1,12 @@
-export default function Reel1Hero() {
+import { useTranslations } from '../../i18n/config';
+
+interface Reel1HeroProps {
+  lang?: string;
+}
+
+export default function Reel1Hero({ lang = 'pl' }: Reel1HeroProps) {
+  const t = useTranslations(lang);
+
   return (
     <section className="reel reel-1 h-screen w-full bg-black text-white flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -20,13 +28,13 @@ export default function Reel1Hero() {
       <div className="text-center z-10 reel-content">
         <div className="space-y-6">
           <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-black tracking-tighter leading-none animate-slide-up">
-            WATCH OUR
+            {t('hero.title')}
           </h1>
           <h2 className="text-7xl md:text-9xl lg:text-[12rem] font-black tracking-tighter leading-none text-gradient animate-slide-up delay-300">
-            AI MAGIC
+            {t('hero.subtitle')}
           </h2>
           <p className="text-xl md:text-2xl font-light tracking-[4px] uppercase animate-fade-in delay-600">
-            AUTOMATYZACJA • MVP • PRZYSZŁOŚĆ
+            {t('hero.tagline')}
           </p>
         </div>
       </div>

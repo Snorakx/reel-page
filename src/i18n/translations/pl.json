@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "brand": "CODERNO",
+    "ai": "AI",
+    "processes": "PROCESY", 
+    "mvp": "MVP",
+    "contact": "KONTAKT"
+  },
+  "hero": {
+    "title": "WATCH OUR",
+    "subtitle": "AI MAGIC",
+    "tagline": "AUTOMATYZACJA • MVP • PRZYSZŁOŚĆ"
+  },
+  "services": {
+    "title": "CO ROBIMY?",
+    "subtitle": "Pomagamy Twojej firmie rosnąć dzięki nowoczesnym technologiom",
+    "terminal": {
+      "locked": "--ZABLOKOWANE",
+      "active": "--AKTYWNE", 
+      "finalizing": "--FINALIZOWANIE",
+      "complete": "--UKOŃCZONE",
+      "standby": "--GOTOWOŚĆ",
+      "card_clicked": "--KARTA_{0}_KLIKNIĘTA",
+      "hover": "--HOVER_{0}"
+    },
+    "scroll": {
+      "locked": "🔒 SCROLL ZABLOKOWANY - Przewijaj aby odkryć karty | Kliknij aby zaznaczyć, potem najedź aby podnieść | Postęp: {0}%",
+      "unlocked": "🔓 SCROLL ODBLOKOWANY - Przewijaj dalej do następnej sekcji 🚀",
+      "finalizing": "⏳ Finalizowanie animacji... Proszę czekać 🎬"
+    },
+    "hints": {
+      "click_card": "Kliknij na kartę aby ją zaznaczyć!",
+      "hover_card": "Świetnie! Teraz najedź na zaznaczoną kartę aby ją podnieść"
+    },
+    "cards": {
+      "ai": {
+        "title": "AI & Automatyzacja",
+        "description": "Chatboty i systemy, które uczą się i pomagają Twojemu biznesowi automatyzować nudne zadania.",
+        "tagline": "🤖 Skupiaj się na ważnych rzeczach, resztę zrobimy za Ciebie",
+        "back_title": "Przyszłość już tu jest",
+        "back_subtitle": "Wprowadźmy AI do Twojego biznesu!"
+      },
+      "optimization": {
+        "title": "Optymalizacja procesów",
+        "description": "Przyśpieszamy Twoje procesy, oszczędzamy czas i pieniądze. Wszystko działa jak należy.",
+        "tagline": "⚡ Każdy zoptymalizowany proces to więcej czasu na rozwój",
+        "back_title": "Maksymalna wydajność",
+        "back_subtitle": "Zoptymalizujmy Twoje procesy!"
+      },
+      "mvp": {
+        "title": "MVP w 3 miesiące",
+        "description": "Od pomysłu do działającego produktu, który możesz testować z klientami i sprawdzić czy ma sens biznesowy.",
+        "tagline": "💡 Szybko sprawdzimy czy Twój pomysł ma potencjał",
+        "back_title": "Gotowy na start?",
+        "back_subtitle": "Sprawdźmy Twój pomysł w praktyce!"
+      }
+    },
+    "completion": {
+      "ready": "Gotowe do przejścia",
+      "finalizing": "Finalizowanie..."
+    }
+  },
+  "process": {
+    "title": "JAK TO ROBIMY?",
+    "steps": "ANALIZA → DESIGN → CODE → LAUNCH",
+    "timeline": "OD POMYSŁU DO SUKCESU W 90 DNI"
+  },
+  "contact": {
+    "title": "LET'S TALK",
+    "question": "MASZ POMYSŁ? POTRZEBUJESZ MVP?",
+    "email": "KONTAKT@CODERNO.PL",
+    "response_time": "ODPOWIADAMY W 24H"
+  },
+  "seo": {
+    "title": "Coderno - Rozwój Oprogramowania, AI i Automatyzacja Procesów | Software House",
+    "description": "Tworzymy zaawansowane oprogramowanie, MVP i aplikacje AI. Specjalizujemy się w automatyzacji procesów biznesowych i optymalizacji firm. Szybka realizacja projektów - MVP w 3 miesiące.",
+    "keywords": "software house, AI, automatyzacja procesów, MVP, aplikacje, optymalizacja firm, rozwój oprogramowania, sztuczna inteligencja, przyśpieszenie procesów biznesowych, programowanie"
+  },
+  "footer": {
+    "brand": "CODERNO",
+    "description": "Software House specjalizujący się w AI, automatyzacji procesów i tworzeniu MVP. Przyspieszamy firmy dzięki nowoczesnym technologiom.",
+    "services": {
+      "title": "Usługi",
+      "ai_automation": "AI i Automatyzacja",
+      "process_optimization": "Optymalizacja Procesów", 
+      "mvp_development": "MVP Development",
+      "software_development": "Rozwój Oprogramowania",
+      "it_consulting": "Konsultacje IT"
+    },
+    "technologies": {
+      "title": "Technologie"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "location": "Kraków, Polska",
+      "scroll_top": "↑ Na górę"
+    },
+    "legal": {
+      "copyright": "Wszystkie prawa zastrzeżone.",
+      "privacy_policy": "Polityka Prywatności",
+      "terms": "Regulamin",
+      "gdpr": "RODO"
+    }
+  }
+} 

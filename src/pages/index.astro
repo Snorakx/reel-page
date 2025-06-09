@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AppWithFooter from '../components/AppWithFooter.tsx';
+import { useTranslations, defaultLanguage } from '../i18n/config';
 
-// Import home page container
-import HomeContainer from '../components/home/HomeContainer.tsx';
+const lang = defaultLanguage; // Polish is default
+const t = useTranslations(lang);
 
 // Structured data dla SEO
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Coderno",
-  "description": "Firma programistyczna specjalizująca się w tworzeniu oprogramowania, MVP, aplikacji AI i automatyzacji procesów biznesowych",
+  "description": t('seo.description'),
   "url": "https://coderno.pl",
   "logo": "https://coderno.pl/logo.png",
   "contactPoint": {
@@ -29,25 +31,21 @@ const jsonLd = {
   "offers": {
     "@type": "Offer",
     "serviceType": "Software Development",
-    "description": "Kompleksowe usługi rozwoju oprogramowania, od MVP po zaawansowane systemy AI"
+    "description": t('seo.description')
   }
 };
 
-const pageTitle = "Coderno - Rozwój Oprogramowania, AI i Automatyzacja Procesów | Software House";
-const pageDescription = "Tworzymy zaawansowane oprogramowanie, MVP i aplikacje AI. Specjalizujemy się w automatyzacji procesów biznesowych i optymalizacji firm. Szybka realizacja projektów - MVP w 3 miesiące.";
-const pageKeywords = "software house, AI, automatyzacja procesów, MVP, aplikacje, optymalizacja firm, rozwój oprogramowania, sztuczna inteligencja, przyśpieszenie procesów biznesowych, programowanie";
+const pageTitle = t('seo.title');
+const pageDescription = t('seo.description');
+const pageKeywords = t('seo.keywords');
 ---
 
 <Layout 
   title={pageTitle}
   description={pageDescription}
   keywords={pageKeywords}
-  lang="pl"
+  lang={lang}
   jsonLd={jsonLd}
 >
-  <main class="reels-container">
-    <HomeContainer client:load />
-  </main>
-
-
+  <AppWithFooter client:load lang={lang} />
 </Layout>

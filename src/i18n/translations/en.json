@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "brand": "CODERNO",
+    "ai": "AI",
+    "processes": "PROCESSES", 
+    "mvp": "MVP",
+    "contact": "CONTACT"
+  },
+  "hero": {
+    "title": "WATCH OUR",
+    "subtitle": "AI MAGIC",
+    "tagline": "AUTOMATION • MVP • FUTURE"
+  },
+  "services": {
+    "title": "WHAT WE DO?",
+    "subtitle": "We help your company grow with modern technologies",
+    "terminal": {
+      "locked": "--LOCKED",
+      "active": "--ACTIVE", 
+      "finalizing": "--FINALIZING",
+      "complete": "--COMPLETE",
+      "standby": "--STANDBY",
+      "card_clicked": "--CARD_{0}_CLICKED",
+      "hover": "--HOVER_{0}"
+    },
+    "scroll": {
+      "locked": "🔒 SCROLL LOCKED - Scroll to reveal cards | Click to select, then hover to lift | Progress: {0}%",
+      "unlocked": "🔓 SCROLL UNLOCKED - Continue scrolling to next section 🚀",
+      "finalizing": "⏳ Finalizing animation... Please wait 🎬"
+    },
+    "hints": {
+      "click_card": "Click on a card to select it!",
+      "hover_card": "Great! Now hover over the selected card to lift it"
+    },
+    "cards": {
+      "ai": {
+        "title": "AI & Automation",
+        "description": "Chatbots and systems that learn and help your business automate boring tasks.",
+        "tagline": "🤖 Focus on important things, we'll do the rest for you",
+        "back_title": "The future is here",
+        "back_subtitle": "Let's introduce AI to your business!"
+      },
+      "optimization": {
+        "title": "Process Optimization",
+        "description": "We speed up your processes, save time and money. Everything works as it should.",
+        "tagline": "⚡ Every optimized process means more time for growth",
+        "back_title": "Maximum efficiency",
+        "back_subtitle": "Let's optimize your processes!"
+      },
+      "mvp": {
+        "title": "MVP in 3 months",
+        "description": "From idea to working product that you can test with customers and check if it makes business sense.",
+        "tagline": "💡 We'll quickly check if your idea has potential",
+        "back_title": "Ready to start?",
+        "back_subtitle": "Let's test your idea in practice!"
+      }
+    },
+    "completion": {
+      "ready": "Ready to proceed",
+      "finalizing": "Finalizing..."
+    }
+  },
+  "process": {
+    "title": "HOW WE DO IT?",
+    "steps": "ANALYSIS → DESIGN → CODE → LAUNCH",
+    "timeline": "FROM IDEA TO SUCCESS IN 90 DAYS"
+  },
+  "contact": {
+    "title": "LET'S TALK",
+    "question": "HAVE AN IDEA? NEED AN MVP?",
+    "email": "CONTACT@CODERNO.PL",
+    "response_time": "WE RESPOND WITHIN 24H"
+  },
+  "seo": {
+    "title": "Coderno - Software Development, AI & Process Automation | Software House",
+    "description": "We create advanced software, MVPs and AI applications. We specialize in business process automation and company optimization. Fast project delivery - MVP in 3 months.",
+    "keywords": "software house, AI, process automation, MVP, applications, company optimization, software development, artificial intelligence, business process acceleration, programming"
+  },
+  "footer": {
+    "brand": "CODERNO",
+    "description": "Software House specializing in AI, process automation and MVP development. We accelerate companies with modern technologies.",
+    "services": {
+      "title": "Services",
+      "ai_automation": "AI & Automation",
+      "process_optimization": "Process Optimization", 
+      "mvp_development": "MVP Development",
+      "software_development": "Software Development",
+      "it_consulting": "IT Consulting"
+    },
+    "technologies": {
+      "title": "Technologies"
+    },
+    "contact": {
+      "title": "Contact",
+      "location": "Krakow, Poland",
+      "scroll_top": "↑ Back to top"
+    },
+    "legal": {
+      "copyright": "All rights reserved.",
+      "privacy_policy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "gdpr": "GDPR"
+    }
+  }
+} 

@@ -1,27 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Polish (default) pages -->
   <url>
     <loc>https://coderno.pl/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coderno.pl/"/>
   </url>
+  
+  <!-- English pages -->
+  <url>
+    <loc>https://coderno.pl/en/</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://coderno.pl/"/>
+  </url>
+  
+  <!-- Service pages - Polish -->
   <url>
     <loc>https://coderno.pl/ai-automatyzacja</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/ai-automation"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/ai-automatyzacja"/>
   </url>
+  
   <url>
     <loc>https://coderno.pl/optymalizacja-procesow</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/process-optimization"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/optymalizacja-procesow"/>
   </url>
+  
   <url>
     <loc>https://coderno.pl/mvp-development</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/mvp-development"/>
+  </url>
+  
+  <!-- Service pages - English -->
+  <url>
+    <loc>https://coderno.pl/en/ai-automation</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/ai-automation"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/ai-automatyzacja"/>
+  </url>
+  
+  <url>
+    <loc>https://coderno.pl/en/process-optimization</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/process-optimization"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/optymalizacja-procesow"/>
+  </url>
+  
+  <url>
+    <loc>https://coderno.pl/en/mvp-development</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://coderno.pl/en/mvp-development"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://coderno.pl/mvp-development"/>
   </url>
 </urlset> 

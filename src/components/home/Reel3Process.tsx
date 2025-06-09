@@ -1,4 +1,12 @@
-export default function Reel3Process() {
+import { useTranslations } from '../../i18n/config';
+
+interface Reel3ProcessProps {
+  lang?: string;
+}
+
+export default function Reel3Process({ lang = 'pl' }: Reel3ProcessProps) {
+  const t = useTranslations(lang);
+
   return (
     <section className="reel reel-3 h-screen w-full bg-gradient-to-br from-blue-600 via-purple-700 to-black text-white flex items-center justify-center relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -11,15 +19,15 @@ export default function Reel3Process() {
 
       <div className="text-center z-10 reel-content max-w-4xl mx-auto px-6">
         <h3 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter animate-slide-up">
-          JAK TO ROBIMY?
+          {t('process.title')}
         </h3>
         
         <div className="space-y-8 animate-fade-in delay-500">
           <div className="text-2xl md:text-4xl font-bold tracking-wider">
-            ANALIZA → DESIGN → CODE → LAUNCH
+            {t('process.steps')}
           </div>
           <div className="text-lg md:text-xl font-light tracking-[3px] uppercase">
-            OD POMYSŁU DO SUKCESU W 90 DNI
+            {t('process.timeline')}
           </div>
           
           {/* Progress Bar Animation */}
