@@ -1,87 +1,64 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/Navigation';
-import FadeIn from '../../components/animations/FadeIn';
-import { useTranslations, defaultLanguage } from '../../i18n/config';
-import { generateLanguagePaths } from '../../utils/page';
+import AppWithFooter from '../../components/AppWithFooter.tsx';
+import { useTranslations, defaultLanguage, generateLanguagePaths, languages } from '../../i18n/config';
 
 // Define all possible language routes at build time
 export function getStaticPaths() {
   return generateLanguagePaths();
 }
 
-// Get language from props
-const { lang = defaultLanguage } = Astro.props;
+// Get language from params
+const { lang = defaultLanguage } = Astro.params;
 const t = useTranslations(lang);
+
+// Structured data dla SEO
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Coderno",
+  "description": t('seo.description'),
+  "url": `https://coderno.pl${lang === defaultLanguage ? '' : '/' + lang}`,
+  "logo": "https://coderno.pl/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "availableLanguage": Object.keys(languages).map(l => l === 'pl' ? 'Polish' : 'English')
+  },
+  "areaServed": lang === 'pl' ? "PL" : "Worldwide",
+  "serviceType": lang === 'pl' ? [
+    "Rozwój oprogramowania",
+    "Tworzenie MVP",
+    "Aplikacje AI",
+    "Automatyzacja procesów",
+    "Optymalizacja systemów firmowych",
+    "Konsultacje technologiczne"
+  ] : [
+    "Software Development",
+    "MVP Creation",
+    "AI Applications", 
+    "Process Automation",
+    "Business System Optimization",
+    "Technology Consulting"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "serviceType": "Software Development",
+    "description": t('seo.description')
+  }
+};
+
+const pageTitle = t('seo.title');
+const pageDescription = t('seo.description');
+const pageKeywords = t('seo.keywords');
 ---
 
-<Layout title="Animation Hub" lang={lang}>
-  <Navigation currentLang={lang} t={t} client:load />
-  
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section class="min-h-[80vh] flex items-center">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center">
-          <FadeIn client:load>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">
-              {t('hero.title')}
-            </h1>
-          </FadeIn>
-          
-          <FadeIn delay={0.2} client:load>
-            <p class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 mb-8">
-              {t('hero.subtitle')}
-            </p>
-          </FadeIn>
-          
-          <FadeIn delay={0.4} client:load>
-            <div class="flex flex-wrap justify-center gap-4">
-              <a 
-                href={`/${lang}/about`}
-                class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
-              >
-                Learn More
-              </a>
-              <a 
-                href={`/${lang}/contact`}
-                class="px-6 py-3 rounded-lg bg-white hover:bg-zinc-100 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 font-medium transition-colors"
-              >
-                Contact Us
-              </a>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="py-24 bg-zinc-50 dark:bg-zinc-800/50">
-      <div class="container mx-auto px-4">
-        <FadeIn client:load>
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-            Features
-          </h2>
-        </FadeIn>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <FadeIn delay={i * 0.1} client:load>
-              <div class="bg-white dark:bg-zinc-800 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Feature {i}</h3>
-                <p class="text-zinc-600 dark:text-zinc-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia.
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang={lang}
+  jsonLd={jsonLd}
+>
+  <AppWithFooter client:load lang={lang} />
 </Layout> 

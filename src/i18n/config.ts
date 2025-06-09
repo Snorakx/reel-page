@@ -1,11 +1,18 @@
+import plTranslations from './translations/pl.json';
+import enTranslations from './translations/en.json';
+
 export const languages = {
   en: 'English',
   pl: 'Polski',
-  de: 'Deutsch',
-  fr: 'Français',
 };
 
 export const defaultLanguage = 'pl';
+
+// Load translations from JSON files
+const translations: Record<string, any> = {
+  pl: plTranslations,
+  en: enTranslations,
+};
 
 export function getLanguageFromURL(url: URL): string {
   const [, lang] = url.pathname.split('/');
@@ -15,40 +22,70 @@ export function getLanguageFromURL(url: URL): string {
   return defaultLanguage;
 }
 
-export function useTranslations(lang: string) {
-  return function t(key: string): string {
-    return translations[lang]?.[key] || translations[defaultLanguage][key] || key;
+export function useTranslations(lang: string = defaultLanguage) {
+  return function t(key: string, params?: Record<string, any>): string {
+    const keys = key.split('.');
+    let translation = translations[lang] || translations[defaultLanguage];
+    
+    // Navigate through nested object
+    for (const k of keys) {
+      translation = translation?.[k];
+      if (translation === undefined) break;
+    }
+    
+    // Fallback to default language if not found
+    if (translation === undefined) {
+      translation = translations[defaultLanguage];
+      for (const k of keys) {
+        translation = translation?.[k];
+        if (translation === undefined) break;
+      }
+    }
+    
+    // If still not found, return the key itself
+    if (translation === undefined) {
+      return key;
+    }
+    
+    // Handle string interpolation
+    if (typeof translation === 'string' && params) {
+      return translation.replace(/\{(\w+)\}/g, (match, paramKey) => {
+        return params[paramKey] !== undefined ? String(params[paramKey]) : match;
+      });
+    }
+    
+    return String(translation);
   };
 }
 
-// Simple translations dictionary
-const translations: Record<string, Record<string, string>> = {
-  en: {
-    'nav.home': 'Home',
-    'nav.about': 'About',
-    'nav.contact': 'Contact',
-    'hero.title': 'Welcome to our Animation Showcase',
-    'hero.subtitle': 'Experience the power of modern web animations',
-  },
-  pl: {
-    'nav.home': 'Strona główna',
-    'nav.about': 'O nas',
-    'nav.contact': 'Kontakt',
-    'hero.title': 'Witamy w naszej Galerii Animacji',
-    'hero.subtitle': 'Doświadcz mocy nowoczesnych animacji webowych',
-  },
-  de: {
-    'nav.home': 'Startseite',
-    'nav.about': 'Über uns',
-    'nav.contact': 'Kontakt',
-    'hero.title': 'Willkommen in unserer Animations-Galerie',
-    'hero.subtitle': 'Erleben Sie die Kraft moderner Web-Animationen',
-  },
-  fr: {
-    'nav.home': 'Accueil',
-    'nav.about': 'À propos',
-    'nav.contact': 'Contact',
-    'hero.title': 'Bienvenue dans notre Galerie d\'Animation',
-    'hero.subtitle': 'Découvrez la puissance des animations web modernes',
-  },
-}; 
+// Get language from current URL (client-side)
+export function getCurrentLanguage(): string {
+  if (typeof window !== 'undefined') {
+    return getLanguageFromURL(new URL(window.location.href));
+  }
+  return defaultLanguage;
+}
+
+// Generate language-specific paths for static generation
+export function generateLanguagePaths() {
+  return Object.keys(languages).map(lang => ({ params: { lang } }));
+}
+
+// Get localized URL
+export function getLocalizedUrl(path: string, lang: string): string {
+  if (lang === defaultLanguage) {
+    return path === '/' ? '/' : path;
+  }
+  return `/${lang}${path === '/' ? '' : path}`;
+}
+
+// Detect language from browser
+export function detectBrowserLanguage(): string {
+  if (typeof navigator !== 'undefined') {
+    const browserLang = navigator.language.split('-')[0];
+    return Object.keys(languages).includes(browserLang) ? browserLang : defaultLanguage;
+  }
+  return defaultLanguage;
+}
+
+ 
