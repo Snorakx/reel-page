@@ -1,0 +1,11 @@
+PLACEHOLDER for og-image.jpg
+
+Recommended size: 1200x630 pixels
+Format: JPG or PNG
+Content should include:
+- Coderno logo
+- Company tagline: "AI, Automatyzacja, MVP"
+- Brand colors: #1976D2 (blue), #0B0F1A (dark)
+- Professional design that represents software house
+
+This file should be replaced with actual og-image.jpg file for social media sharing. 

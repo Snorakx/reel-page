@@ -1,0 +1,341 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Structured data dla strony optymalizacji procesów
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Optymalizacja Procesów Biznesowych",
+  "description": "Kompleksowa optymalizacja i reorganizacja procesów firmowych. Zwiększenie efektywności, redukcja kosztów i przyspieszenie operacji.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Coderno"
+  },
+  "areaServed": "PL",
+  "serviceOutput": "Zoptymalizowane procesy biznesowe",
+  "offers": {
+    "@type": "Offer",
+    "description": "Audyt i optymalizacja procesów biznesowych z wykorzystaniem najnowszych technologii",
+    "price": "Na zapytanie",
+    "priceCurrency": "PLN"
+  }
+};
+
+const pageTitle = "Optymalizacja Procesów Biznesowych - Przyśpieszenie Firmy | Coderno";
+const pageDescription = "Optymalizujemy procesy w Twojej firmie. Audyt, reorganizacja i automatyzacja. Redukcja kosztów do 50%, przyspieszenie operacji. Doświadczony zespół konsultantów.";
+const pageKeywords = "optymalizacja procesów, usprawnienie firmy, audyt procesów, reorganizacja, przyspieszenie operacji, redukcja kosztów, lean management, efektywność";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang="pl"
+  jsonLd={jsonLd}
+  canonical="https://coderno.pl/optymalizacja-procesow"
+>
+  <main class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Optymalizacja Procesów
+            </span>
+            <br />
+            w Twojej Firmie
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            Usprawniamy Twoją organizację dzięki sprawdzonym metodologiom. 
+            <strong class="text-purple-400">Redukcja kosztów do 50%</strong> i 
+            <strong class="text-pink-400">przyspieszenie o 70%</strong>.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#audyt" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Bezpłatny Audyt
+            </a>
+            <a href="#metodologie" class="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              Nasze Metody
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problemy w procesach -->
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Czy rozpoznajesz te problemy w swojej firmie?
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-red-500">
+            <h3 class="text-xl font-bold text-red-400 mb-3">🚨 Wolne Procesy</h3>
+            <ul class="space-y-2 text-gray-300 text-sm">
+              <li>• Długie czasy oczekiwania</li>
+              <li>• Niepotrzebne kroki w procesach</li>
+              <li>• Dublowanie czynności</li>
+              <li>• Brak automatyzacji</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-orange-500">
+            <h3 class="text-xl font-bold text-orange-400 mb-3">💸 Wysokie Koszty</h3>
+            <ul class="space-y-2 text-gray-300 text-sm">
+              <li>• Marnotrawstwo zasobów</li>
+              <li>• Przewymiarowane zespoły</li>
+              <li>• Błędy kosztowne</li>
+              <li>• Niska produktywność</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-yellow-500">
+            <h3 class="text-xl font-bold text-yellow-400 mb-3">😤 Frustracja Zespołu</h3>
+            <ul class="space-y-2 text-gray-300 text-sm">
+              <li>• Powtarzalne zadania</li>
+              <li>• Brak jasnych procedur</li>
+              <li>• Chaos informacyjny</li>
+              <li>• Przepracowanie</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metodologie -->
+    <section id="metodologie" class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Nasze Sprawdzone Metodologie
+          </h2>
+          <p class="text-xl text-gray-300">
+            Wykorzystujemy najlepsze praktyki z całego świata
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-slate-900 p-6 rounded-xl text-center">
+            <div class="text-3xl mb-4">📊</div>
+            <h3 class="text-lg font-bold text-white mb-2">Lean Management</h3>
+            <p class="text-gray-400 text-sm">Eliminacja marnotrawstwa i optymalizacja przepływu wartości</p>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl text-center">
+            <div class="text-3xl mb-4">🎯</div>
+            <h3 class="text-lg font-bold text-white mb-2">Six Sigma</h3>
+            <p class="text-gray-400 text-sm">Redukcja błędów i poprawa jakości procesów</p>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl text-center">
+            <div class="text-3xl mb-4">🔄</div>
+            <h3 class="text-lg font-bold text-white mb-2">Agile</h3>
+            <p class="text-gray-400 text-sm">Zwiększenie elastyczności i szybkości reakcji</p>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl text-center">
+            <div class="text-3xl mb-4">⚡</div>
+            <h3 class="text-lg font-bold text-white mb-2">BPM</h3>
+            <p class="text-gray-400 text-sm">Zarządzanie procesami biznesowymi w sposób ciągły</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proces optymalizacji -->
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Jak Przeprowadzamy Optymalizację?
+          </h2>
+          <p class="text-xl text-gray-300">
+            Sprawdzony 4-etapowy proces transformacji
+          </p>
+        </div>
+        
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">1</div>
+            <div class="flex-1 bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-2xl font-bold text-white mb-4">Audyt i Analiza</h3>
+              <p class="text-gray-300 mb-4">
+                Szczegółowa analiza istniejących procesów, identyfikacja wąskich gardeł i marnotrawstwa.
+              </p>
+              <ul class="text-gray-400 space-y-1">
+                <li>• Mapowanie procesów AS-IS</li>
+                <li>• Analiza czasów i kosztów</li>
+                <li>• Identyfikacja problemów</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+            <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">2</div>
+            <div class="flex-1 bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-2xl font-bold text-white mb-4">Projektowanie Rozwiązań</h3>
+              <p class="text-gray-300 mb-4">
+                Opracowanie nowych, optymalnych procesów dostosowanych do specyfiki Twojej firmy.
+              </p>
+              <ul class="text-gray-400 space-y-1">
+                <li>• Projektowanie procesów TO-BE</li>
+                <li>• Wybór technologii</li>
+                <li>• Plan wdrożenia</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">3</div>
+            <div class="flex-1 bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-2xl font-bold text-white mb-4">Wdrożenie</h3>
+              <p class="text-gray-300 mb-4">
+                Stopniowe wprowadzanie zmian z pełnym wsparciem zespołu i szkoleniami.
+              </p>
+              <ul class="text-gray-400 space-y-1">
+                <li>• Wdrożenie etapami</li>
+                <li>• Szkolenia zespołu</li>
+                <li>• Wsparcie techniczne</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+            <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">4</div>
+            <div class="flex-1 bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-2xl font-bold text-white mb-4">Monitorowanie i Doskonalenie</h3>
+              <p class="text-gray-300 mb-4">
+                Ciągły monitoring wyników i dalsze usprawnienia procesów.
+              </p>
+              <ul class="text-gray-400 space-y-1">
+                <li>• KPI i metryki</li>
+                <li>• Regularne przeglądy</li>
+                <li>• Ciągłe doskonalenie</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Korzyści -->
+    <section class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Jakie Korzyści Osiągniesz?
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-slate-900 p-6 rounded-xl border border-green-500/20">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-xl font-bold text-green-400 mb-2">Redukcja Kosztów</h3>
+            <p class="text-gray-300 mb-4">Do 50% oszczędności na kosztach operacyjnych</p>
+            <div class="text-green-400 font-bold text-2xl">-50%</div>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl border border-blue-500/20">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold text-blue-400 mb-2">Przyspieszenie</h3>
+            <p class="text-gray-300 mb-4">Szybsze wykonywanie zadań i projektów</p>
+            <div class="text-blue-400 font-bold text-2xl">+70%</div>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl border border-purple-500/20">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-xl font-bold text-purple-400 mb-2">Produktywność</h3>
+            <p class="text-gray-300 mb-4">Wzrost wydajności zespołów</p>
+            <div class="text-purple-400 font-bold text-2xl">+60%</div>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl border border-cyan-500/20">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold text-cyan-400 mb-2">Jakość</h3>
+            <p class="text-gray-300 mb-4">Mniejsza liczba błędów i reklamacji</p>
+            <div class="text-cyan-400 font-bold text-2xl">-80%</div>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl border border-yellow-500/20">
+            <div class="text-4xl mb-4">😊</div>
+            <h3 class="text-xl font-bold text-yellow-400 mb-2">Satysfakcja</h3>
+            <p class="text-gray-300 mb-4">Większe zadowolenie pracowników</p>
+            <div class="text-yellow-400 font-bold text-2xl">+85%</div>
+          </div>
+          
+          <div class="bg-slate-900 p-6 rounded-xl border border-pink-500/20">
+            <div class="text-4xl mb-4">🏆</div>
+            <h3 class="text-xl font-bold text-pink-400 mb-2">Konkurencyjność</h3>
+            <p class="text-gray-300 mb-4">Przewaga nad konkurencją</p>
+            <div class="text-pink-400 font-bold text-2xl">ROI 300%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="audyt" class="py-16 px-4">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Zacznij Optymalizację Już Dziś!
+        </h2>
+        <p class="text-xl text-gray-300 mb-8">
+          Umów się na bezpłatny audyt procesów i dowiedz się, ile możesz zaoszczędzić
+        </p>
+        <div class="bg-slate-800 p-8 rounded-xl">
+          <h3 class="text-2xl font-bold text-purple-400 mb-4">
+            Bezpłatny Audyt Procesów
+          </h3>
+          <p class="text-gray-300 mb-6">
+            W ciągu 2 tygodni przeanalizujemy Twoje procesy i przedstawimy raport z konkretnymi oszczędnościami
+          </p>
+          <div class="space-y-4">
+            <a href="mailto:kontakt@coderno.pl" class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all">
+              Zamów Bezpłatny Audyt
+            </a>
+            <p class="text-gray-400 text-sm">
+              ✓ Bez zobowiązań ✓ Konkretne wyliczenia ✓ Plan działania
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Dodatkowe animacje dla strony optymalizacji */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .container > div:nth-child(odd) {
+    animation: slideInLeft 0.6s ease-out;
+  }
+  
+  .container > div:nth-child(even) {
+    animation: slideInRight 0.6s ease-out;
+  }
+</style> 
