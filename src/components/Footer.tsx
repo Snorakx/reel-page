@@ -118,8 +118,8 @@ export default function Footer({ lang = 'pl' }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="tel:+48123456789" className="hover:text-white transition-colors">
-                  +48 123 456 789
+                <a href="tel:+48453418428" className="hover:text-white transition-colors">
+                +48 453 418 428
                 </a>
               </li>
               <li>
