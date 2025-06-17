@@ -28,6 +28,13 @@ export default function Reel4Contact({ lang = 'pl' }: Reel4ContactProps) {
             {t('contact.email')}
           </a>
           
+          <a 
+            href="tel:+48453418428" 
+            className="inline-block text-3xl md:text-5xl font-black tracking-tight hover:text-cyan-400 transition-all duration-500 hover:scale-105 animate-pulse-glow"
+          >
+            {t('contact.phone')}
+          </a>
+          
           <div className="text-sm font-light tracking-[3px] uppercase text-gray-400">
             {t('contact.response_time')}
           </div>
