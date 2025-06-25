@@ -28,6 +28,7 @@ export default function Reel4Contact({ lang = 'pl' }: Reel4ContactProps) {
             {t('contact.email')}
           </a>
           
+          
           <div className="text-sm font-light tracking-[3px] uppercase text-gray-400">
             {t('contact.response_time')}
           </div>

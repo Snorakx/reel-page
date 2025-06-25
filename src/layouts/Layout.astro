@@ -84,6 +84,24 @@ const basePathForHreflang = currentPath.startsWith('/en') ? currentPath.substrin
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSNC1E4EDF"></script>
+    <script>
+      declare global {
+        interface Window {
+          dataLayer: any[];
+          gtag: (...args: any[]) => void;
+        }
+      }
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]): void {
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-FSNC1E4EDF');
+    </script>
+    
     <!-- JSON-LD Structured Data -->
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
