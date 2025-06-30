@@ -1,0 +1,231 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/shared/Header.tsx';
+import Footer from '../../components/shared/Footer.tsx';
+import { useTranslations, defaultLanguage, generateLanguagePaths } from '../../i18n/config';
+
+// Define all possible language routes at build time
+export function getStaticPaths() {
+  return generateLanguagePaths().filter(({ params }) => params.lang !== 'pl');
+}
+
+// Get language from params
+const { lang = defaultLanguage } = Astro.params;
+const t = useTranslations(lang);
+
+// Structured data for process optimization page
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Process Optimization & Business Improvement",
+  "description": t('optimization.seo.description'),
+  "provider": {
+    "@type": "Organization",
+    "name": "Coderno"
+  },
+  "areaServed": lang === 'pl' ? "PL" : "Worldwide",
+  "serviceOutput": lang === 'pl' ? "Zoptymalizowane procesy biznesowe" : "Optimized business processes",
+  "offers": {
+    "@type": "Offer",
+    "description": lang === 'pl' ? "Usprawnienie procesów organizacyjnych" : "Organizational process improvement",
+    "price": lang === 'pl' ? "Od 8000 PLN" : "From $2000",
+    "priceCurrency": lang === 'pl' ? "PLN" : "USD"
+  }
+};
+
+const pageTitle = t('optimization.seo.title');
+const pageDescription = t('optimization.seo.description');
+const pageKeywords = t('optimization.seo.keywords');
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  lang={lang}
+  jsonLd={jsonLd}
+  canonical={`https://coderno.pl${lang === 'pl' ? '' : '/' + lang}/process-optimization`}
+>
+  <Header client:load lang={lang} />
+  <main class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              {t('optimization.hero.title')}
+            </span>
+            <br />
+            {t('optimization.hero.subtitle')}
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            We streamline your organization with proven methodologies. 
+            <strong class="text-purple-400">{t('optimization.hero.cost_reduction')}</strong> and 
+            <strong class="text-pink-400">{t('optimization.hero.speed_increase')}</strong>.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#audit" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              {t('optimization.hero.cta_primary')}
+            </a>
+            <a href="#methods" class="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+              {t('optimization.hero.cta_secondary')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Problems -->
+    <section class="py-16 px-4">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Are these problems slowing down your business?
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-red-400 mb-4">⚠️ Common Issues</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Inefficient workflows and bottlenecks
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Unclear roles and responsibilities
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Lack of standardized procedures
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                Poor communication between departments
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-400 mr-3">•</span>
+                No metrics to measure performance
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-800 p-8 rounded-xl">
+            <h3 class="text-2xl font-bold text-green-400 mb-4">✅ Our Solutions</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Process mapping and optimization
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Clear documentation and procedures
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Lean and Six Sigma methodologies
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                Digital transformation strategy
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-400 mr-3">•</span>
+                KPI implementation and monitoring
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodologies -->
+    <section id="methods" class="py-16 px-4 bg-slate-800/50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Our Proven Methodologies
+          </h2>
+          <p class="text-xl text-gray-300">
+            Industry-standard approaches adapted to your business
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-slate-900 p-8 rounded-xl border border-purple-500/20">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Lean Management</h3>
+            <p class="text-gray-300 mb-6">
+              Eliminate waste and maximize value through continuous improvement and efficient workflows.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Value stream mapping</li>
+              <li>• Waste elimination (8 wastes)</li>
+              <li>• Continuous improvement (Kaizen)</li>
+              <li>• Just-in-time processes</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-pink-500/20">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Six Sigma</h3>
+            <p class="text-gray-300 mb-6">
+              Data-driven approach to reduce defects and improve quality through statistical analysis.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• DMAIC methodology</li>
+              <li>• Statistical process control</li>
+              <li>• Root cause analysis</li>
+              <li>• Quality metrics and KPIs</li>
+            </ul>
+          </div>
+          
+          <div class="bg-slate-900 p-8 rounded-xl border border-indigo-500/20">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-2xl font-bold text-white mb-4">Agile & Scrum</h3>
+            <p class="text-gray-300 mb-6">
+              Flexible project management and iterative improvement for faster delivery and adaptation.
+            </p>
+            <ul class="text-sm text-gray-400 space-y-2">
+              <li>• Sprint-based delivery</li>
+              <li>• Cross-functional teams</li>
+              <li>• Regular retrospectives</li>
+              <li>• Adaptive planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="audit" class="py-16 px-4">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Ready to Optimize Your Processes?
+        </h2>
+        <p class="text-xl text-gray-300 mb-8">
+          Book a free process audit and discover optimization opportunities
+        </p>
+        <div class="bg-slate-800 p-8 rounded-xl">
+          <h3 class="text-2xl font-bold text-purple-400 mb-4">
+            Free Process Audit
+          </h3>
+          <p class="text-gray-300 mb-6">
+            In 60 minutes we'll analyze your key processes and provide actionable recommendations
+          </p>
+          <div class="space-y-4">
+            <a href="mailto:kontakt@coderno.pl" class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition-all">
+              Book Free Audit
+            </a>
+            <p class="text-gray-400 text-sm">
+              ✓ No commitment ✓ Detailed analysis ✓ Implementation roadmap
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer client:load lang={lang} />
+</Layout> 

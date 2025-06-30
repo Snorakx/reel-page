@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Navigation from './Navigation.tsx';
+import Header from '../shared/Header.tsx';
 import Reel1Hero from './Reel1Hero.tsx';
 import Reel2Services from './Reel2Services.tsx';
 import Reel3Process from './Reel3Process.tsx';
@@ -16,6 +16,7 @@ export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
   const [currentReel, setCurrentReel] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [showFooter, setShowFooter] = useState(false);
+  const [lastScrollTime, setLastScrollTime] = useState(0);
   const totalReels = 4;
 
   const scrollToSection = (index: number) => {
@@ -31,7 +32,7 @@ export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
       
       setTimeout(() => {
         setIsScrolling(false);
-      }, 1000);
+      }, 800); // Reduced timeout for better responsiveness
     }
   };
 
@@ -41,81 +42,85 @@ export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
   }, [currentReel, totalReels]);
 
   useEffect(() => {
-    // Wheel scroll handling
+    // Wheel handling z debouncing dla MacBook touchpad
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       
+      const now = Date.now();
+      const timeSinceLastScroll = now - lastScrollTime;
+      
+      // Debouncing - ignoruj szybkie wheel eventy (typowe dla MacBook touchpad)
+      if (timeSinceLastScroll < 100) return;
+      
+      // Jeśli już scrollujemy, nie rób nic
       if (isScrolling) return;
       
-      // Sprawdź czy footer jest widoczny w viewport
-      const footerElement = document.querySelector('footer');
-      const isActuallyInFooter = showFooter && footerElement && 
-        footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
+      // Ignoruj bardzo małe delta (przypadkowe doknięcia)
+      if (Math.abs(e.deltaY) < 5) return;
       
+      setLastScrollTime(now);
+      
+      // Zwykła nawigacja w górę/dół między sekcjami - tylko jedna sekcja na gest
       if (e.deltaY > 0 && currentReel < totalReels - 1) {
         scrollToSection(currentReel + 1);
-      } else if (e.deltaY < 0) {
-        if (isActuallyInFooter) {
-          // Jeśli footer jest widoczny i scrollujemy w górę, wróć do ostatniego reel (Contact)
-          scrollToSection(totalReels - 1);
-        } else if (currentReel > 0) {
-          scrollToSection(currentReel - 1);
-        }
+      } else if (e.deltaY < 0 && currentReel > 0) {
+        scrollToSection(currentReel - 1);
       }
     };
 
-    // Touch handling for mobile
+    // Touch handling z throttling
     let touchStartY = 0;
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      const now = Date.now();
+      const timeSinceLastScroll = now - lastScrollTime;
+      
+      // Throttling dla touch events
+      if (timeSinceLastScroll < 200) return;
+      
+      if (isScrolling) return;
+      
       const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
+      const diffY = touchStartY - touchEndY;
       
-      if (Math.abs(diff) > 50) {
-        // Sprawdź czy footer jest widoczny w viewport
-        const footerElement = document.querySelector('footer');
-        const isActuallyInFooter = showFooter && footerElement && 
-          footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
+      // Swipe navigation - tylko jeśli wystarczająco duży ruch
+      if (Math.abs(diffY) > 50) {
+        setLastScrollTime(now);
         
-        if (diff > 0 && currentReel < totalReels - 1) {
+        if (diffY > 0 && currentReel < totalReels - 1) {
           scrollToSection(currentReel + 1);
-        } else if (diff < 0) {
-          if (isActuallyInFooter) {
-            // Jeśli footer jest widoczny i swipe w dół, wróć do ostatniego reel (Contact)
-            scrollToSection(totalReels - 1);
-          } else if (currentReel > 0) {
-            scrollToSection(currentReel - 1);
-          }
-        }
-      }
-    };
-
-    // Keyboard navigation
-    const handleKeydown = (e: KeyboardEvent) => {
-      // Sprawdź czy footer jest widoczny w viewport
-      const footerElement = document.querySelector('footer');
-      const isActuallyInFooter = showFooter && footerElement && 
-        footerElement.getBoundingClientRect().top < window.innerHeight * 0.8;
-      
-      if (e.key === 'ArrowDown' && currentReel < totalReels - 1) {
-        scrollToSection(currentReel + 1);
-      } else if (e.key === 'ArrowUp') {
-        if (isActuallyInFooter) {
-          // Jeśli footer jest widoczny i strzałka w górę, wróć do ostatniego reel (Contact)
-          scrollToSection(totalReels - 1);
-        } else if (currentReel > 0) {
+        } else if (diffY < 0 && currentReel > 0) {
           scrollToSection(currentReel - 1);
         }
       }
     };
 
-    // Add event listeners
+    // Keyboard navigation z throttling
+    const handleKeydown = (e: KeyboardEvent) => {
+      const now = Date.now();
+      const timeSinceLastScroll = now - lastScrollTime;
+      
+      // Throttling dla keyboard events
+      if (timeSinceLastScroll < 150) return;
+      
+      if (isScrolling) return;
+      
+      if (e.key === 'ArrowDown' && currentReel < totalReels - 1) {
+        setLastScrollTime(now);
+        scrollToSection(currentReel + 1);
+      } else if (e.key === 'ArrowUp' && currentReel > 0) {
+        setLastScrollTime(now);
+        scrollToSection(currentReel - 1);
+      }
+    };
+
+    // Add event listeners - TYLKO dla non-scrollable areas
     document.addEventListener('wheel', handleWheel, { passive: false });
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('touchend', handleTouchEnd, { passive: true });
     document.addEventListener('keydown', handleKeydown);
 
     // Make scrollToSection available globally for footer navigation
@@ -131,11 +136,11 @@ export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
       document.removeEventListener('touchend', handleTouchEnd);
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [currentReel, isScrolling, showFooter]);
+  }, [currentReel, isScrolling, showFooter, lastScrollTime]);
 
   return (
     <>
-      <Navigation scrollToSection={scrollToSection} lang={lang} />
+      <Header scrollToSection={scrollToSection} lang={lang} />
       <Reel1Hero lang={lang} />
       <Reel2Services lang={lang} />
       <Reel3Process lang={lang} />

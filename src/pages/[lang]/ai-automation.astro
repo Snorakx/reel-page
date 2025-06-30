@@ -1,14 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/shared/Header.tsx';
-import Footer from '../components/shared/Footer.tsx';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/shared/Header.tsx';
+import Footer from '../../components/shared/Footer.tsx';
+import { useTranslations, defaultLanguage, generateLanguagePaths } from '../../i18n/config';
 
-// Advanced SEO - Structured data dla strony AI i automatyzacji
+// Define all possible language routes at build time
+export function getStaticPaths() {
+  return generateLanguagePaths().filter(({ params }) => params.lang !== 'pl');
+}
+
+// Get language from params
+const { lang = defaultLanguage } = Astro.params;
+const t = useTranslations(lang);
+
+// Advanced SEO - Structured data for AI automation page
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["Service", "Organization"],
-  "name": "AI i Automatyzacja Procesów Biznesowych - Coderno",
-  "description": "Kompleksowe rozwiązania AI i automatyzacji procesów dla firm w Polsce. Redukcja kosztów do 40%, automatyzacja dokumentów, chatboty AI, machine learning, RPA. Bezpłatna konsultacja.",
+  "name": "AI & Business Process Automation - Coderno",
+  "description": "Comprehensive AI and process automation solutions for global businesses. Up to 40% cost reduction, document automation, AI chatbots, machine learning, RPA. Free consultation.",
   "provider": {
     "@type": "Organization",
     "name": "Coderno",
@@ -18,40 +28,40 @@ const jsonLd = {
       "@type": "ContactPoint",
       "telephone": "+48-XXX-XXX-XXX",
       "contactType": "customer service",
-      "areaServed": "PL",
+      "areaServed": "Worldwide",
       "availableLanguage": ["pl", "en"]
     }
   },
   "areaServed": {
-    "@type": "Country",
-    "name": "Polska"
+    "@type": "Place",
+    "name": "Worldwide"
   },
-  "serviceType": "Automatyzacja procesów biznesowych AI",
-  "category": ["Sztuczna Inteligencja", "Automatyzacja", "RPA", "Machine Learning"],
+  "serviceType": "AI Business Process Automation",
+  "category": ["Artificial Intelligence", "Automation", "RPA", "Machine Learning"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Usługi AI i Automatyzacji",
+    "name": "AI & Automation Services",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Chatboty AI",
-          "description": "Inteligentne chatboty obsługujące klientów 24/7 z integracją NLP"
+          "name": "AI Chatbots",
+          "description": "Intelligent chatbots serving customers 24/7 with NLP integration"
         },
-        "price": "15000",
-        "priceCurrency": "PLN",
+        "price": "3750",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       },
       {
         "@type": "Offer", 
         "itemOffered": {
           "@type": "Service",
-          "name": "Automatyzacja dokumentów RPA",
-          "description": "Automatyzacja przetwarzania dokumentów i raportowania"
+          "name": "RPA Document Automation",
+          "description": "Automated document processing and reporting systems"
         },
-        "price": "10000",
-        "priceCurrency": "PLN",
+        "price": "2500",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       },
       {
@@ -59,10 +69,10 @@ const jsonLd = {
         "itemOffered": {
           "@type": "Service", 
           "name": "Machine Learning Analytics",
-          "description": "Predykcyjna analiza danych i optymalizacja procesów"
+          "description": "Predictive data analysis and process optimization"
         },
-        "price": "20000",
-        "priceCurrency": "PLN",
+        "price": "5000",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       }
     ]
@@ -81,51 +91,47 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Jak sztuczna inteligencja może zredukować koszty w mojej firmie?",
+      "name": "How can artificial intelligence reduce costs in my business?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI może zredukować koszty o 30-40% poprzez automatyzację powtarzalnych zadań, eliminację błędów ludzkich, optymalizację procesów i przewidywanie problemów przed ich wystąpieniem. Najczęstsze obszary to obsługa klienta, przetwarzanie dokumentów, analiza danych i raportowanie."
+        "text": "AI can reduce costs by 30-40% through automation of repetitive tasks, elimination of human errors, process optimization and predicting problems before they occur. Most common areas include customer service, document processing, data analysis and reporting."
       }
     },
     {
       "@type": "Question", 
-      "name": "Ile trwa wdrożenie systemu automatyzacji AI?",
+      "name": "How long does AI automation system implementation take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Typowe wdrożenie trwa 2-4 miesiące w zależności od złożoności procesów. Rozpoczynamy od audytu procesów (1 tydzień), następnie projektowanie (2-4 tygodnie), implementacja (4-8 tygodni) i testy oraz szkolenia (2 tygodnie)."
+        "text": "Typical implementation takes 2-4 months depending on process complexity. We start with process audit (1 week), then design (2-4 weeks), implementation (4-8 weeks) and testing plus training (2 weeks)."
       }
     },
     {
       "@type": "Question",
-      "name": "Czy automatyzacja AI zastąpi moich pracowników?",
+      "name": "Will AI automation replace my employees?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI nie zastępuje ludzi, ale wspiera ich w pracy. Automatyzujemy rutynowe zadania, dzięki czemu zespół może skupić się na strategicznych działaniach. Często prowadzimy szkolenia przygotowujące pracowników do współpracy z systemami AI."
+        "text": "AI doesn't replace people, but supports them in their work. We automate routine tasks so your team can focus on strategic activities. We often provide training to prepare employees for collaboration with AI systems."
       }
     }
   ]
 };
 
-// Enhanced SEO meta tags
-const pageTitle = "AI i Automatyzacja Procesów Biznesowych - Redukcja Kosztów 40% | Coderno";
-const pageDescription = "✅ Automatyzacja procesów AI w Polsce ⚡ Chatboty, RPA, Machine Learning ⚡ Redukcja kosztów do 40% ⚡ Bezpłatna konsultacja ☎️ Zadzwoń już dziś";
-const pageKeywords = "automatyzacja procesów AI, sztuczna inteligencja biznes, chatboty AI Polska, RPA automatyzacja, machine learning firmy, redukcja kosztów AI, optymalizacja procesów, automatyzacja dokumentów, AI consulting Polska";
-
-// Open Graph and Twitter meta
-const ogTitle = "AI i Automatyzacja Procesów - Zredukuj Koszty o 40% | Coderno";
-const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmach. Chatboty, RPA, Machine Learning. Bezpłatna konsultacja i audyt procesów.";
+// Enhanced SEO meta tags for English version
+const pageTitle = "AI & Business Process Automation - 40% Cost Reduction | Coderno";
+const pageDescription = "✅ AI Process Automation Worldwide ⚡ Chatbots, RPA, Machine Learning ⚡ Up to 40% cost reduction ⚡ Free consultation ☎️ Contact us today";
+const pageKeywords = "AI process automation, artificial intelligence business, AI chatbots worldwide, RPA automation, machine learning companies, AI cost reduction, process optimization, document automation, AI consulting international";
 ---
 
 <Layout 
   title={pageTitle}
   description={pageDescription}
   keywords={pageKeywords}
-  lang="pl"
+  lang={lang}
   jsonLd={[jsonLd, faqSchema]}
-  canonical="https://coderno.pl/ai-automatyzacja"
-  ogImage="/og-ai-automation.jpg"
+  canonical={`https://coderno.pl${lang === 'pl' ? '' : '/' + lang}/ai-automation`}
+  ogImage="/og-ai-automation-en.jpg"
 >
-  <Header client:load lang="pl" />
+  <Header client:load lang={lang} />
   
   <!-- Main content with JetBrains AI inspired design and semantic HTML -->
   <main class="min-h-screen bg-[#0D1117] relative overflow-hidden">
@@ -148,39 +154,39 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
         <div class="text-center">
           <h1 class="text-4xl md:text-6xl font-light text-white mb-8 leading-tight tracking-tight">
             <span class="bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent font-medium">
-              AI i Automatyzacja
+              AI & Automation
             </span>
             <br />
-            <span class="text-gray-200 font-light">Procesów Biznesowych</span>
+            <span class="text-gray-200 font-light">Business Processes</span>
           </h1>
           
           <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Przyspieszamy polskie firmy dzięki inteligentnym rozwiązaniom AI.
+            We accelerate global businesses with intelligent AI solutions.
             <br class="hidden md:block" />
-            <strong class="text-violet-400">Redukcja kosztów do 40%</strong> i 
-            <strong class="text-blue-400">oszczędność czasu do 60%</strong>.
+            <strong class="text-violet-400">Up to 40% cost reduction</strong> and 
+            <strong class="text-blue-400">60% time savings</strong>.
           </p>
           
           <!-- CTA buttons with improved design -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a 
-              href="#konsultacja" 
+              href="#consultation" 
               class="group bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg shadow-violet-500/25"
-              aria-label="Umów bezpłatną konsultację AI"
+              aria-label="Book free AI consultation"
             >
               <span class="flex items-center justify-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                 </svg>
-                Bezpłatna Konsultacja AI
+                Free AI Consultation
               </span>
             </a>
             <a 
-              href="#rozwiazania" 
+              href="#solutions" 
               class="group border border-gray-600 hover:border-violet-500 text-gray-300 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
-              aria-label="Zobacz nasze rozwiązania AI"
+              aria-label="View our AI solutions"
             >
-              Nasze Rozwiązania
+              Our Solutions
             </a>
           </div>
 
@@ -190,19 +196,19 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>47+ wdrożeń AI</span>
+              <span>47+ AI implementations</span>
             </div>
             <div class="flex items-center gap-2">
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>Średnio 35% redukcja kosztów</span>
+              <span>Average 35% cost reduction</span>
             </div>
             <div class="flex items-center gap-2">
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>2-4 miesiące wdrożenia</span>
+              <span>2-4 months implementation</span>
             </div>
           </div>
         </div>
@@ -214,10 +220,10 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
       <div class="container mx-auto max-w-6xl">
         <header class="text-center mb-16">
           <h2 id="problems-title" class="text-3xl md:text-4xl font-light text-white mb-4 tracking-tight">
-            Czy Twoja firma zmaga się z tymi wyzwaniami?
+            Is your business facing these challenges?
           </h2>
           <p class="text-gray-400 max-w-2xl mx-auto">
-            Identyfikujemy typowe problemy polskich firm i pokazujemy jak AI może je rozwiązać
+            We identify common business problems and show how AI can solve them
           </p>
         </header>
         
@@ -229,30 +235,30 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
                 </svg>
-                Obecne Problemy Firm
+                Current Business Problems
               </h3>
-              <p class="text-gray-500 text-sm">Typowe wyzwania polskich przedsiębiorstw</p>
+              <p class="text-gray-500 text-sm">Common challenges for modern businesses</p>
             </header>
             <ul class="space-y-4 text-gray-300">
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Powtarzalne zadania zabierają 40-60% czasu zespołu</span>
+                <span>Repetitive tasks consume 40-60% of team time</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Błędy ludzkie w krytycznych procesach biznesowych</span>
+                <span>Human errors in critical business processes</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Brak analizy danych w czasie rzeczywistym</span>
+                <span>Lack of real-time data analysis capabilities</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Wysokie koszty operacyjne i wolne procesy</span>
+                <span>High operational costs and slow processes</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Konkurencja wyprzedza technologicznie</span>
+                <span>Competition outpaces you technologically</span>
               </li>
             </ul>
           </article>
@@ -264,30 +270,30 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Nasze Rozwiązania AI
+                Our AI Solutions
               </h3>
-              <p class="text-gray-500 text-sm">Inteligentne systemy dla Twojej firmy</p>
+              <p class="text-gray-500 text-sm">Intelligent systems for your business</p>
             </header>
             <ul class="space-y-4 text-gray-300">
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Inteligentne chatboty obsługujące klientów 24/7</span>
+                <span>Intelligent chatbots serving customers 24/7</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Automatyzacja dokumentów i raportowania RPA</span>
+                <span>Document and reporting automation with RPA</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Analiza predykcyjna i machine learning</span>
+                <span>Predictive analytics and machine learning</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Optymalizacja procesów w czasie rzeczywistym</span>
+                <span>Real-time process optimization</span>
               </li>
               <li class="flex items-start gap-3">
                 <span class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
-                <span>Przewaga konkurencyjna dzięki AI</span>
+                <span>Competitive advantage through AI</span>
               </li>
             </ul>
           </article>
@@ -296,19 +302,19 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
     </section>
 
     <!-- AI Services section with enhanced SEO -->
-    <section id="rozwiazania" class="relative z-10 py-20 px-4" aria-labelledby="services-title">
+    <section id="solutions" class="relative z-10 py-20 px-4" aria-labelledby="services-title">
       <div class="container mx-auto max-w-6xl">
         <header class="text-center mb-16">
           <h2 id="services-title" class="text-3xl md:text-4xl font-light text-white mb-4 tracking-tight">
-            Nasze Rozwiązania AI i Automatyzacji
+            Our AI & Automation Solutions
           </h2>
           <p class="text-lg text-gray-400 max-w-3xl mx-auto">
-            Kompleksowe usługi sztucznej inteligencji dostosowane do polskich firm
+            Comprehensive artificial intelligence services tailored for global businesses
           </p>
         </header>
         
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Chatbots AI -->
+          <!-- AI Chatbots -->
           <article class="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-violet-500/50 p-8 rounded-2xl transition-all duration-300 hover:bg-gray-900/70">
             <header class="mb-6">
               <div class="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-violet-500/30 transition-colors">
@@ -317,33 +323,33 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
                 </svg>
               </div>
               <h3 class="text-xl font-medium text-white mb-2 group-hover:text-violet-400 transition-colors">
-                Chatboty AI i NLP
+                AI Chatbots & NLP
               </h3>
             </header>
             <p class="text-gray-400 mb-6 leading-relaxed">
-              Inteligentne asystenci obsługujący klientów, odpowiadający na pytania i realizujący sprzedaż automatycznie z wykorzystaniem NLP.
+              Intelligent assistants serving customers, answering questions and handling sales automatically with advanced NLP capabilities.
             </p>
             <ul class="text-sm text-gray-500 space-y-2">
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-violet-400 rounded-full"></span>
-                Obsługa 24/7 bez przerw
+                24/7 service without interruption
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-violet-400 rounded-full"></span>
-                Integracja z CRM i ERP
+                CRM and ERP integration
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-violet-400 rounded-full"></span>
-                Wielojęzyczność (PL/EN)
+                Multi-language support
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-violet-400 rounded-full"></span>
-                Analiza sentymentu klientów
+                Customer sentiment analysis
               </li>
             </ul>
             <div class="mt-6 pt-6 border-t border-gray-800">
-              <span class="text-sm text-gray-500">Od</span>
-              <span class="text-lg font-medium text-white ml-2">15,000 PLN</span>
+              <span class="text-sm text-gray-500">From</span>
+              <span class="text-lg font-medium text-white ml-2">$3,750</span>
             </div>
           </article>
           
@@ -356,33 +362,33 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
                 </svg>
               </div>
               <h3 class="text-xl font-medium text-white mb-2 group-hover:text-blue-400 transition-colors">
-                Analiza Danych AI
+                AI Data Analytics
               </h3>
             </header>
             <p class="text-gray-400 mb-6 leading-relaxed">
-              Machine learning do analizy trendów, przewidywania sprzedaży i optymalizacji decyzji biznesowych w czasie rzeczywistym.
+              Machine learning for trend analysis, sales prediction and business decision optimization in real-time.
             </p>
             <ul class="text-sm text-gray-500 space-y-2">
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-blue-400 rounded-full"></span>
-                Predykcja sprzedaży i popytu
+                Sales and demand prediction
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-blue-400 rounded-full"></span>
-                Analiza zachowań klientów
+                Customer behavior analysis
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-blue-400 rounded-full"></span>
-                Optymalizacja cen dynamicznych
+                Dynamic price optimization
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-blue-400 rounded-full"></span>
-                Wykrywanie anomalii i fraudów
+                Anomaly and fraud detection
               </li>
             </ul>
             <div class="mt-6 pt-6 border-t border-gray-800">
-              <span class="text-sm text-gray-500">Od</span>
-              <span class="text-lg font-medium text-white ml-2">20,000 PLN</span>
+              <span class="text-sm text-gray-500">From</span>
+              <span class="text-lg font-medium text-white ml-2">$5,000</span>
             </div>
           </article>
           
@@ -395,33 +401,33 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
                 </svg>
               </div>
               <h3 class="text-xl font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                Automatyzacja RPA
+                RPA Automation
               </h3>
             </header>
             <p class="text-gray-400 mb-6 leading-relaxed">
-              Robotic Process Automation do automatyzacji powtarzalnych zadań, raportowania i obiegu dokumentów.
+              Robotic Process Automation for automating repetitive tasks, reporting and document workflow.
             </p>
             <ul class="text-sm text-gray-500 space-y-2">
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                Automatyzacja fakturowania
+                Invoice automation
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                Przetwarzanie zamówień
+                Order processing
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                Generowanie raportów
+                Report generation
               </li>
               <li class="flex items-center gap-2">
                 <span class="w-1 h-1 bg-cyan-400 rounded-full"></span>
-                Synchronizacja systemów
+                System synchronization
               </li>
             </ul>
             <div class="mt-6 pt-6 border-t border-gray-800">
-              <span class="text-sm text-gray-500">Od</span>
-              <span class="text-lg font-medium text-white ml-2">10,000 PLN</span>
+              <span class="text-sm text-gray-500">From</span>
+              <span class="text-lg font-medium text-white ml-2">$2,500</span>
             </div>
           </article>
         </div>
@@ -433,52 +439,52 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
       <div class="container mx-auto max-w-4xl">
         <header class="text-center mb-16">
           <h2 id="faq-title" class="text-3xl md:text-4xl font-light text-white mb-4 tracking-tight">
-            Najczęściej zadawane pytania
+            Frequently Asked Questions
           </h2>
           <p class="text-gray-400">
-            Odpowiedzi na pytania o AI i automatyzację procesów
+            Answers to common questions about AI and process automation
           </p>
         </header>
         
         <div class="space-y-6">
           <details class="group bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden">
             <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-900/70 transition-colors">
-              <h3 class="text-lg font-medium text-white">Jak sztuczna inteligencja może zredukować koszty w mojej firmie?</h3>
+              <h3 class="text-lg font-medium text-white">How can artificial intelligence reduce costs in my business?</h3>
               <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </summary>
             <div class="px-6 pb-6">
               <p class="text-gray-400 leading-relaxed">
-                AI może zredukować koszty o 30-40% poprzez automatyzację powtarzalnych zadań, eliminację błędów ludzkich, optymalizację procesów i przewidywanie problemów przed ich wystąpieniem. Najczęstsze obszary to obsługa klienta, przetwarzanie dokumentów, analiza danych i raportowanie.
+                AI can reduce costs by 30-40% through automation of repetitive tasks, elimination of human errors, process optimization and predicting problems before they occur. Most common areas include customer service, document processing, data analysis and reporting.
               </p>
             </div>
           </details>
 
           <details class="group bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden">
             <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-900/70 transition-colors">
-              <h3 class="text-lg font-medium text-white">Ile trwa wdrożenie systemu automatyzacji AI?</h3>
+              <h3 class="text-lg font-medium text-white">How long does AI automation system implementation take?</h3>
               <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </summary>
             <div class="px-6 pb-6">
               <p class="text-gray-400 leading-relaxed">
-                Typowe wdrożenie trwa 2-4 miesiące w zależności od złożoności procesów. Rozpoczynamy od audytu procesów (1 tydzień), następnie projektowanie (2-4 tygodnie), implementacja (4-8 tygodni) i testy oraz szkolenia (2 tygodnie).
+                Typical implementation takes 2-4 months depending on process complexity. We start with process audit (1 week), then design (2-4 weeks), implementation (4-8 weeks) and testing plus training (2 weeks).
               </p>
             </div>
           </details>
 
           <details class="group bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden">
             <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-900/70 transition-colors">
-              <h3 class="text-lg font-medium text-white">Czy automatyzacja AI zastąpi moich pracowników?</h3>
+              <h3 class="text-lg font-medium text-white">Will AI automation replace my employees?</h3>
               <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </summary>
             <div class="px-6 pb-6">
               <p class="text-gray-400 leading-relaxed">
-                AI nie zastępuje ludzi, ale wspiera ich w pracy. Automatyzujemy rutynowe zadania, dzięki czemu zespół może skupić się na strategicznych działaniach. Często prowadzimy szkolenia przygotowujące pracowników do współpracy z systemami AI.
+                AI doesn't replace people, but supports them in their work. We automate routine tasks so your team can focus on strategic activities. We often provide training to prepare employees for collaboration with AI systems.
               </p>
             </div>
           </details>
@@ -487,24 +493,24 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
     </section>
 
     <!-- Enhanced CTA Section -->
-    <section id="konsultacja" class="relative z-10 py-20 px-4" aria-labelledby="cta-title">
+    <section id="consultation" class="relative z-10 py-20 px-4" aria-labelledby="cta-title">
       <div class="container mx-auto max-w-4xl text-center">
         <header class="mb-12">
           <h2 id="cta-title" class="text-3xl md:text-4xl font-light text-white mb-6 tracking-tight">
-            Gotowy na <span class="bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">Cyfrową Transformację</span>?
+            Ready for <span class="bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">Digital Transformation</span>?
           </h2>
           <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-            Umów się na bezpłatną konsultację i dowiedz się, jak AI może przyśpieszyć Twoją firmę
+            Book a free consultation and discover how AI can accelerate your business
           </p>
         </header>
         
         <article class="bg-gray-900/50 backdrop-blur-sm border border-gray-800 p-8 rounded-2xl">
           <header class="mb-6">
             <h3 class="text-2xl font-medium text-violet-400 mb-2">
-              Bezpłatny Audyt Procesów AI
+              Free AI Process Audit
             </h3>
             <p class="text-gray-400">
-              W ciągu 30 minut przeanalizujemy Twoje procesy i pokażemy konkretne możliwości automatyzacji
+              In 30 minutes we'll analyze your processes and show specific automation opportunities
             </p>
           </header>
           
@@ -513,42 +519,42 @@ const ogDescription = "Wdrażamy AI i automatyzację procesów w polskich firmac
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>Analiza ROI</span>
+              <span>ROI Analysis</span>
             </div>
             <div class="flex items-center gap-2 text-gray-400">
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>Plan wdrożenia</span>
+              <span>Implementation Plan</span>
             </div>
             <div class="flex items-center gap-2 text-gray-400">
               <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
               </svg>
-              <span>Estymacja kosztów</span>
+              <span>Cost Estimation</span>
             </div>
           </div>
           
           <a 
-            href="mailto:kontakt@coderno.pl?subject=Konsultacja AI&body=Chciałbym umówić się na bezpłatną konsultację AI dla mojej firmy."
+            href="mailto:contact@coderno.pl?subject=AI Consultation&body=I would like to schedule a free AI consultation for my business."
             class="inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-violet-500/25"
-            aria-label="Napisz email w sprawie konsultacji AI"
+            aria-label="Send email for AI consultation"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
-            Umów Bezpłatną Konsultację
+            Book Free Consultation
           </a>
           
           <p class="text-xs text-gray-500 mt-4">
-            Odpowiadamy w ciągu 2 godzin | Konrakt z klauzulą NDA
+            We respond within 2 hours | NDA agreement included
           </p>
         </article>
       </div>
     </section>
   </main>
   
-  <Footer client:load lang="pl" />
+  <Footer client:load lang={lang} />
   
   <style>
     .animation-delay-3s {

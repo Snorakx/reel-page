@@ -1,14 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/shared/Header.tsx';
-import Footer from '../components/shared/Footer.tsx';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/shared/Header.tsx';
+import Footer from '../../components/shared/Footer.tsx';
+import { useTranslations, defaultLanguage, generateLanguagePaths } from '../../i18n/config';
 
-// Advanced SEO - Structured data dla strony MVP development
+// Define all possible language routes at build time
+export function getStaticPaths() {
+  return generateLanguagePaths().filter(({ params }) => params.lang !== 'pl');
+}
+
+// Get language from params
+const { lang = defaultLanguage } = Astro.params;
+const t = useTranslations(lang);
+
+// Advanced SEO - Structured data for MVP development page
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["Service", "Organization"],
-  "name": "Rozwój MVP w 7 Dni - Coderno",
-  "description": "Buduj MVP w 7 dni z Coderno. Kompleksowe usługi rozwoju MVP, prototypowania, wycena w 24h. Sprawdź swój pomysł biznesowy szybko i tanio.",
+  "name": "MVP Development in 7 Days - Coderno",
+  "description": "Build MVP in 7 days with Coderno. Comprehensive MVP development services, prototyping, 24h estimate. Test your business idea quickly and affordably.",
   "provider": {
     "@type": "Organization",
     "name": "Coderno",
@@ -18,29 +28,29 @@ const jsonLd = {
       "@type": "ContactPoint",
       "telephone": "+48-XXX-XXX-XXX",
       "contactType": "customer service",
-      "areaServed": "PL",
+      "areaServed": "Worldwide",
       "availableLanguage": ["pl", "en"]
     }
   },
   "areaServed": {
-    "@type": "Country",
-    "name": "Polska"
+    "@type": "Place",
+    "name": "Worldwide"
   },
   "serviceType": "MVP Development",
   "category": ["MVP", "Startup", "Prototyping", "Software Development"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Usługi MVP Development",
+    "name": "MVP Development Services",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "MVP Web App",
-          "description": "Kompleksowa aplikacja webowa MVP gotowa w 7 dni"
+          "description": "Complete web application MVP ready in 7 days"
         },
-        "price": "15000",
-        "priceCurrency": "PLN",
+        "price": "3750",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       },
       {
@@ -48,10 +58,10 @@ const jsonLd = {
         "itemOffered": {
           "@type": "Service",
           "name": "MVP Mobile App",
-          "description": "Aplikacja mobilna MVP z podstawowymi funkcjami"
+          "description": "Mobile app MVP with essential features"
         },
-        "price": "32000",
-        "priceCurrency": "PLN",
+        "price": "8000",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       },
       {
@@ -59,10 +69,10 @@ const jsonLd = {
         "itemOffered": {
           "@type": "Service", 
           "name": "MVP Platform",
-          "description": "Pełna platforma MVP z panelem administratora"
+          "description": "Full platform MVP with admin panel"
         },
-        "price": "50000",
-        "priceCurrency": "PLN",
+        "price": "12500",
+        "priceCurrency": "USD",
         "priceValidUntil": "2024-12-31"
       }
     ]
@@ -81,59 +91,55 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Ile kosztuje budowa MVP?",
+      "name": "How much does MVP development cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Koszt MVP zależy od złożoności projektu. Proste aplikacje webowe od 15,000 PLN, aplikacje mobilne od 32,000 PLN, pełne platformy od 50,000 PLN. Wycenę otrzymasz w ciągu 24 godzin."
+        "text": "MVP cost depends on project complexity. Simple web apps from $3,750, mobile apps from $8,000, full platforms from $12,500. You'll receive a quote within 24 hours."
       }
     },
     {
       "@type": "Question", 
-      "name": "Jak szybko mogę uruchomić projekt MVP?",
+      "name": "How quickly can I launch an MVP project?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standardowe MVP budujemy w 7 dni roboczych. Po akceptacji wyceny rozpoczynamy pracę następnego dnia roboczego. Proste prototypy można uruchomić nawet w 3-5 dni."
+        "text": "We build standard MVPs in 7 business days. After quote approval, we start work the next business day. Simple prototypes can be launched in 3-5 days."
       }
     },
     {
       "@type": "Question",
-      "name": "Co zawiera MVP development package?",
+      "name": "What's included in MVP development package?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Package MVP zawiera: analizę wymagań, design UI/UX, programowanie frontend i backend, deployment na serwerze, podstawowe testy, instrukcję obsługi oraz 30 dni wsparcia technicznego."
+        "text": "MVP package includes: requirements analysis, UI/UX design, frontend and backend programming, server deployment, basic testing, user manual, and 30 days technical support."
       }
     },
     {
       "@type": "Question",
-      "name": "Czy mogę skalować MVP po uruchomieniu?",
+      "name": "Can I scale MVP after launch?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tak, MVP projektujemy z myślą o przyszłej skalowalności. Używamy nowoczesnych technologii pozwalających na łatwe dodawanie funkcji i zwiększanie wydajności."
+        "text": "Yes, we design MVPs with future scalability in mind. We use modern technologies allowing easy feature additions and performance improvements."
       }
     }
   ]
 };
 
-// Enhanced SEO meta tags
-const pageTitle = "MVP Development w 7 Dni - Start Szybko | Wycena MVP 24h | Coderno";
-const pageDescription = "✅ Buduj MVP w 7 dni ⚡ Wycena w 24h ⚡ Od 15,000 PLN ⚡ Sprawdź pomysł szybko ⚡ Start projektu jutro ☎️ Zadzwoń już dziś";
-const pageKeywords = "MVP development Polska, buduj MVP 7 dni, wycena MVP 24h, start MVP project, rozwój MVP, startup development, prototyping, build MVP, szybkie MVP, MVP w tygodniu";
-
-// Open Graph and Twitter meta
-const ogTitle = "MVP Development w 7 Dni - Buduj Szybko i Tanio | Coderno";
-const ogDescription = "Rozwijamy MVP w 7 dni. Wycena w 24h, od 8,000 PLN. Sprawdź swój pomysł biznesowy szybko i tanio.";
+// Enhanced SEO meta tags for English version
+const pageTitle = "MVP Development in 7 Days - Start Fast | 24h Quote | Coderno";
+const pageDescription = "✅ Build MVP in 7 days ⚡ 24h quote ⚡ From $3,750 ⚡ Test idea quickly ⚡ Start project tomorrow ☎️ Contact today";
+const pageKeywords = "MVP development worldwide, build MVP 7 days, MVP quote 24h, start MVP project, MVP development, startup development, prototyping, build MVP, fast MVP, MVP in week";
 ---
 
 <Layout 
   title={pageTitle}
   description={pageDescription}
   keywords={pageKeywords}
-  lang="pl"
+  lang={lang}
   jsonLd={[jsonLd, faqSchema]}
-  canonical="https://coderno.pl/mvp-development"
-  ogImage="/og-mvp-development.jpg"
+  canonical={`https://coderno.pl${lang === 'pl' ? '' : '/' + lang}/mvp-development`}
+  ogImage="/og-mvp-development-en.jpg"
 >
-  <Header client:load lang="pl" />
+  <Header client:load lang={lang} />
   
   <!-- Main content with JetBrains WebStorm inspired design -->
   <main class="min-h-screen bg-black relative overflow-hidden">
@@ -160,30 +166,29 @@ const ogDescription = "Rozwijamy MVP w 7 dni. Wycena w 24h, od 8,000 PLN. Sprawd
           <!-- Badge like WebStorm -->
           <div class="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
             <span class="text-emerald-400 text-sm font-medium">Coderno</span>
-            <span class="text-gray-400 text-sm">MVP w 7 dni</span>
+            <span class="text-gray-400 text-sm">MVP in 7 days</span>
           </div>
           
           <!-- Main heading -->
           <h1 class="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight">
-            <span class="text-white">Buduj</span>
-            <span class="text-white font-light">swoje</span>
-            <span class="text-emerald-400 font-normal"> MVP</span>
+            <span class="text-white">Build your</span>
+            <span class="text-emerald-400 font-normal">MVP</span>
           </h1>
           
           <!-- Subtitle -->
           <p class="text-xl md:text-2xl text-gray-400 mb-12 font-light leading-relaxed">
-            Stwórz i przetestuj swój pomysł biznesowy w zaledwie 7 dni.
+            Create and test your business idea in just 7 days.
             <br />
-            Wycena w 24 godziny, start projektu jutro.
+            24-hour quote, project start tomorrow.
           </p>
           
           <!-- CTA Button - simple like WebStorm -->
           <div class="flex gap-4">
             <a 
-              href="#wycena" 
+              href="#quote" 
               class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg"
             >
-              Rozpocznij Projekt
+              Start Project
             </a>
           </div>
           
@@ -197,19 +202,19 @@ const ogDescription = "Rozwijamy MVP w 7 dni. Wycena w 24h, od 8,000 PLN. Sprawd
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div class="text-center">
             <div class="text-3xl font-light text-emerald-400 mb-2">7</div>
-            <div class="text-gray-400 text-sm">dni do MVP</div>
+            <div class="text-gray-400 text-sm">days to MVP</div>
           </div>
           <div class="text-center">
             <div class="text-3xl font-light text-emerald-400 mb-2">24h</div>
-            <div class="text-gray-400 text-sm">wycena</div>
+            <div class="text-gray-400 text-sm">quote</div>
           </div>
                      <div class="text-center">
-             <div class="text-3xl font-light text-emerald-400 mb-2">15k+</div>
-             <div class="text-gray-400 text-sm">od PLN</div>
+             <div class="text-3xl font-light text-emerald-400 mb-2">$3.7k+</div>
+             <div class="text-gray-400 text-sm">from USD</div>
            </div>
           <div class="text-center">
             <div class="text-3xl font-light text-emerald-400 mb-2">73</div>
-            <div class="text-gray-400 text-sm">projektów</div>
+            <div class="text-gray-400 text-sm">projects</div>
           </div>
         </div>
       </div>
@@ -218,45 +223,45 @@ const ogDescription = "Rozwijamy MVP w 7 dni. Wycena w 24h, od 8,000 PLN. Sprawd
     <!-- Services section -->
     <section id="services" class="relative z-10 py-20 border-t border-gray-800">
       <div class="container mx-auto px-8 md:px-16 max-w-7xl">
-        <h2 class="text-4xl md:text-5xl font-light text-white mb-16">Nasze Pakiety MVP</h2>
+        <h2 class="text-4xl md:text-5xl font-light text-white mb-16">Our MVP Packages</h2>
         
         <div class="grid md:grid-cols-3 gap-8">
                      <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-8 hover:border-emerald-500/50 transition-all duration-300">
              <h3 class="text-2xl font-light text-white mb-4">MVP Web App</h3>
-             <div class="text-3xl font-light text-emerald-400 mb-4">15,000 PLN</div>
-             <p class="text-gray-400 mb-6">Kompleksowa aplikacja webowa MVP gotowa w 7 dni</p>
+             <div class="text-3xl font-light text-emerald-400 mb-4">$3,750</div>
+             <p class="text-gray-400 mb-6">Complete web application MVP ready in 7 days</p>
             <ul class="text-gray-400 space-y-2 text-sm">
-              <li>• Analiza wymagań</li>
-              <li>• Design UI/UX</li>
+              <li>• Requirements analysis</li>
+              <li>• UI/UX design</li>
               <li>• Frontend + Backend</li>
               <li>• Deployment</li>
-              <li>• 30 dni wsparcia</li>
+              <li>• 30 days support</li>
             </ul>
           </div>
           
                      <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-8 hover:border-emerald-500/50 transition-all duration-300">
              <h3 class="text-2xl font-light text-white mb-4">MVP Mobile App</h3>
-             <div class="text-3xl font-light text-emerald-400 mb-4">32,000 PLN</div>
-             <p class="text-gray-400 mb-6">Aplikacja mobilna MVP z podstawowymi funkcjami</p>
+             <div class="text-3xl font-light text-emerald-400 mb-4">$8,000</div>
+             <p class="text-gray-400 mb-6">Mobile app MVP with essential features</p>
             <ul class="text-gray-400 space-y-2 text-sm">
               <li>• React Native</li>
               <li>• iOS + Android</li>
               <li>• API Backend</li>
               <li>• Store deployment</li>
-              <li>• 30 dni wsparcia</li>
+              <li>• 30 days support</li>
             </ul>
           </div>
           
                      <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-8 hover:border-emerald-500/50 transition-all duration-300">
              <h3 class="text-2xl font-light text-white mb-4">MVP Platform</h3>
-             <div class="text-3xl font-light text-emerald-400 mb-4">50,000 PLN</div>
-             <p class="text-gray-400 mb-6">Pełna platforma MVP z panelem administratora</p>
+             <div class="text-3xl font-light text-emerald-400 mb-4">$12,500</div>
+             <p class="text-gray-400 mb-6">Full platform MVP with admin panel</p>
             <ul class="text-gray-400 space-y-2 text-sm">
               <li>• Web + Mobile</li>
-              <li>• Panel admina</li>
-              <li>• Zaawansowane API</li>
-              <li>• Skalowalna architektura</li>
-              <li>• 30 dni wsparcia</li>
+              <li>• Admin panel</li>
+              <li>• Advanced API</li>
+              <li>• Scalable architecture</li>
+              <li>• 30 days support</li>
             </ul>
           </div>
         </div>
@@ -266,51 +271,51 @@ const ogDescription = "Rozwijamy MVP w 7 dni. Wycena w 24h, od 8,000 PLN. Sprawd
     <!-- FAQ Section -->
     <section class="relative z-10 py-20 border-t border-gray-800">
       <div class="container mx-auto px-8 md:px-16 max-w-7xl">
-        <h2 class="text-4xl md:text-5xl font-light text-white mb-16">Często Zadawane Pytania</h2>
+        <h2 class="text-4xl md:text-5xl font-light text-white mb-16">Frequently Asked Questions</h2>
         
         <div class="space-y-8 max-w-4xl">
                      <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-             <h3 class="text-xl font-medium text-white mb-3">Ile kosztuje budowa MVP?</h3>
-             <p class="text-gray-400">Koszt MVP zależy od złożoności projektu. Proste aplikacje webowe od 15,000 PLN, aplikacje mobilne od 32,000 PLN, pełne platformy od 50,000 PLN. Wycenę otrzymasz w ciągu 24 godzin.</p>
+             <h3 class="text-xl font-medium text-white mb-3">How much does MVP development cost?</h3>
+             <p class="text-gray-400">MVP cost depends on project complexity. Simple web apps from $3,750, mobile apps from $8,000, full platforms from $12,500. You'll receive a quote within 24 hours.</p>
            </div>
           
           <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-medium text-white mb-3">Jak szybko mogę uruchomić projekt MVP?</h3>
-            <p class="text-gray-400">Standardowe MVP budujemy w 7 dni roboczych. Po akceptacji wyceny rozpoczynamy pracę następnego dnia roboczego. Proste prototypy można uruchomić nawet w 3-5 dni.</p>
+            <h3 class="text-xl font-medium text-white mb-3">How quickly can I launch an MVP project?</h3>
+            <p class="text-gray-400">We build standard MVPs in 7 business days. After quote approval, we start work the next business day. Simple prototypes can be launched in 3-5 days.</p>
           </div>
           
           <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-medium text-white mb-3">Co zawiera MVP development package?</h3>
-            <p class="text-gray-400">Package MVP zawiera: analizę wymagań, design UI/UX, programowanie frontend i backend, deployment na serwerze, podstawowe testy, instrukcję obsługi oraz 30 dni wsparcia technicznego.</p>
+            <h3 class="text-xl font-medium text-white mb-3">What's included in MVP development package?</h3>
+            <p class="text-gray-400">MVP package includes: requirements analysis, UI/UX design, frontend and backend programming, server deployment, basic testing, user manual, and 30 days technical support.</p>
           </div>
           
           <div class="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-            <h3 class="text-xl font-medium text-white mb-3">Czy mogę skalować MVP po uruchomieniu?</h3>
-            <p class="text-gray-400">Tak, MVP projektujemy z myślą o przyszłej skalowalności. Używamy nowoczesnych technologii pozwalających na łatwe dodawanie funkcji i zwiększanie wydajności.</p>
+            <h3 class="text-xl font-medium text-white mb-3">Can I scale MVP after launch?</h3>
+            <p class="text-gray-400">Yes, we design MVPs with future scalability in mind. We use modern technologies allowing easy feature additions and performance improvements.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact CTA -->
-    <section id="wycena" class="relative z-10 py-20 border-t border-gray-800">
+    <section id="quote" class="relative z-10 py-20 border-t border-gray-800">
       <div class="container mx-auto px-8 md:px-16 max-w-7xl text-center">
-        <h2 class="text-4xl md:text-5xl font-light text-white mb-8">Gotowy na start?</h2>
+        <h2 class="text-4xl md:text-5xl font-light text-white mb-8">Ready to start?</h2>
         <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-          Skontaktuj się z nami już dziś i otrzymaj wycenę MVP w ciągu 24 godzin.
+          Contact us today and receive your MVP quote within 24 hours.
         </p>
         <a 
           href="mailto:hello@coderno.pl"
           class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg inline-block"
         >
-          Skontaktuj się z nami
+          Contact Us
         </a>
       </div>
     </section>
 
   </main>
   
-  <Footer client:load lang="pl" />
+  <Footer client:load lang={lang} />
 </Layout>
 
 <style>

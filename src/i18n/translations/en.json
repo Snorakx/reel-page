@@ -14,6 +14,41 @@
   "services": {
     "title": "WHAT WE DO?",
     "subtitle": "We help your company grow with modern technologies",
+    "new_section": {
+      "title": "What We Do",
+      "subtitle": "Four core services that transform your business vision into digital reality",
+      "navigation": {
+        "prev": "Previous",
+        "next": "Next"
+      },
+      "counter": "{current} / {total}",
+      "services": [
+        {
+          "id": "mvp-development",
+          "title": "MVP Development",
+          "description": "Transform your vision into a working product. We build scalable MVPs that validate your business idea and accelerate time-to-market with modern tech stack.",
+          "ctaText": "See how we do it"
+        },
+        {
+          "id": "ai-automation",
+          "title": "AI Automation", 
+          "description": "Leverage artificial intelligence to automate repetitive tasks, enhance decision-making, and unlock new business capabilities with custom AI solutions.",
+          "ctaText": "Explore AI solutions"
+        },
+        {
+          "id": "process-optimization",
+          "title": "Process Optimization",
+          "description": "Streamline your business operations with data-driven insights and custom software solutions that eliminate bottlenecks and boost efficiency.",
+          "ctaText": "Optimize processes"
+        },
+        {
+          "id": "tech-consultation",
+          "title": "Tech Consultation",
+          "description": "Get expert guidance on technology strategy, architecture decisions, and digital transformation to make informed choices for your business growth.",
+          "ctaText": "Book consultation"
+        }
+      ]
+    },
     "terminal": {
       "locked": "--LOCKED",
       "active": "--ACTIVE", 
@@ -101,6 +136,261 @@
       "privacy_policy": "Privacy Policy",
       "terms": "Terms of Service",
       "gdpr": "GDPR"
+    }
+  },
+  "mvp": {
+    "seo": {
+      "title": "MVP Development - From Idea to Product in 3 Months | Coderno",
+      "description": "We create MVP in 3 months! Minimum Viable Product for testing business ideas. Low risk, fast validation. Proven startup approach for entrepreneurs.",
+      "keywords": "MVP development, minimum viable product, startup validation, rapid prototyping, product validation, lean startup, business idea testing, MVP creation"
+    },
+    "hero": {
+      "title": "MVP Development",
+      "subtitle": "in 3 Months",
+      "description": "From idea to working product. {risk}, {value}. Test your concept before investing a fortune.",
+      "risk": "Minimal risk",
+      "value": "maximum value",
+      "cta_primary": "Free MVP Quote",
+      "cta_secondary": "See Process"
+    },
+    "problems": {
+      "title": "Does this sound familiar?",
+      "concerns": {
+        "title": "😰 Common Concerns",
+        "items": [
+          "\"I have a great idea, but I don't know if it will work\"",
+          "\"I'm afraid to invest $50k+ in an uncertain project\"",
+          "\"Competition might beat me to market\"",
+          "\"No one wants to build without success guarantee\"",
+          "\"Everyone says it will take a year or more\""
+        ]
+      },
+      "solutions": {
+        "title": "✅ MVP Solution",
+        "items": [
+          "Test your idea with real users",
+          "Investment 10x smaller than full product",
+          "Fast to market - 3 months vs 12+",
+          "Proven approach used by Google, Airbnb",
+          "Iterative development based on feedback"
+        ]
+      }
+    },
+    "what_is": {
+      "title": "What is MVP?",
+      "subtitle": "Minimum Viable Product is the simplest version of a product that delivers value",
+      "features": {
+        "fast": {
+          "title": "Fast",
+          "description": "3 months from start to first users. No unnecessary features and complications.",
+          "items": [
+            "Focus on core functionality",
+            "Proven technologies",
+            "Agile development process"
+          ]
+        },
+        "cheap": {
+          "title": "Affordable",
+          "description": "Cost 10-20x smaller than full product. Minimal financial risk when testing your idea.",
+          "items": [
+            "No unnecessary features",
+            "Optimal budget utilization",
+            "ROI after first tests"
+          ]
+        },
+        "effective": {
+          "title": "Effective",
+          "description": "Real user data instead of assumptions. Validation before big investments.",
+          "items": [
+            "Testing with real users",
+            "Data for decision making",
+            "Reduced failure risk"
+          ]
+        }
+      }
+    },
+    "process": {
+      "title": "Our 3-Month MVP Process",
+      "subtitle": "Proven methodology that worked for 50+ projects"
+    },
+    "packages": {
+      "title": "MVP Packages",
+      "subtitle": "Choose a package tailored to your budget and needs",
+      "starter": {
+        "name": "MVP Starter",
+        "price": "$4,000",
+        "features": [
+          "Web app or mobile app",
+          "3-5 core features",
+          "Responsive design",
+          "Basic analytics",
+          "3 months support"
+        ],
+        "description": "Perfect for simple SaaS ideas"
+      },
+      "pro": {
+        "name": "MVP Pro",
+        "price": "$9,000",
+        "badge": "Most Popular",
+        "features": [
+          "Everything from Starter +",
+          "5-8 features",
+          "Integrations (payments, email)",
+          "Admin panel",
+          "Advanced analytics",
+          "6 months support"
+        ],
+        "description": "For medium complexity products"
+      },
+      "enterprise": {
+        "name": "MVP Enterprise",
+        "price": "$14,000",
+        "features": [
+          "Everything from Pro +",
+          "8-12 features",
+          "AI/ML components",
+          "Advanced integrations",
+          "Custom design system",
+          "12 months support"
+        ],
+        "description": "For complex B2B systems"
+      }
+    },
+    "cta": {
+      "title": "Ready to Build Your MVP?",
+      "subtitle": "Book a free consultation and get a detailed quote for your MVP",
+      "consultation": {
+        "title": "Free MVP Consultation",
+        "description": "45 minutes workshop on your idea + detailed quote and action plan",
+        "button": "Book Consultation",
+        "benefits": "✓ No commitment ✓ Concrete plan ✓ Quote in 24h"
+      }
+    }
+  },
+  "ai": {
+    "seo": {
+      "title": "AI & Process Automation - Business Optimization | Coderno",
+      "description": "Accelerate your business with AI and process automation. Chatbots, data analysis, operations optimization. Cost reduction up to 40%. Contact us now!",
+      "keywords": "AI automation, artificial intelligence, process automation, business optimization, AI chatbots, machine learning, process acceleration, cost reduction, digital transformation"
+    },
+    "hero": {
+      "title": "AI & Automation",
+      "subtitle": "of Business Processes",
+      "description": "We accelerate your business with intelligent solutions. {cost_reduction} and {time_saving}.",
+      "cost_reduction": "Cost reduction up to 40%",
+      "time_saving": "time savings up to 60%",
+      "cta_primary": "Free Consultation",
+      "cta_secondary": "See Case Studies"
+    },
+    "problems": {
+      "title": "Is your company struggling with these problems?",
+      "current": {
+        "title": "⚠️ Current Problems",
+        "items": [
+          "Repetitive tasks take too much team time",
+          "Human errors in critical processes",
+          "Lack of real-time data analysis",
+          "High operational costs and slow processes",
+          "Competition is outpacing you technologically"
+        ]
+      },
+      "solutions": {
+        "title": "✅ Our AI Solutions",
+        "items": [
+          "Intelligent chatbots serving customers 24/7",
+          "Document and reporting automation",
+          "Predictive analytics and machine learning",
+          "Real-time process optimization",
+          "Competitive advantage through AI"
+        ]
+      }
+    },
+    "services": {
+      "title": "Our AI & Automation Solutions",
+      "subtitle": "Comprehensive services tailored to your business needs",
+      "chatbots": {
+        "title": "AI Chatbots",
+        "description": "Intelligent assistants serving customers, answering questions and handling sales automatically.",
+        "features": [
+          "24/7 service without breaks",
+          "Integration with existing systems",
+          "Multi-language support",
+          "Customer sentiment analysis"
+        ]
+      },
+      "analytics": {
+        "title": "AI Data Analysis",
+        "description": "Machine learning for trend analysis, sales forecasting and business decision optimization.",
+        "features": [
+          "Sales prediction",
+          "Customer behavior analysis",
+          "Price optimization",
+          "Anomaly detection"
+        ]
+      },
+      "automation": {
+        "title": "Process Automation",
+        "description": "RPA and AI for automating repetitive tasks, reporting and document workflows.",
+        "features": [
+          "Invoice automation",
+          "Order processing",
+          "Report generation",
+          "System synchronization"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Ready for Digital Transformation?",
+      "subtitle": "Book a free consultation and learn how AI can accelerate your business",
+      "consultation": {
+        "title": "Free Process Analysis",
+        "description": "In 30 minutes we'll analyze your processes and show concrete automation opportunities",
+        "button": "Book Consultation"
+      }
+    }
+  },
+  "optimization": {
+    "seo": {
+      "title": "Process Optimization - Business Improvement | Coderno",
+      "description": "Streamline your organization with proven methodologies. Cost reduction up to 50% and 70% acceleration. Lean, Six Sigma, Agile implementation.",
+      "keywords": "process optimization, business improvement, lean management, six sigma, BPM, cost reduction, efficiency increase, process automation, operational excellence"
+    },
+    "hero": {
+      "title": "Process Optimization",
+      "subtitle": "in Your Company",
+      "description": "We streamline your organization with proven methodologies. {cost_reduction} and {speed_increase}.",
+      "cost_reduction": "Cost reduction up to 50%",
+      "speed_increase": "70% acceleration",
+      "cta_primary": "Free Audit",
+      "cta_secondary": "Our Methods"
+    }
+  },
+  "404": {
+    "seo": {
+      "title": "404 - Page Not Found | Coderno",
+      "description": "The page you're looking for doesn't exist. Return to our homepage and discover our AI, automation, and MVP development services.",
+      "keywords": "404, error, page not found, coderno"
+    },
+    "heading": "Page not found",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "sub_message": "Let's get you back on track.",
+    "cta": {
+      "home": "Back to homepage",
+      "services": "Explore our services"
+    },
+    "services": {
+      "ai": {
+        "title": "AI & Automation",
+        "description": "Intelligent solutions for your business processes"
+      },
+      "mvp": {
+        "title": "MVP Development",
+        "description": "From idea to product in 3 months"
+      },
+      "optimization": {
+        "title": "Process Optimization",
+        "description": "Streamline and accelerate your workflows"
+      }
     }
   }
 } 

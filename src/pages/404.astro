@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/shared/Header.tsx';
+import Footer from '../components/shared/Footer.tsx';
+import { getLanguageFromURL, useTranslations, detectBrowserLanguage } from '../i18n/config';
+
+// Automatic language detection
+function detectLanguage(request: Request, url: URL): string {
+  // First try to detect from URL path
+  const urlLang = getLanguageFromURL(url);
+  if (urlLang !== 'pl') {
+    return urlLang;
+  }
+  
+  // If default, check browser language from Accept-Language header
+  const acceptLanguage = request.headers.get('accept-language') || '';
+  const browserLang = acceptLanguage.split(',')[0]?.split('-')[0];
+  
+  // Return detected browser language if supported, otherwise default to Polish
+  return (browserLang === 'en') ? 'en' : 'pl';
+}
+
+const currentLang = detectLanguage(Astro.request, Astro.url);
+const t = useTranslations(currentLang);
+
+// Get properly localized URLs
+const getLocalizedUrl = (path: string) => {
+  if (currentLang === 'pl') {
+    return path;
+  }
+  return `/en${path === '/' ? '' : path}`;
+};
+---
+
+<Layout 
+  title={t('404.seo.title')}
+  description={t('404.seo.description')}
+  keywords={t('404.seo.keywords')}
+  lang={currentLang}
+>
+  <Header client:load lang={currentLang} />
+  
+  <!-- Main content with JetBrains AI inspired design -->
+  <main class="min-h-screen bg-[#0D1117] relative overflow-hidden">
+    <!-- Geometric background elements -->
+    <div class="absolute inset-0">
+      <!-- Gradient orbs -->
+      <div class="absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-r from-violet-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl animate-pulse animation-delay-2s"></div>
+      
+      <!-- Geometric shapes -->
+      <div class="absolute top-1/3 right-10 w-4 h-4 bg-violet-400 rotate-45 animate-float"></div>
+      <div class="absolute bottom-1/3 left-10 w-6 h-6 border-2 border-blue-400 rounded rotate-12 animate-float-delayed"></div>
+      <div class="absolute top-1/2 left-1/3 w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+    </div>
+
+    <!-- Content container -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen px-4">
+      <div class="text-center max-w-4xl mx-auto">
+        
+        <!-- 404 Number with modern styling -->
+        <div class="mb-8">
+          <h1 class="text-[12rem] md:text-[16rem] font-light leading-none bg-gradient-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent tracking-tighter">
+            404
+          </h1>
+        </div>
+
+        <!-- Clean typography section -->
+        <div class="space-y-6 mb-12">
+          <h2 class="text-3xl md:text-4xl font-medium text-white tracking-tight">
+            {t('404.heading')}
+          </h2>
+          <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            {t('404.message')}
+            <br class="hidden md:block" />
+            {t('404.sub_message')}
+          </p>
+        </div>
+
+        <!-- Modern action buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <a 
+            href={getLocalizedUrl('/')} 
+            class="group bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg shadow-violet-500/25"
+          >
+            <span class="flex items-center gap-2">
+              <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+              </svg>
+              {t('404.cta.home')}
+            </span>
+          </a>
+          <a 
+            href={getLocalizedUrl('/ai-automatyzacja')} 
+            class="group border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300"
+          >
+            {t('404.cta.services')}
+          </a>
+        </div>
+
+        <!-- Clean service cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <a 
+            href={getLocalizedUrl(currentLang === 'pl' ? '/ai-automatyzacja' : '/ai-automation')} 
+            class="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-violet-500/50 p-6 rounded-xl transition-all duration-300 hover:bg-gray-900/70"
+          >
+            <div class="text-2xl mb-3 text-violet-400">🤖</div>
+            <h3 class="text-white font-medium mb-2 group-hover:text-violet-400 transition-colors">{t('404.services.ai.title')}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{t('404.services.ai.description')}</p>
+          </a>
+          
+          <a 
+            href={getLocalizedUrl('/mvp-development')} 
+            class="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-blue-500/50 p-6 rounded-xl transition-all duration-300 hover:bg-gray-900/70"
+          >
+            <div class="text-2xl mb-3 text-blue-400">💡</div>
+            <h3 class="text-white font-medium mb-2 group-hover:text-blue-400 transition-colors">{t('404.services.mvp.title')}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{t('404.services.mvp.description')}</p>
+          </a>
+          
+          <a 
+            href={getLocalizedUrl(currentLang === 'pl' ? '/optymalizacja-procesow' : '/process-optimization')} 
+            class="group bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-purple-500/50 p-6 rounded-xl transition-all duration-300 hover:bg-gray-900/70"
+          >
+            <div class="text-2xl mb-3 text-purple-400">⚡</div>
+            <h3 class="text-white font-medium mb-2 group-hover:text-purple-400 transition-colors">{t('404.services.optimization.title')}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{t('404.services.optimization.description')}</p>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  
+  <style>
+    .animation-delay-2s {
+      animation-delay: 2s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @keyframes float-delayed {
+      0%, 100% { transform: translateY(0px) rotate(12deg); }
+      50% { transform: translateY(-15px) rotate(192deg); }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .animate-float-delayed {
+      animation: float-delayed 8s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+  </style>
+</Layout> 

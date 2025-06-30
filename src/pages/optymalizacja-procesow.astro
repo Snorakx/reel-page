@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/shared/Header.tsx';
+import Footer from '../components/shared/Footer.tsx';
 
 // Structured data dla strony optymalizacji proces√≥w
 const jsonLd = {
@@ -34,6 +36,7 @@ const pageKeywords = "optymalizacja proces√≥w, usprawnienie firmy, audyt proces√
   jsonLd={jsonLd}
   canonical="https://coderno.pl/optymalizacja-procesow"
 >
+  <Header client:load lang="pl" />
   <main class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     <!-- Hero Section -->
     <section class="relative pt-20 pb-16 px-4">
@@ -305,6 +308,7 @@ const pageKeywords = "optymalizacja proces√≥w, usprawnienie firmy, audyt proces√
       </div>
     </section>
   </main>
+  <Footer client:load lang="pl" />
 </Layout>
 
 <style>
