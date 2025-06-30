@@ -1,7 +1,7 @@
 # MVP Development Pages Design Documentation
 
 ## Overview
-Design inspired by **JetBrains WebStorm landing page** with organic gradient shapes, dark theme, and modern typography. Maintains Coderno's green branding while achieving premium, contemporary aesthetic.
+Modern dark theme design with organic gradient shapes and clean typography. Maintains Coderno's green branding while achieving premium, contemporary aesthetic.
 
 ## Color Palette
 
@@ -13,7 +13,7 @@ Design inspired by **JetBrains WebStorm landing page** with organic gradient sha
 - **Accent Secondary**: `text-emerald-600` (buttons)
 
 ### Gradient Colors
-- **Main Blob**: `from-blue-500 via-cyan-400 to-yellow-400` (WebStorm style)
+- **Main Blob**: `from-blue-500 via-cyan-400 to-yellow-400` (vibrant primary)
 - **Secondary Blob**: `from-green-400 via-emerald-400 to-teal-400` (Coderno branding)
 - **Accent Blob**: `from-purple-400 to-pink-400`
 
@@ -49,7 +49,7 @@ Design inspired by **JetBrains WebStorm landing page** with organic gradient sha
 ```css
 <!-- Main container positioned on right side -->
 <div class="absolute top-0 right-0 w-[60%] h-full">
-  <!-- Large blue-yellow blob (WebStorm style) -->
+  <!-- Large blue-yellow blob (primary gradient) -->
   <div class="absolute top-1/4 right-0 w-[500px] h-[400px] bg-gradient-to-br from-blue-500 via-cyan-400 to-yellow-400 rounded-full blur-3xl opacity-60 animate-pulse"></div>
   
   <!-- Secondary green blob (Coderno) -->
@@ -73,7 +73,7 @@ Design inspired by **JetBrains WebStorm landing page** with organic gradient sha
 
 ## Components
 
-### Pill Badge (WebStorm-style)
+### Pill Badge
 ```css
 <div class="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
   <span class="text-emerald-400 text-sm font-medium">Coderno</span>
@@ -228,7 +228,7 @@ Design inspired by **JetBrains WebStorm landing page** with organic gradient sha
 - Technical expertise emphasis
 - Premium positioning
 
-### WebStorm Inspiration
+### Design Principles
 - Organic gradient shapes
 - Dark theme aesthetic
 - Clean typography hierarchy
@@ -249,4 +249,4 @@ Design inspired by **JetBrains WebStorm landing page** with organic gradient sha
 - Scalable typography system
 - Modular section structure
 
-This design achieves the sophisticated, premium feel of JetBrains products while maintaining Coderno's brand identity and business requirements. 
+This design achieves a sophisticated, premium feel while maintaining Coderno's brand identity and business requirements. 
