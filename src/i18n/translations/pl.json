@@ -14,6 +14,41 @@
   "services": {
     "title": "CO ROBIMY?",
     "subtitle": "Pomagamy Twojej firmie rosnąć dzięki nowoczesnym technologiom",
+    "new_section": {
+      "title": "Co robimy",
+      "subtitle": "Cztery kluczowe usługi, które przekształcają wizję Twojego biznesu w cyfrową rzeczywistość",
+      "navigation": {
+        "prev": "Wstecz",
+        "next": "Dalej"
+      },
+      "counter": "{current} / {total}",
+      "services": [
+        {
+          "id": "mvp-development",
+          "title": "Rozwój MVP",
+          "description": "Przekształć swoją wizję w działający produkt. Budujemy skalowalne MVP, które walidują Twój pomysł biznesowy i przyspieszają wprowadzenie na rynek.",
+          "ctaText": "Zobacz jak to robimy"
+        },
+        {
+          "id": "ai-automation", 
+          "title": "Automatyzacja AI",
+          "description": "Wykorzystaj sztuczną inteligencję do automatyzacji powtarzalnych zadań, wspomagania decyzji i odblokowania nowych możliwości biznesowych.",
+          "ctaText": "Poznaj rozwiązania AI"
+        },
+        {
+          "id": "process-optimization",
+          "title": "Optymalizacja procesów", 
+          "description": "Usprawniaj operacje biznesowe dzięki analizie danych i dedykowanym rozwiązaniom software'owym eliminującym wąskie gardła.",
+          "ctaText": "Optymalizuj procesy"
+        },
+        {
+          "id": "tech-consultation",
+          "title": "Konsultacje techniczne",
+          "description": "Uzyskaj eksperckie wskazówki dotyczące strategii technologicznej, decyzji architektonicznych i transformacji cyfrowej.",
+          "ctaText": "Umów konsultację"
+        }
+      ]
+    },
     "terminal": {
       "locked": "--ZABLOKOWANE",
       "active": "--AKTYWNE", 
@@ -101,6 +136,261 @@
       "privacy_policy": "Polityka Prywatności",
       "terms": "Regulamin",
       "gdpr": "RODO"
+    }
+  },
+  "mvp": {
+    "seo": {
+      "title": "MVP Development - Szybko od Pomysłu do Produktu | Coderno",
+      "description": "Tworzymy MVP w 3 miesiące! Minimum Viable Product do testowania pomysłów biznesowych. Niskie ryzyko, szybka walidacja. Sprawdzone podejście startup'owe.",
+      "keywords": "MVP, minimum viable product, prototyp, startup, walidacja pomysłu, szybkie tworzenie aplikacji, testowanie produktu, lean startup"
+    },
+    "hero": {
+      "title": "MVP Development",
+      "subtitle": "w 3 Miesiące",
+      "description": "Od pomysłu do działającego produktu. {risk}, {value}. Sprawdź swój pomysł zanim zainwestujesz fortunę.",
+      "risk": "Minimalne ryzyko",
+      "value": "maksymalna wartość",
+      "cta_primary": "Bezpłatna Wycena MVP",
+      "cta_secondary": "Zobacz Proces"
+    },
+    "problems": {
+      "title": "Czy to brzmi znajomo?",
+      "concerns": {
+        "title": "😰 Typowe Obawy",
+        "items": [
+          "\"Mam świetny pomysł, ale nie wiem czy się sprawdzi\"",
+          "\"Boję się zainwestować 200k+ w niepewny projekt\"", 
+          "\"Konkurencja może mnie wyprzedzić\"",
+          "\"Nikt nie chce budować bez gwarancji sukcesu\"",
+          "\"Wszyscy mówią, że to potrwa rok lub więcej\""
+        ]
+      },
+      "solutions": {
+        "title": "✅ Rozwiązanie MVP",
+        "items": [
+          "Testuj pomysł z prawdziwymi użytkownikami",
+          "Inwestycja 10x mniejsza niż pełny produkt",
+          "Szybko na rynek - 3 miesiące vs 12+",
+          "Sprawdzone podejście używane przez Google, Airbnb",
+          "Iteracyjny rozwój oparty na feedbacku"
+        ]
+      }
+    },
+    "what_is": {
+      "title": "Czym jest MVP?",
+      "subtitle": "Minimum Viable Product to najprośtsza wersja produktu, która dostarcza wartość",
+      "features": {
+        "fast": {
+          "title": "Szybko",
+          "description": "3 miesiące od startu do pierwszych użytkowników. Bez zbędnych funkcji i komplikacji.",
+          "items": [
+            "Fokus na kluczowej funkcjonalności",
+            "Sprawdzone technologie", 
+            "Zwinny proces rozwoju"
+          ]
+        },
+        "cheap": {
+          "title": "Tanio",
+          "description": "Koszt 10-20x mniejszy niż pełny produkt. Minimalne ryzyko finansowe przy testowaniu pomysłu.",
+          "items": [
+            "Bez zbędnych funkcji",
+            "Optymalne wykorzystanie budżetu",
+            "ROI już po pierwszych testach"
+          ]
+        },
+        "effective": {
+          "title": "Skutecznie", 
+          "description": "Prawdziwe dane od użytkowników zamiast domysłów. Walidacja przed dużymi inwestycjami.",
+          "items": [
+            "Testowanie z prawdziwymi użytkownikami",
+            "Dane do podejmowania decyzji",
+            "Redukcja ryzyka niepowodzenia"
+          ]
+        }
+      }
+    },
+    "process": {
+      "title": "Nasz Proces MVP w 3 Miesiące",
+      "subtitle": "Sprawdzona metodologia, która zadziałała dla 50+ projektów"
+    },
+    "packages": {
+      "title": "Pakiety MVP",
+      "subtitle": "Wybierz pakiet dopasowany do Twojego budżetu i potrzeb",
+      "starter": {
+        "name": "MVP Starter",
+        "price": "15 000 PLN",
+        "features": [
+          "Webapp lub mobile app",
+          "3-5 kluczowych funkcji",
+          "Responsywny design",
+          "Basic analytics",
+          "3 miesięcy support"
+        ],
+        "description": "Idealne dla prostych pomysłów SaaS"
+      },
+      "pro": {
+        "name": "MVP Pro", 
+        "price": "35 000 PLN",
+        "badge": "Najpopularniejszy",
+        "features": [
+          "Wszystko z Starter +",
+          "5-8 funkcji",
+          "Integracje (płatności, email)",
+          "Admin panel",
+          "Advanced analytics",
+          "6 miesięcy support"
+        ],
+        "description": "Dla średniej złożoności produktów"
+      },
+      "enterprise": {
+        "name": "MVP Enterprise",
+        "price": "55 000 PLN", 
+        "features": [
+          "Wszystko z Pro +",
+          "8-12 funkcji",
+          "AI/ML components",
+          "Advanced integrations",
+          "Custom design system",
+          "12 miesięcy support"
+        ],
+        "description": "Dla złożonych systemów B2B"
+      }
+    },
+    "cta": {
+      "title": "Gotowy na Stworzenie MVP?",
+      "subtitle": "Umów się na bezpłatną konsultację i otrzymaj szczegółową wycenę Twojego MVP",
+      "consultation": {
+        "title": "Bezpłatna Konsultacja MVP",
+        "description": "45 minut warsztatów nad Twoim pomysłem + szczegółowa wycena i plan działania",
+        "button": "Zarezerwuj Konsultację",
+        "benefits": "✓ Bez zobowiązań ✓ Konkretny plan ✓ Wycena w 24h"
+      }
+    }
+  },
+  "ai": {
+    "seo": {
+      "title": "AI i Automatyzacja Procesów - Optymalizacja Firm | Coderno",
+      "description": "Przyspieszamy Twoją firmę dzięki AI i automatyzacji procesów. Chatboty, analiza danych, optymalizacja operacji. Redukcja kosztów do 40%. Skontaktuj się z nami!",
+      "keywords": "AI, sztuczna inteligencja, automatyzacja procesów, optymalizacja firm, chatboty AI, machine learning, przyspieszenie procesów, redukcja kosztów, cyfrowa transformacja"
+    },
+    "hero": {
+      "title": "AI i Automatyzacja",
+      "subtitle": "Procesów Biznesowych", 
+      "description": "Przyspieszamy Twoją firmę dzięki inteligentnym rozwiązaniom. {cost_reduction} i {time_saving}.",
+      "cost_reduction": "Redukcja kosztów do 40%",
+      "time_saving": "oszczędność czasu do 60%",
+      "cta_primary": "Bezpłatna Konsultacja",
+      "cta_secondary": "Zobacz Realizacje"
+    },
+    "problems": {
+      "title": "Czy Twoja firma zmaga się z tymi problemami?",
+      "current": {
+        "title": "⚠️ Obecne Problemy",
+        "items": [
+          "Powtarzalne zadania zabierają zbyt dużo czasu zespołu",
+          "Błędy ludzkie w procesach krytycznych",
+          "Brak analizy danych w czasie rzeczywistym",
+          "Wysokie koszty operacyjne i wolne procesy",
+          "Konkurencja wyprzedza Cię technologicznie"
+        ]
+      },
+      "solutions": {
+        "title": "✅ Nasze Rozwiązania AI",
+        "items": [
+          "Inteligentne chatboty obsługujące klientów 24/7",
+          "Automatyzacja dokumentów i raportowania",
+          "Analiza predykcyjna i machine learning", 
+          "Optymalizacja procesów w czasie rzeczywistym",
+          "Przewaga konkurencyjna dzięki AI"
+        ]
+      }
+    },
+    "services": {
+      "title": "Nasze Rozwiązania AI i Automatyzacji",
+      "subtitle": "Kompleksowe usługi dostosowane do potrzeb Twojej firmy",
+      "chatbots": {
+        "title": "Chatboty AI",
+        "description": "Inteligentne asystenci obsługujący klientów, odpowiadający na pytania i realizujący sprzedaż automatycznie.",
+        "features": [
+          "Obsługa 24/7 bez przerw",
+          "Integracja z istniejącymi systemami",
+          "Wielojęzyczność",
+          "Analiza sentymentu klientów"
+        ]
+      },
+      "analytics": {
+        "title": "Analiza Danych AI",
+        "description": "Machine learning do analizy trendów, przewidywania sprzedaży i optymalizacji decyzji biznesowych.",
+        "features": [
+          "Predykcja sprzedaży",
+          "Analiza zachowań klientów",
+          "Optymalizacja cen",
+          "Wykrywanie anomalii"
+        ]
+      },
+      "automation": {
+        "title": "Automatyzacja Procesów",
+        "description": "RPA i AI do automatyzacji powtarzalnych zadań, raportowania i obiegu dokumentów.",
+        "features": [
+          "Automatyzacja fakturowania",
+          "Przetwarzanie zamówień",
+          "Generowanie raportów",
+          "Synchronizacja systemów"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Gotowy na Cyfrową Transformację?",
+      "subtitle": "Umów się na bezpłatną konsultację i dowiedz się, jak AI może przyśpieszyć Twoją firmę",
+      "consultation": {
+        "title": "Bezpłatna Analiza Procesów",
+        "description": "W ciągu 30 minut przeanalizujemy Twoje procesy i pokażemy konkretne możliwości automatyzacji",
+        "button": "Umów Konsultację"
+      }
+    }
+  },
+  "optimization": {
+    "seo": {
+      "title": "Optymalizacja Procesów - Usprawnienie Firm | Coderno",
+      "description": "Usprawniamy Twoją organizację dzięki sprawdzonym metodologiom. Redukcja kosztów do 50% i przyspieszenie o 70%. Lean, Six Sigma, Agile.",
+      "keywords": "optymalizacja procesów, usprawnienie firm, lean management, six sigma, BPM, redukcja kosztów, zwiększenie wydajności, automatyzacja procesów"
+    },
+    "hero": {
+      "title": "Optymalizacja Procesów",
+      "subtitle": "w Twojej Firmie",
+      "description": "Usprawniamy Twoją organizację dzięki sprawdzonym metodologiom. {cost_reduction} i {speed_increase}.",
+      "cost_reduction": "Redukcja kosztów do 50%",
+      "speed_increase": "przyspieszenie o 70%",
+      "cta_primary": "Bezpłatny Audyt",
+      "cta_secondary": "Nasze Metody"
+    }
+  },
+  "404": {
+    "seo": {
+      "title": "404 - Strona Nie Została Znaleziona | Coderno",
+      "description": "Strona której szukasz nie istnieje. Wróć na naszą stronę główną i odkryj nasze usługi AI, automatyzacji i rozwoju MVP.",
+      "keywords": "404, błąd, strona nie znaleziona, coderno"
+    },
+    "heading": "Strona nie została znaleziona",
+    "message": "Strona której szukasz nie istnieje lub została przeniesiona.",
+    "sub_message": "Pomożemy Ci wrócić na właściwą ścieżkę.",
+    "cta": {
+      "home": "Powrót na stronę główną",
+      "services": "Zobacz nasze usługi"
+    },
+    "services": {
+      "ai": {
+        "title": "AI i Automatyzacja",
+        "description": "Inteligentne rozwiązania dla Twoich procesów biznesowych"
+      },
+      "mvp": {
+        "title": "Rozwój MVP",
+        "description": "Od pomysłu do produktu w 3 miesiące"
+      },
+      "optimization": {
+        "title": "Optymalizacja Procesów",
+        "description": "Usprawnienie i przyspieszenie Twoich przepływów pracy"
+      }
     }
   }
 } 

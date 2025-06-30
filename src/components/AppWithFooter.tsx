@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import HomeContainer from './home/HomeContainer.tsx';
-import Footer from './Footer.tsx';
+import Footer from './shared/Footer.tsx';
 
 interface AppWithFooterProps {
   lang?: string;

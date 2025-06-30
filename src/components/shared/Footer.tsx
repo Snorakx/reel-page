@@ -1,4 +1,4 @@
-import { useTranslations } from '../i18n/config';
+import { useTranslations } from '../../i18n/config';
 
 interface FooterProps {
   lang?: string;
@@ -8,13 +8,10 @@ export default function Footer({ lang = 'pl' }: FooterProps) {
   const t = useTranslations(lang);
 
   const scrollToTop = () => {
-    // Scroll to first reel
-    const firstReel = document.querySelector('.reel-1');
-    if (firstReel) {
-      firstReel.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Universal scroll to top - works on any page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Also trigger the reel navigation if available
+    // Also trigger the reel navigation if available (for home page)
     if (typeof window !== 'undefined' && (window as any).scrollToSection) {
       (window as any).scrollToSection(0);
     }

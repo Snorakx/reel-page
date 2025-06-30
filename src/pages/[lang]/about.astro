@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/Navigation';
+import Header from '../../components/shared/Header.tsx';
+import Footer from '../../components/shared/Footer.tsx';
 import FadeIn from '../../components/animations/FadeIn';
 import { useTranslations, defaultLanguage } from '../../i18n/config';
 import { generateLanguagePaths } from '../../utils/page';
@@ -16,7 +17,7 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={`About - Animation Hub`} lang={lang}>
-  <Navigation currentLang={lang} t={t} client:load />
+  <Header client:load lang={lang} />
   
   <main class="pt-24">
     <section class="py-16 md:py-24">
@@ -60,4 +61,5 @@ const t = useTranslations(lang);
       </div>
     </section>
   </main>
+  <Footer client:load lang={lang} />
 </Layout> 
