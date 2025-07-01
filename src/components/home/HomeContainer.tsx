@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import Header from '../shared/Header.tsx';
 import Reel1Hero from './Reel1Hero.tsx';
 import Reel2Services from './Reel2Services.tsx';
 import Reel3Process from './Reel3Process.tsx';
 import Reel4Contact from './Reel4Contact.tsx';
-import SocialLinks from './SocialLinks.tsx';
 import ReelIndicators from './ReelIndicators.tsx';
-
+import Header from '../shared/Header.tsx';
 
 interface HomeContainerProps {
   lang?: string;
@@ -145,7 +143,6 @@ export default function HomeContainer({ lang = 'pl' }: HomeContainerProps) {
       <Reel2Services lang={lang} />
       <Reel3Process lang={lang} />
       <Reel4Contact lang={lang} />
-      <SocialLinks />
       <ReelIndicators currentReel={currentReel} scrollToSection={scrollToSection} />
     </>
   );
