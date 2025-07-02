@@ -193,15 +193,6 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 
-  /* Social Links */
-  .social-link {
-    transition: all 0.3s ease;
-  }
-
-  .social-link:hover {
-    transform: scale(1.2);
-  }
-
   /* Navigation Links with Underline Animation */
   .nav-link {
     position: relative;
@@ -227,7 +218,59 @@
   @media (max-width: 768px) {
     .text-7xl { font-size: 4rem; }
     .text-8xl { font-size: 5rem; }
-    .text-9xl { font-size: 6rem; }
+    
+    /* Reel adjustments for mobile */
+    .reel {
+      min-height: 100vh;
+    }
+    
+    /* Service card adjustments */
+    .service-card {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .text-4xl { font-size: 2rem; }
+    .text-5xl { font-size: 2.5rem; }
+    .text-6xl { font-size: 3rem; }
+    .text-7xl { font-size: 3.5rem; }
+    .text-8xl { font-size: 4rem; }
+    
+    /* Very small screens - reduce spacing */
+    .reel {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-height: 700px) {
+    /* For short screens - reduce min heights */
+    .min-h-screen {
+      min-height: 100vh;
+    }
+    
+    /* Reduce section padding on short screens */
+    .reel {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-height: 600px) {
+    /* For very short screens */
+    .text-4xl { font-size: 1.75rem; }
+    .text-5xl { font-size: 2.25rem; }
+    .text-6xl { font-size: 2.75rem; }
+    .text-7xl { font-size: 3.25rem; }
+    .text-8xl { font-size: 3.75rem; }
+  }
+
+  /* Line clamp utility */
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* Disable scroll on body */

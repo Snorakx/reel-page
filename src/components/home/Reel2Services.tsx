@@ -95,7 +95,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[100px_100px]" />
 
       {/* Section header */}
-      <div className="relative z-10 pt-16 pb-8 px-6 text-center">
+      <div className="relative z-10 pt-8 md:pt-16 pb-4 md:pb-8 px-4 md:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-none tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 md:mb-6 leading-none tracking-tight"
             style={{
               fontFamily: "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
             }}
@@ -111,7 +111,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
             {t('services.new_section.title')}
           </motion.h2>
           <motion.p
-            className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto"
+            className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -121,11 +121,11 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
         </motion.div>
       </div>
 
-            {/* Content container - zwiększona wysokość */}
-      <div className="relative flex-1 min-h-[70vh] pb-24">
-        <div className="relative h-full flex flex-col">
-          {/* Showing one service at a time */}
-          <div className="flex-1 px-6 md:px-12 flex items-center justify-center">
+      {/* Content container - zapewniam zawsze widoczną nawigację */}
+      <div className="relative flex-1 flex flex-col min-h-0">
+        {/* Service Block Container - flex-1 ale z max-height */}
+        <div className="flex-1 px-4 md:px-6 lg:px-12 flex items-center justify-center min-h-0 py-4 relative">
+          <div className="w-full max-w-6xl h-full max-h-[calc(100vh-300px)] flex items-center justify-center">
             <ServiceBlock
               key={services[activeServiceIndex]?.id}
               service={services[activeServiceIndex]}
@@ -134,74 +134,108 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
               onView={trackServiceView}
             />
           </div>
+
+          {/* Left arrow - bliżej środka */}
+          {activeServiceIndex > 0 && (
+            <button
+              onClick={() => {
+                const newIndex = Math.max(0, activeServiceIndex - 1);
+                setActiveServiceIndex(newIndex);
+              }}
+              className="absolute left-[100px] md:left-[120px] lg:left-[150px] top-1/2 transform -translate-y-1/2 z-10 group transition-all duration-300 hover:scale-110"
+            >
+              <svg 
+                width="32" 
+                height="32" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                className="text-white/70 group-hover:text-white transition-all duration-300 group-hover:-translate-x-2 drop-shadow-lg"
+              >
+                <path 
+                  d="M15 18L9 12L15 6" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          )}
+
+          {/* Right arrow - bliżej środka z pulsowaniem */}
+          {activeServiceIndex < services.length - 1 && (
+            <motion.button
+              onClick={() => {
+                const newIndex = Math.min(services.length - 1, activeServiceIndex + 1);
+                setActiveServiceIndex(newIndex);
+              }}
+              className="absolute right-[100px] md:right-[120px] lg:right-[150px] top-1/2 transform -translate-y-1/2 z-10 group transition-all duration-300 hover:scale-110"
+              initial={{ scale: 1 }}
+              animate={{ 
+                scale: activeServiceIndex === 0 ? [1, 1.1, 1] : 1 
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: activeServiceIndex === 0 ? Infinity : 0,
+                ease: "easeInOut" 
+              }}
+            >
+              <svg 
+                width="32" 
+                height="32" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                className="text-white/70 group-hover:text-white transition-all duration-300 group-hover:translate-x-2 drop-shadow-lg"
+              >
+                <path 
+                  d="M9 18L15 12L9 6" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </motion.button>
+          )}
+        </div>
+        
+        {/* Navigation area - tylko hint i mobile progress */}
+        <div className="flex-shrink-0 px-6 md:px-8 lg:px-12 py-4 md:py-6 bg-gradient-to-t from-black/20 to-transparent">
+          {/* Hint text */}
+          <div className="text-center mb-3 md:mb-4">
+            <p className="text-white/40 text-xs md:text-sm">
+              {activeServiceIndex < services.length - 1 
+                ? t('services.new_section.hint_next') || "Przesuń dalej, aby odkryć więcej usług"
+                : t('services.new_section.hint_complete') || "Poznałeś wszystkie nasze usługi!"
+              }
+            </p>
+          </div>
           
-          {/* Navigation arrows pod kartą na szerokość contentu */}
-          <div className="px-6 md:px-12 py-6">
-            <div className="max-w-6xl mx-auto flex items-center justify-between">
-              <button
-                onClick={() => {
-                  const newIndex = Math.max(0, activeServiceIndex - 1);
-                  setActiveServiceIndex(newIndex);
-                }}
-                disabled={activeServiceIndex === 0}
-                className="group disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
-              >
-                <div className="flex items-center gap-2 md:gap-3 text-white/70 hover:text-white group-disabled:text-white/30">
-                  <svg 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    className="transition-transform group-hover:-translate-x-1 md:w-6 md:h-6"
-                  >
-                    <path 
-                      d="M19 12H5M5 12L12 19M5 12L12 5" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span className="hidden md:inline text-lg font-medium tracking-wide">{t('services.new_section.navigation.prev')}</span>
-                </div>
-              </button>
-              
-              <button
-                onClick={() => {
-                  const newIndex = Math.min(services.length - 1, activeServiceIndex + 1);
-                  setActiveServiceIndex(newIndex);
-                }}
-                disabled={activeServiceIndex === services.length - 1}
-                className="group disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
-              >
-                <div className="flex items-center gap-2 md:gap-3 text-white/70 hover:text-white group-disabled:text-white/30">
-                  <span className="hidden md:inline text-lg font-medium tracking-wide">{t('services.new_section.navigation.next')}</span>
-                  <svg 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    className="transition-transform group-hover:translate-x-1 md:w-6 md:h-6"
-                  >
-                    <path 
-                      d="M5 12H19M19 12L12 5M19 12L12 19" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </button>
+          {/* Mobile progress indicator */}
+          <div className="flex md:hidden justify-center">
+            <div className="flex items-center gap-2">
+              {services.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full border transition-all duration-300 hover:scale-125 ${
+                    activeServiceIndex === index
+                      ? 'bg-white border-white'
+                      : 'bg-transparent border-white/30'
+                  }`}
+                  onClick={() => setActiveServiceIndex(index)}
+                />
+              ))}
             </div>
           </div>
-         </div>
         </div>
+      </div>
 
-      {/* Progress indicator - przeniesione wyżej */}
-      <div className="relative z-10 py-6 px-6">
+
+
+      {/* Progress indicator - ukryty na mobile, widoczny na większych ekranach */}
+      <div className="hidden md:block relative z-10 flex-shrink-0 py-4 md:py-6 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="flex items-center justify-center gap-3 md:gap-4 mb-3 md:mb-4">
             {services.map((_, index) => (
               <button
                 key={index}
@@ -226,8 +260,8 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
           </div>
           
           {/* Service counter */}
-          <div className="text-center mt-4">
-            <span className="text-white/50 text-sm">
+          <div className="text-center mt-3 md:mt-4">
+            <span className="text-white/50 text-xs md:text-sm">
               {t('services.new_section.counter')
                 .replace('{current}', (activeServiceIndex + 1).toString())
                 .replace('{total}', services.length.toString())}
@@ -235,9 +269,6 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
           </div>
         </div>
       </div>
-
-
-
 
     </section>
   );
