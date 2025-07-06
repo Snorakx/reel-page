@@ -24,6 +24,7 @@
       "counter": "{current} / {total}",
       "hint_next": "Swipe to discover more services →",
       "hint_complete": "You've explored all our services! 🎉",
+      "swipe_hint": "Swipe left or right",
       "services": [
         {
           "id": "mvp-development",
