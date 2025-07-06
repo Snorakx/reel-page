@@ -128,7 +128,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
 
   if (loading) {
     return (
-      <section className="relative min-h-screen bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center">
+      <section className="relative min-h-[100dvh] bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center">
         <motion.div
           className="flex items-center gap-4 text-white"
           initial={{ opacity: 0 }}
@@ -147,7 +147,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
 
   if (error) {
     return (
-      <section className="relative min-h-screen bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center">
+      <section className="relative min-h-[100dvh] bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Error loading services</h2>
           <p className="text-white/70">{error}</p>
@@ -159,7 +159,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
   return (
     <section 
       ref={containerRef}
-      className="reel reel-2 relative min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black overflow-hidden"
+      className="reel reel-2 relative min-h-[100dvh] bg-gradient-to-br from-black via-zinc-900 to-black overflow-hidden"
     >
       {/* Animated background */}
       <motion.div
@@ -174,7 +174,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[100px_100px]" />
 
       {/* Section header */}
-      <div className="relative z-10 pt-20 md:pt-16 pb-4 md:pb-8 px-4 md:px-6 text-center">
+      <div className="relative z-10 pt-12 min-[400px]:pt-16 md:pt-16 pb-2 min-[400px]:pb-4 md:pb-8 px-4 md:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 md:mb-6 leading-none tracking-tight"
+            className="text-3xl min-[400px]:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-2 min-[400px]:mb-4 md:mb-6 leading-none tracking-tight"
             style={{
               fontFamily: "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
             }}
@@ -190,7 +190,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
             {t('services.new_section.title')}
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto px-4"
+            className="text-base min-[400px]:text-lg md:text-xl lg:text-2xl text-white/60 max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -204,7 +204,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
       <div className="relative flex-1 flex flex-col min-h-0">
         {/* Service Block Container - flex-1 ale z max-height */}
         <div className="flex-1 px-4 md:px-6 lg:px-12 flex items-center justify-center min-h-0 py-4 relative">
-          <div className="w-full max-w-6xl h-full max-h-[calc(100vh-300px)] flex items-center justify-center">
+          <div className="w-full max-w-6xl h-full max-h-[calc(100dvh-300px)] flex items-center justify-center">
             <ServiceBlock
               key={services[activeServiceIndex]?.id}
               service={services[activeServiceIndex]}
@@ -308,23 +308,23 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
         </div>
         
         {/* Navigation area - lepszy mobile design */}
-        <div className="flex-shrink-0 px-6 md:px-8 lg:px-12 py-2 md:py-6 bg-gradient-to-t from-black/20 to-transparent">
+        <div className="flex-shrink-0 px-4 min-[400px]:px-6 md:px-8 lg:px-12 py-1 min-[400px]:py-2 md:py-6 bg-gradient-to-t from-black/20 to-transparent">
           {/* Mobile enhanced navigation */}
           <div className="md:hidden">
             {/* Swipe hint - główna nawigacja na mobile */}
-            <div className="text-center mb-4">
+            <div className="text-center mb-2 min-[400px]:mb-4">
               <motion.div
-                className="flex items-center justify-center gap-2 text-white/50 text-sm"
+                className="flex items-center justify-center gap-1 min-[400px]:gap-2 text-white/50 text-xs min-[400px]:text-sm"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
               >
                 <motion.svg 
-                  width="18" 
-                  height="18" 
+                  width="16" 
+                  height="16" 
                   viewBox="0 0 24 24" 
                   fill="none" 
-                  className="text-white/40"
+                  className="text-white/40 min-[400px]:w-[18px] min-[400px]:h-[18px]"
                   animate={{ x: [-3, 3, -3] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
@@ -332,11 +332,11 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
                 </motion.svg>
                                  <span className="font-medium">{t('services.new_section.swipe_hint')}</span>
                 <motion.svg 
-                  width="18" 
-                  height="18" 
+                  width="16" 
+                  height="16" 
                   viewBox="0 0 24 24" 
                   fill="none" 
-                  className="text-white/40"
+                  className="text-white/40 min-[400px]:w-[18px] min-[400px]:h-[18px]"
                   animate={{ x: [-3, 3, -3] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
@@ -346,11 +346,11 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
             </div>
             
             {/* Enhanced mobile progress indicator - tylko wizualny wskaźnik */}
-            <div className="flex justify-center items-center gap-3 mb-4">
+            <div className="flex justify-center items-center gap-2 min-[400px]:gap-3 mb-2 min-[400px]:mb-4">
               {services.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`relative w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+                  className={`relative w-2 h-2 min-[400px]:w-3 min-[400px]:h-3 rounded-full border-2 transition-all duration-300 ${
                     activeServiceIndex === index
                       ? 'bg-white border-white shadow-lg shadow-white/30'
                       : 'bg-transparent border-white/30'
@@ -379,7 +379,7 @@ export default function Reel2Services({ lang = 'pl' }: Reel2ServicesProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <span className="text-white/50 text-sm font-medium">
+              <span className="text-white/50 text-xs min-[400px]:text-sm font-medium">
                 {activeServiceIndex + 1} / {services.length}
               </span>
             </motion.div>
