@@ -123,6 +123,20 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
           </p>
         </motion.div>
 
+        {/* Beta disclaimer */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center mb-8 md:mb-12"
+        >
+          <div className="text-xs text-gray-600 bg-gray-900/30 border border-gray-800/50 rounded-lg px-4 py-3 inline-block">
+            <span className="opacity-70">
+              ⚠️ Kalkulator znajduje się w fazie testów. Przedstawiona wycena ma charakter orientacyjny i nie stanowi wiążącej oferty handlowej.
+            </span>
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left column - Project summary */}
           <motion.div
@@ -398,33 +412,8 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
           </motion.div>
         </div>
 
-        {/* Desktop Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="hidden lg:flex items-center justify-between mt-12"
-        >
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M19 12H5M12 19l-7-7 7-7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Wróć
-          </button>
 
-          <div className="text-sm text-gray-500">
-            Wszystkie pola oznaczone * są wymagane
-          </div>
-        </motion.div>
+
       </div>
     </div>
   );

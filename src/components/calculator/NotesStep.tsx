@@ -148,52 +148,6 @@ const NotesStep: React.FC<NotesStepProps> = ({
             mogli dopasować nasze usługi do Twoich potrzeb.
           </p>
         </motion.div>
-
-        {/* Desktop Navigation buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="hidden lg:flex items-center justify-between"
-        >
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M19 12H5M12 19l-7-7 7-7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Wróć
-          </button>
-
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-500">
-              {notes.trim() ? '✓ Notatki zapisane' : 'Notatki są opcjonalne'}
-            </div>
-            
-            <button
-              onClick={onNext}
-              className="flex items-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-emerald-500/25"
-            >
-              Podsumowanie
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M5 12h14m-7-7 7 7-7 7"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </motion.div>
       </div>
     </div>
   );

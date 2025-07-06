@@ -14,6 +14,7 @@ import CostPanel from './CostPanel';
 import MobileCostPanel from './MobileCostPanel';
 import MobileProgressBar from './MobileProgressBar';
 import MobileNavigationButtons from './MobileNavigationButtons';
+import DesktopNavigationButtons from './DesktopNavigationButtons';
 
 const ProjectCalculator: React.FC = () => {
   const [service] = useState(() => new ProjectCalculatorService());
@@ -247,7 +248,7 @@ const ProjectCalculator: React.FC = () => {
       />
 
       {/* Main calculator content */}
-      <div className={`transition-all duration-300 ${showCostPanel ? 'lg:mr-80' : ''} ${state.currentStep > 0 ? 'pt-20 lg:pt-0' : ''} ${state.currentStep > 0 ? 'pb-20 lg:pb-0' : ''}`}>
+      <div className={`transition-all duration-300 ${showCostPanel ? 'lg:mr-80' : ''} ${state.currentStep > 0 ? 'pt-20 lg:pt-0' : ''} ${state.currentStep > 0 ? 'pb-20 lg:pb-32' : ''}`}>
         {/* Step 0: Welcome */}
         {state.currentStep === 0 && (
           <ProjectCalculatorWelcome onStart={handleStart} />
@@ -334,9 +335,25 @@ const ProjectCalculator: React.FC = () => {
         />
       )}
 
+      {/* Desktop Navigation Buttons */}
+      {state.currentStep > 0 && (
+        <DesktopNavigationButtons
+          onNext={mobileNavProps.showNext ? handleNext : undefined}
+          onBack={mobileNavProps.showBack ? handleBack : undefined}
+          onSubmit={mobileNavProps.showSubmit ? handleSubmit : undefined}
+          nextDisabled={mobileNavProps.nextDisabled}
+          submitDisabled={mobileNavProps.submitDisabled}
+          isSubmitting={isSubmitting}
+          showNext={mobileNavProps.showNext}
+          showBack={mobileNavProps.showBack}
+          showSubmit={mobileNavProps.showSubmit}
+          showCostPanel={showCostPanel}
+        />
+      )}
+
       {/* Desktop Progress indicator */}
       {state.currentStep > 0 && (
-        <div className="hidden lg:block fixed bottom-6 left-6 z-40">
+        <div className={`hidden lg:block fixed bottom-6 left-6 z-40 ${showCostPanel ? 'mr-80' : ''}`}>
           <div className="bg-gray-900/95 backdrop-blur-sm border border-gray-800 rounded-lg p-4 shadow-xl">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
@@ -363,7 +380,7 @@ const ProjectCalculator: React.FC = () => {
 
       {/* Debug panel (only in development) */}
       {process.env.NODE_ENV === 'development' && (
-        <div className="fixed bottom-6 right-6 z-40">
+        <div className="fixed top-6 left-6 z-50">
           <div className="bg-gray-900/95 backdrop-blur-sm border border-gray-800 rounded-lg p-4 shadow-xl">
             <h3 className="text-sm font-medium text-white mb-2">Debug Info</h3>
             <div className="text-xs text-gray-400 space-y-1">
