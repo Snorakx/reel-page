@@ -20,7 +20,7 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
       <div className="absolute bottom-1/3 right-32 w-1 h-1 bg-cyan-400 rounded-full opacity-80"></div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl w-full px-8 md:px-16">
+      <div className="relative z-10 max-w-7xl w-full px-4 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8"
+            className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-6 md:mb-8"
           >
             <span className="text-emerald-400 text-sm font-medium">Coderno</span>
             <span className="text-gray-400 text-sm">Kalkulator Projektowy</span>
@@ -43,7 +43,7 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight"
+            className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-light text-white mb-6 md:mb-8 leading-tight"
           >
             Zapewniamy{' '}
             <span className="text-emerald-400">software</span>,{' '}
@@ -56,7 +56,7 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl md:text-2xl font-light text-gray-400 mb-12 max-w-3xl leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl font-light text-gray-400 mb-8 md:mb-12 max-w-3xl leading-relaxed"
           >
             Skonfiguruj swój projekt w kilku prostych krokach. Wybierz typ aplikacji, dodatki i otrzymaj spersonalizowaną wycenę w kilka minut.
           </motion.p>
@@ -66,19 +66,19 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12"
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-              <span className="text-gray-300 font-light">Wycena w 5 minut</span>
+              <span className="text-gray-300 font-light text-sm md:text-base">Wycena w 5 minut</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-              <span className="text-gray-300 font-light">Transparentne ceny</span>
+              <span className="text-gray-300 font-light text-sm md:text-base">Transparentne ceny</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span className="text-gray-300 font-light">Bez ukrytych kosztów</span>
+              <span className="text-gray-300 font-light text-sm md:text-base">Bez ukrytych kosztów</span>
             </div>
           </motion.div>
 
@@ -90,7 +90,7 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
           >
             <button
               onClick={onStart}
-              className="group bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg inline-flex items-center gap-3 shadow-lg hover:shadow-emerald-500/25"
+              className="group bg-emerald-600 hover:bg-emerald-700 text-white px-6 md:px-8 py-4 rounded-lg font-medium transition-all duration-300 text-base md:text-lg inline-flex items-center gap-3 shadow-lg hover:shadow-emerald-500/25 min-h-[48px]"
             >
               <span>Rozpocznij konfigurację</span>
               <svg
@@ -116,9 +116,16 @@ const ProjectCalculatorWelcome: React.FC<ProjectCalculatorWelcomeProps> = ({ onS
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-8 text-sm text-gray-500 font-light"
+            className="mt-6 md:mt-8 text-xs md:text-sm text-gray-500 font-light text-center md:text-left"
           >
-            <p>✓ Bez zobowiązań &nbsp;•&nbsp; ✓ Natychmiastowa wycena &nbsp;•&nbsp; ✓ Profesjonalne doradztwo</p>
+            <p className="block md:hidden">
+              ✓ Bez zobowiązań<br />
+              ✓ Natychmiastowa wycena<br />
+              ✓ Profesjonalne doradztwo
+            </p>
+            <p className="hidden md:block">
+              ✓ Bez zobowiązań &nbsp;•&nbsp; ✓ Natychmiastowa wycena &nbsp;•&nbsp; ✓ Profesjonalne doradztwo
+            </p>
           </motion.div>
         </motion.div>
       </div>

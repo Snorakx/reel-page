@@ -68,30 +68,30 @@ const ProjectTypeStep: React.FC<ProjectTypeStepProps> = ({
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
+          <div className="hidden lg:inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
             <span className="text-emerald-400 text-sm font-medium">Krok 1</span>
             <span className="text-gray-400 text-sm">Wybór typu projektu</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-4">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-white mb-4">
             Jaki typ projektu Cię interesuje?
           </h1>
           
-          <p className="text-xl text-gray-400 font-light max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Wybierz kategorię, która najlepiej opisuje Twój projekt
           </p>
         </motion.div>
 
         {/* Project type cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 mb-6 md:mb-16">
           {projectTypes.map((type, index) => (
             <motion.div
               key={type.id}
@@ -101,7 +101,7 @@ const ProjectTypeStep: React.FC<ProjectTypeStepProps> = ({
               className="relative"
             >
               <div
-                className={`relative bg-gray-900/50 border border-gray-800 rounded-xl p-8 cursor-pointer transition-all duration-300 hover:border-emerald-500/50 ${
+                className={`relative bg-gray-900/50 border border-gray-800 rounded-xl p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-emerald-500/50 min-h-[120px] md:min-h-auto ${
                   selectedType === type.id 
                     ? 'border-emerald-500 bg-emerald-500/5' 
                     : 'hover:bg-gray-900/70'
@@ -127,20 +127,20 @@ const ProjectTypeStep: React.FC<ProjectTypeStepProps> = ({
                 )}
 
                 {/* Icon */}
-                <div className="text-4xl mb-4">{type.icon}</div>
+                <div className="text-3xl md:text-4xl mb-3 md:mb-4">{type.icon}</div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-light text-white mb-3">
+                <h3 className="text-lg md:text-2xl font-light text-white mb-2 md:mb-3">
                   {type.name}
                 </h3>
 
-                <p className="text-gray-400 mb-6 leading-relaxed">
+                <p className="text-gray-400 mb-4 md:mb-6 leading-relaxed text-sm md:text-base line-clamp-3 md:line-clamp-none">
                   {type.description}
                 </p>
 
                 {/* Price */}
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-light text-emerald-400">
+                  <div className="text-lg md:text-2xl font-light text-emerald-400">
                     od {formatPrice(type.basePrice)}
                   </div>
                   <div className="text-xs text-gray-500">
@@ -152,12 +152,12 @@ const ProjectTypeStep: React.FC<ProjectTypeStepProps> = ({
           ))}
         </div>
 
-        {/* Navigation buttons */}
+        {/* Desktop Navigation buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-between"
+          className="hidden lg:flex items-center justify-between"
         >
           <button
             onClick={onBack}

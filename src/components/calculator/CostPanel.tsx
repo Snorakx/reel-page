@@ -44,7 +44,7 @@ const CostPanel: React.FC<CostPanelProps> = ({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 100 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 right-0 h-full w-80 bg-gray-900/95 backdrop-blur-sm border-l border-gray-800 z-50 shadow-2xl"
+      className="hidden lg:block fixed top-0 right-0 h-full w-80 bg-gray-900/95 backdrop-blur-sm border-l border-gray-800 z-50 shadow-2xl"
     >
       <div className="flex flex-col h-full">
         {/* Header */}

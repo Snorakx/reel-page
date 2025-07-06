@@ -30,6 +30,10 @@ cd animation-hub
 # Install dependencies
 npm install
 
+# Configure environment variables for EmailJS (optional)
+cp env.example .env.local
+# Edit .env.local with your EmailJS configuration
+
 # Start the development server
 npm run dev
 ```
@@ -72,6 +76,14 @@ The template supports multiple languages through URL-based routing:
 - `/fr/` - French
 
 To add more languages, update the `languages` object in `src/i18n/config.ts`.
+
+## EmailJS Configuration
+
+This project includes a project calculator with email functionality powered by EmailJS. To enable email sending:
+
+1. Create an EmailJS account at https://www.emailjs.com/
+2. Copy `env.example` to `.env.local` and fill in your EmailJS credentials
+3. See `EMAILJS_CONFIG.md` for detailed setup instructions
 
 ## Customization
 

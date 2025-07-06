@@ -5,6 +5,7 @@ import type {
   ProjectTypeConfig,
   LeadData 
 } from '../types/ProjectCalculator';
+import emailjs from '@emailjs/browser';
 
 export class ProjectCalculatorRepository {
   private static instance: ProjectCalculatorRepository;
@@ -96,23 +97,61 @@ export class ProjectCalculatorRepository {
 
   async sendLead(leadData: LeadData): Promise<boolean> {
     try {
-      const response = await fetch('/api/send-lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leadData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // EmailJS configuration from environment variables
+      const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+      
+      // Validate configuration
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        console.error('EmailJS configuration missing. Check your .env.local file.');
+        throw new Error('EmailJS configuration is not set up properly');
       }
+      
+      // Initialize EmailJS
+      emailjs.init(PUBLIC_KEY);
+      
+      // Project type names
+      const projectTypeNames = {
+        website: 'Strona wizytówkowa typu klasycznego',
+        ecommerce: 'Strona dla urzędu lub instytucji', 
+        ai_tools: 'Narzędzia AI i Automatyzacja',
+        erp_systems: 'Systemy ERP'
+      };
 
+      // Prepare email data
+      const templateParams = {
+        project_type: projectTypeNames[leadData.projectType],
+        total_cost: this.formatPrice(leadData.totalCost),
+        first_name: leadData.contactData.firstName,
+        email: leadData.contactData.email,
+        phone: leadData.contactData.phone,
+        notes: leadData.notes || 'Brak uwag',
+        addons: leadData.selectedAddons.length > 0 
+          ? leadData.selectedAddons.map(addon => `${addon.label} - ${this.formatPrice(addon.price)}`).join('\n')
+          : 'Brak wybranych dodatków',
+        timestamp: new Date(leadData.timestamp).toLocaleString('pl-PL')
+      };
+
+      console.log('Wysyłanie maila przez EmailJS:', templateParams);
+      
+      const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+      
+      console.log('Mail wysłany pomyślnie:', response);
       return true;
     } catch (error) {
-      console.error('Error sending lead:', error);
+      console.error('Błąd wysyłania maila:', error);
       return false;
     }
+  }
+
+  private formatPrice(price: number): string {
+    return new Intl.NumberFormat('pl-PL', {
+      style: 'currency',
+      currency: 'PLN',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
   }
 
   saveToLocalStorage(key: string, data: any): void {

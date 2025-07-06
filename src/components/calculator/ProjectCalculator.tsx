@@ -10,11 +10,20 @@ import NotesStep from './NotesStep';
 import SummaryStep from './SummaryStep';
 import CostPanel from './CostPanel';
 
+// Import mobile components
+import MobileCostPanel from './MobileCostPanel';
+import MobileProgressBar from './MobileProgressBar';
+import MobileNavigationButtons from './MobileNavigationButtons';
+
 const ProjectCalculator: React.FC = () => {
   const [service] = useState(() => new ProjectCalculatorService());
   const [state, setState] = useState(service.getState());
   const [availableAddons, setAvailableAddons] = useState<ProjectAddon[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Mobile states
+  const [isMobileCostPanelOpen, setIsMobileCostPanelOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Update state when service changes
   const updateState = () => {
@@ -87,6 +96,7 @@ const ProjectCalculator: React.FC = () => {
   // Form submission
   const handleSubmit = async (): Promise<boolean> => {
     try {
+      setIsSubmitting(true);
       const success = await service.submitLead();
       if (success) {
         updateState();
@@ -95,6 +105,8 @@ const ProjectCalculator: React.FC = () => {
     } catch (error) {
       console.error('Error submitting lead:', error);
       return false;
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -138,10 +150,104 @@ const ProjectCalculator: React.FC = () => {
   // Show cost panel from step 1 onwards
   const showCostPanel = state.currentStep >= 1 && !!state.selectedProjectType;
 
+  // Mobile handlers
+  const handleMobileCostPanelToggle = () => {
+    setIsMobileCostPanelOpen(!isMobileCostPanelOpen);
+  };
+
+  const handleMobileCostPanelClose = () => {
+    setIsMobileCostPanelOpen(false);
+  };
+
+  // Step labels for mobile progress
+  const stepLabels = [
+    'Witamy',
+    'Typ projektu',
+    'Dodatki',
+    'Uwagi',
+    'Podsumowanie'
+  ];
+
+  // Mobile navigation props
+  const getMobileNavProps = () => {
+    switch (state.currentStep) {
+      case 0:
+        return { showNext: false, showBack: false, showSubmit: false };
+      case 1:
+        return { 
+          showNext: true, 
+          showBack: true, 
+          showSubmit: false, 
+          nextDisabled: !state.selectedProjectType,
+          showCostButton: !!state.selectedProjectType 
+        };
+      case 2:
+        return { 
+          showNext: true, 
+          showBack: true, 
+          showSubmit: false, 
+          showCostButton: true 
+        };
+      case 3:
+        return { 
+          showNext: true, 
+          showBack: true, 
+          showSubmit: false, 
+          showCostButton: true 
+        };
+      case 4:
+        return { 
+          showNext: false, 
+          showBack: true, 
+          showSubmit: true, 
+          submitDisabled: !state.contactData.firstName || !state.contactData.email || !state.contactData.phone || !state.contactData.gdprConsent,
+          showCostButton: true 
+        };
+      default:
+        return { showNext: false, showBack: false, showSubmit: false };
+    }
+  };
+
+  const mobileNavProps = getMobileNavProps();
+
   return (
     <div className="relative">
+      {/* Mobile Progress Bar */}
+      {state.currentStep > 0 && (
+        <MobileProgressBar
+          currentStep={state.currentStep}
+          totalSteps={4}
+          stepLabels={stepLabels}
+        />
+      )}
+
+      {/* Desktop Cost Panel */}
+      {showCostPanel && (
+        <CostPanel
+          projectType={state.selectedProjectType}
+          basePrice={getBasePrice()}
+          selectedAddons={state.selectedAddons}
+          totalCost={state.totalCost}
+          formatPrice={service.formatPrice.bind(service)}
+          isVisible={showCostPanel}
+          onRemoveAddon={handleRemoveAddon}
+        />
+      )}
+
+      {/* Mobile Cost Panel */}
+      <MobileCostPanel
+        projectType={state.selectedProjectType}
+        basePrice={getBasePrice()}
+        selectedAddons={state.selectedAddons}
+        totalCost={state.totalCost}
+        formatPrice={service.formatPrice.bind(service)}
+        isOpen={isMobileCostPanelOpen}
+        onClose={handleMobileCostPanelClose}
+        onRemoveAddon={handleRemoveAddon}
+      />
+
       {/* Main calculator content */}
-      <div className={`transition-all duration-300 ${showCostPanel ? 'mr-80' : ''}`}>
+      <div className={`transition-all duration-300 ${showCostPanel ? 'lg:mr-80' : ''} ${state.currentStep > 0 ? 'pt-20 lg:pt-0' : ''} ${state.currentStep > 0 ? 'pb-20 lg:pb-0' : ''}`}>
         {/* Step 0: Welcome */}
         {state.currentStep === 0 && (
           <ProjectCalculatorWelcome onStart={handleStart} />
@@ -209,22 +315,28 @@ const ProjectCalculator: React.FC = () => {
         )}
       </div>
 
-      {/* Cost Panel */}
-      {showCostPanel && (
-        <CostPanel
-          projectType={state.selectedProjectType}
-          basePrice={getBasePrice()}
-          selectedAddons={state.selectedAddons}
+      {/* Mobile Navigation Buttons */}
+      {state.currentStep > 0 && (
+        <MobileNavigationButtons
+          onNext={handleNext}
+          onBack={handleBack}
+          onSubmit={handleSubmit}
+          nextDisabled={mobileNavProps.nextDisabled}
+          submitDisabled={mobileNavProps.submitDisabled}
+          isSubmitting={isSubmitting}
+          showNext={mobileNavProps.showNext}
+          showBack={mobileNavProps.showBack}
+          showSubmit={mobileNavProps.showSubmit}
+          showCostButton={mobileNavProps.showCostButton}
           totalCost={state.totalCost}
           formatPrice={service.formatPrice.bind(service)}
-          isVisible={showCostPanel}
-          onRemoveAddon={handleRemoveAddon}
+          onShowCost={handleMobileCostPanelToggle}
         />
       )}
 
-      {/* Progress indicator */}
+      {/* Desktop Progress indicator */}
       {state.currentStep > 0 && (
-        <div className="fixed bottom-6 left-6 z-40">
+        <div className="hidden lg:block fixed bottom-6 left-6 z-40">
           <div className="bg-gray-900/95 backdrop-blur-sm border border-gray-800 rounded-lg p-4 shadow-xl">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">

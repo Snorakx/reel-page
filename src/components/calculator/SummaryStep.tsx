@@ -101,29 +101,29 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-8 md:px-16 py-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
+          <div className="hidden lg:inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
             <span className="text-emerald-400 text-sm font-medium">Krok 4</span>
             <span className="text-gray-400 text-sm">Podsumowanie</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-4">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-white mb-4">
             Podsumowanie projektu
           </h1>
           
-          <p className="text-xl text-gray-400 font-light max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto">
             Sprawdź szczegóły konfiguracji i pozostaw swoje dane kontaktowe
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left column - Project summary */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -131,16 +131,16 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Project type */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 mb-6">
-              <h3 className="text-xl font-medium text-white mb-4">
+            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 md:p-6 mb-4 md:mb-6">
+              <h3 className="text-lg md:text-xl font-medium text-white mb-3 md:mb-4">
                 📋 Typ projektu
               </h3>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 md:p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-300">
+                  <span className="text-gray-300 text-sm md:text-base">
                     {getProjectTypeName(projectType)}
                   </span>
-                  <span className="text-emerald-400 font-medium">
+                  <span className="text-emerald-400 font-medium text-sm md:text-base">
                     {formatPrice(basePrice)}
                   </span>
                 </div>
@@ -149,28 +149,28 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
 
             {/* Selected addons */}
             {selectedAddons.length > 0 && (
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 mb-6">
-                <h3 className="text-xl font-medium text-white mb-4">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 md:p-6 mb-4 md:mb-6">
+                <h3 className="text-lg md:text-xl font-medium text-white mb-3 md:mb-4">
                   🔧 Dodatki ({selectedAddons.length})
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2 md:space-y-3">
                   {selectedAddons.map((addon) => (
                     <div
                       key={addon.id}
                       className="bg-gray-800/50 border border-gray-700 rounded-lg p-3"
                     >
                       <div className="flex items-start justify-between">
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0 pr-2">
                           <span className="text-gray-300 text-sm font-medium block">
                             {addon.label}
                           </span>
                           <span className="text-gray-500 text-xs">
-                            {addon.description.length > 60 
-                              ? `${addon.description.substring(0, 60)}...` 
+                            {addon.description.length > 50 
+                              ? `${addon.description.substring(0, 50)}...` 
                               : addon.description}
                           </span>
                         </div>
-                        <span className="text-emerald-400 text-sm font-medium ml-4">
+                        <span className="text-emerald-400 text-sm font-medium ml-2 flex-shrink-0">
                           {formatPrice(addon.price)}
                         </span>
                       </div>
@@ -182,11 +182,11 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
 
             {/* Notes */}
             {notes.trim() && (
-              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 mb-6">
-                <h3 className="text-xl font-medium text-white mb-4">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 md:p-6 mb-4 md:mb-6">
+                <h3 className="text-lg md:text-xl font-medium text-white mb-3 md:mb-4">
                   📝 Dodatkowe uwagi
                 </h3>
-                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 md:p-4">
                   <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-wrap">
                     {notes}
                   </p>
@@ -195,34 +195,34 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
             )}
 
             {/* Total cost */}
-            <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl p-6">
-              <h3 className="text-xl font-medium text-white mb-4">
+            <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl p-4 md:p-6">
+              <h3 className="text-lg md:text-xl font-medium text-white mb-3 md:mb-4">
                 💰 Szacunkowy koszt
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-gray-300">
+              <div className="space-y-2 md:space-y-3">
+                <div className="flex items-center justify-between text-gray-300 text-sm md:text-base">
                   <span>Projekt podstawowy</span>
                   <span>{formatPrice(basePrice)}</span>
                 </div>
                 
                 {selectedAddons.length > 0 && (
-                  <div className="flex items-center justify-between text-gray-300">
+                  <div className="flex items-center justify-between text-gray-300 text-sm md:text-base">
                     <span>Dodatki ({selectedAddons.length})</span>
                     <span>{formatPrice(addonsPrice)}</span>
                   </div>
                 )}
                 
-                <div className="border-t border-emerald-500/20 pt-3">
+                <div className="border-t border-emerald-500/20 pt-2 md:pt-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-medium text-white">
+                    <span className="text-base md:text-lg font-medium text-white">
                       Razem netto
                     </span>
-                    <span className="text-2xl font-semibold text-emerald-400">
+                    <span className="text-xl md:text-2xl font-semibold text-emerald-400">
                       {formatPrice(totalCost)}
                     </span>
                   </div>
                   
-                  <div className="text-sm text-gray-400 mt-1">
+                  <div className="text-xs md:text-sm text-gray-400 mt-1">
                     lub w ratach 10 x {formatPrice(Math.round(totalCost / 10))}
                   </div>
                 </div>
@@ -236,12 +236,12 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
-              <h3 className="text-xl font-medium text-white mb-6">
+            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 md:p-6">
+              <h3 className="text-lg md:text-xl font-medium text-white mb-4 md:mb-6">
                 📞 Dane kontaktowe
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* First name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -251,7 +251,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     type="text"
                     value={contactData.firstName}
                     onChange={(e) => onContactDataChange({ firstName: e.target.value })}
-                    className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 ${
+                    className={`w-full px-4 py-4 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 min-h-[48px] text-base ${
                       validationErrors.firstName ? 'border-red-500' : 'border-gray-700'
                     }`}
                     placeholder="Twoje imię"
@@ -270,7 +270,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     type="email"
                     value={contactData.email}
                     onChange={(e) => onContactDataChange({ email: e.target.value })}
-                    className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 ${
+                    className={`w-full px-4 py-4 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 min-h-[48px] text-base ${
                       validationErrors.email ? 'border-red-500' : 'border-gray-700'
                     }`}
                     placeholder="twoj@email.com"
@@ -289,7 +289,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     type="tel"
                     value={contactData.phone}
                     onChange={(e) => onContactDataChange({ phone: e.target.value })}
-                    className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 ${
+                    className={`w-full px-4 py-4 bg-gray-800/50 border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all duration-300 min-h-[48px] text-base ${
                       validationErrors.phone ? 'border-red-500' : 'border-gray-700'
                     }`}
                     placeholder="+48 123 456 789"
@@ -301,12 +301,12 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
 
                 {/* GDPR consent */}
                 <div>
-                  <label className="flex items-start gap-3 cursor-pointer">
+                  <label className="flex items-start gap-3 cursor-pointer min-h-[48px]">
                     <input
                       type="checkbox"
                       checked={contactData.gdprConsent}
                       onChange={(e) => onContactDataChange({ gdprConsent: e.target.checked })}
-                      className="w-5 h-5 bg-gray-800/50 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-emerald-500/50 mt-0.5"
+                      className="w-5 h-5 bg-gray-800/50 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-emerald-500/50 mt-1 flex-shrink-0"
                     />
                     <span className="text-sm text-gray-300 leading-relaxed">
                       Wyrażam zgodę na przetwarzanie moich danych osobowych przez Coderno 
@@ -318,11 +318,11 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                   )}
                 </div>
 
-                {/* Submit button */}
+                {/* Desktop Submit button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg shadow-lg hover:shadow-emerald-500/25"
+                  className="hidden lg:block w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 text-lg shadow-lg hover:shadow-emerald-500/25 min-h-[48px]"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-2">
@@ -377,7 +377,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                       <span className="text-red-400 font-medium">Błąd wysyłania</span>
                     </div>
                     <p className="text-red-300 text-sm mt-2">
-                      Przepraszamy, wystąpił błąd. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.
+                      Błąd wysyłania wiadomości. Sprawdź konfigurację EmailJS w pliku .env.local lub skontaktuj się z nami bezpośrednio.
                     </p>
                   </motion.div>
                 )}
@@ -398,12 +398,12 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
           </motion.div>
         </div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex items-center justify-between mt-12"
+          className="hidden lg:flex items-center justify-between mt-12"
         >
           <button
             onClick={onBack}

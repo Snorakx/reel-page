@@ -50,24 +50,24 @@ const AddonStep: React.FC<AddonStepProps> = ({
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
+          <div className="hidden lg:inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-full px-4 py-2 mb-8">
             <span className="text-emerald-400 text-sm font-medium">Krok 2</span>
             <span className="text-gray-400 text-sm">Wybór dodatków</span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-4">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-white mb-4">
             Jakie dodatkowe elementy mamy przygotować?
           </h1>
           
-          <p className="text-xl text-gray-400 font-light max-w-2xl mx-auto mb-4">
+          <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto mb-4">
             Projekt: <span className="text-emerald-400">{getProjectTypeName(projectType)}</span>
           </p>
 
@@ -81,7 +81,7 @@ const AddonStep: React.FC<AddonStepProps> = ({
         </motion.div>
 
         {/* Addons grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-16">
           {availableAddons.map((addon, index) => {
             const isSelected = isAddonSelected(addon);
             const addonId = `addon-${index}`;
@@ -97,7 +97,7 @@ const AddonStep: React.FC<AddonStepProps> = ({
                 onMouseLeave={() => setHoveredAddon(null)}
               >
                 <div
-                  className={`relative bg-gray-900/50 border border-gray-800 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-emerald-500/50 ${
+                  className={`relative bg-gray-900/50 border border-gray-800 rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 hover:border-emerald-500/50 min-h-[140px] md:min-h-auto ${
                     isSelected 
                       ? 'border-emerald-500 bg-emerald-500/5' 
                       : 'hover:bg-gray-900/70'
@@ -140,7 +140,7 @@ const AddonStep: React.FC<AddonStepProps> = ({
 
                       {/* Tooltip */}
                       {showTooltip === addonId && (
-                        <div className="absolute top-8 right-0 w-80 bg-gray-800 border border-gray-700 rounded-lg p-4 shadow-xl z-50">
+                        <div className="absolute top-8 right-0 w-72 md:w-80 bg-gray-800 border border-gray-700 rounded-lg p-4 shadow-xl z-50">
                           <div className="text-sm text-gray-300">
                             {addon.description}
                           </div>
@@ -151,17 +151,17 @@ const AddonStep: React.FC<AddonStepProps> = ({
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-lg font-medium text-white mb-3 leading-tight">
+                  <h3 className="text-base md:text-lg font-medium text-white mb-2 md:mb-3 leading-tight">
                     {addon.label}
                   </h3>
 
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-gray-400 text-sm mb-3 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-3">
                     {addon.description}
                   </p>
 
                   {/* Price */}
                   <div className="flex items-center justify-between">
-                    <div className="text-xl font-light text-emerald-400">
+                    <div className="text-lg md:text-xl font-light text-emerald-400">
                       {formatPrice(addon.price)}
                     </div>
                     <div className="text-xs text-gray-500">
@@ -213,12 +213,12 @@ const AddonStep: React.FC<AddonStepProps> = ({
           </p>
         </motion.div>
 
-        {/* Navigation buttons */}
+        {/* Desktop Navigation buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-between"
+          className="hidden lg:flex items-center justify-between"
         >
           <button
             onClick={onBack}
