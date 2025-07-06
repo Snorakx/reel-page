@@ -24,6 +24,7 @@
       "counter": "{current} / {total}",
       "hint_next": "Przesuń dalej, aby odkryć więcej usług →",
       "hint_complete": "Poznałeś wszystkie nasze usługi! 🎉",
+      "swipe_hint": "Przesuń palcem w bok",
       "services": [
         {
           "id": "mvp-development",
