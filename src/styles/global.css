@@ -43,14 +43,14 @@
 
   /* Reels Container */
   .reels-container {
-    height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     position: relative;
   }
 
   .reel {
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     position: relative;
     scroll-snap-align: start;
@@ -221,7 +221,7 @@
     
     /* Reel adjustments for mobile */
     .reel {
-      min-height: 100vh;
+      min-height: 100dvh;
     }
     
     /* Service card adjustments */
@@ -246,13 +246,28 @@
   @media (max-height: 700px) {
     /* For short screens - reduce min heights */
     .min-h-screen {
-      min-height: 100vh;
+      min-height: 100dvh;
     }
     
     /* Reduce section padding on short screens */
     .reel {
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-height: 667px) and (max-width: 400px) {
+    /* For iPhone SE and similar small screens */
+    .text-3xl { font-size: 1.5rem; }
+    .text-4xl { font-size: 1.75rem; }
+    .text-5xl { font-size: 2rem; }
+    .text-6xl { font-size: 2.25rem; }
+    .text-7xl { font-size: 2.5rem; }
+    .text-8xl { font-size: 2.75rem; }
+    
+    /* Reduce section padding for very small screens */
+    .reel {
+      padding: 0.25rem;
     }
   }
 

@@ -43,7 +43,7 @@ const WhatWeDoSection: React.FC<WhatWeDoSectionProps> = ({ className = '' }) => 
 
   if (loading) {
     return (
-      <section className={`relative min-h-screen bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center ${className}`}>
+      <section className={`relative min-h-[100dvh] bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center ${className}`}>
         <motion.div
           className="flex items-center gap-4 text-white"
           initial={{ opacity: 0 }}
@@ -62,7 +62,7 @@ const WhatWeDoSection: React.FC<WhatWeDoSectionProps> = ({ className = '' }) => 
 
   if (error) {
     return (
-      <section className={`relative min-h-screen bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center ${className}`}>
+      <section className={`relative min-h-[100dvh] bg-gradient-to-br from-black to-zinc-900 flex items-center justify-center ${className}`}>
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Error loading services</h2>
           <p className="text-white/70">{error}</p>
@@ -74,7 +74,7 @@ const WhatWeDoSection: React.FC<WhatWeDoSectionProps> = ({ className = '' }) => 
   return (
     <section 
       ref={containerRef}
-      className={`relative min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black overflow-hidden ${className}`}
+      className={`relative min-h-[100dvh] bg-gradient-to-br from-black via-zinc-900 to-black overflow-hidden ${className}`}
     >
       {/* Animated background */}
       <motion.div

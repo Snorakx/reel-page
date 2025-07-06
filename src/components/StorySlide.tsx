@@ -100,7 +100,7 @@ export default function StorySlide({
   return (
     <div
       ref={slideRef}
-      className={`fixed inset-0 h-screen flex items-center justify-center px-4 md:px-6 transition-all duration-500 ${isActive ? 'story-slide-visible' : ''}`}
+              className={`fixed inset-0 h-[100dvh] flex items-center justify-center px-4 md:px-6 transition-all duration-500 ${isActive ? 'story-slide-visible' : ''}`}
       style={{
         opacity: isActive ? 1 : 0,
         visibility: isInView && isActive ? 'visible' : 'hidden',

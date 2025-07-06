@@ -39,11 +39,11 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, isActive, index, o
       <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5 rounded-3xl blur-3xl`} />
 
       {/* Main content container */}
-      <div className="relative w-full h-[420px] sm:h-[480px] md:h-[520px] lg:h-[580px] max-w-5xl p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-between bg-gradient-to-br from-zinc-900/50 to-black/50 rounded-2xl md:rounded-3xl border border-white/10 backdrop-blur-sm shadow-2xl overflow-hidden">
+      <div className="relative w-full h-[280px] min-[400px]:h-[320px] sm:h-[420px] md:h-[480px] lg:h-[520px] xl:h-[580px] max-w-5xl p-3 min-[400px]:p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-between bg-gradient-to-br from-zinc-900/50 to-black/50 rounded-xl min-[400px]:rounded-2xl md:rounded-3xl border border-white/10 backdrop-blur-sm shadow-2xl overflow-hidden">
         
         {/* Header section */}
-        <div className="flex items-start justify-between mb-3 sm:mb-4 md:mb-6 flex-shrink-0">
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white/10 font-mono leading-none select-none">
+        <div className="flex items-start justify-between mb-2 min-[400px]:mb-3 sm:mb-4 md:mb-6 flex-shrink-0">
+          <div className="text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white/10 font-mono leading-none select-none">
             {service.counter}
           </div>
           
@@ -57,7 +57,7 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, isActive, index, o
         {/* Content section - fixed flex-1 for consistent spacing */}
         <div className="flex-1 flex flex-col justify-center max-w-[60ch] min-h-0">
           <h3
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight tracking-tight"
+            className="text-lg min-[400px]:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 min-[400px]:mb-2 sm:mb-3 md:mb-4 leading-tight tracking-tight"
             style={{
               fontFamily: "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
             }}
@@ -66,7 +66,7 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, isActive, index, o
           </h3>
 
           <p
-            className="text-sm sm:text-base md:text-lg text-white/70 mb-3 sm:mb-4 md:mb-6 leading-relaxed line-clamp-4"
+            className="text-xs min-[400px]:text-sm sm:text-base md:text-lg text-white/70 mb-2 min-[400px]:mb-3 sm:mb-4 md:mb-6 leading-relaxed line-clamp-3 min-[400px]:line-clamp-4"
             style={{
               fontFamily: "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
             }}
@@ -79,15 +79,15 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, isActive, index, o
         <div className="flex-shrink-0">
           <a
             href={service.ctaLink}
-            className="group inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/20 hover:border-white/30 transition-all duration-300 backdrop-blur-sm"
+            className="group inline-flex items-center gap-1 min-[400px]:gap-2 sm:gap-3 px-2 min-[400px]:px-3 sm:px-4 md:px-5 py-1.5 min-[400px]:py-2 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/20 hover:border-white/30 transition-all duration-300 backdrop-blur-sm"
           >
-            <span className="text-xs sm:text-sm md:text-base font-medium">{service.ctaText}</span>
+            <span className="text-xs min-[400px]:text-sm md:text-base font-medium">{service.ctaText}</span>
             <svg
-              width="12"
-              height="12"
+              width="10"
+              height="10"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-white/80 group-hover:text-white transition-colors sm:w-3 sm:h-3 md:w-4 md:h-4"
+              className="text-white/80 group-hover:text-white transition-colors min-[400px]:w-3 min-[400px]:h-3 sm:w-3 sm:h-3 md:w-4 md:h-4"
             >
               <path
                 d="M7 17L17 7M17 7H7M17 7V17"

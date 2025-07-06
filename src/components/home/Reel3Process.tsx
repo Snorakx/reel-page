@@ -8,7 +8,7 @@ export default function Reel3Process({ lang = 'pl' }: Reel3ProcessProps) {
   const t = useTranslations(lang);
 
   return (
-    <section className="reel reel-3 h-screen w-full bg-gradient-to-br from-blue-600 via-purple-700 to-black text-white flex items-center justify-center relative overflow-hidden">
+    <section className="reel reel-3 h-[100dvh] w-full bg-gradient-to-br from-blue-600 via-purple-700 to-black text-white flex items-center justify-center relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-white rounded-full animate-float"></div>

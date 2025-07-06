@@ -81,7 +81,7 @@ export default function HeroReel({
     <motion.div 
       ref={ref}
       style={{ y, opacity }}
-      className="relative h-screen w-full flex flex-col justify-center items-center bg-[#0B0F1A] text-white overflow-hidden"
+      className="relative h-[100dvh] w-full flex flex-col justify-center items-center bg-[#0B0F1A] text-white overflow-hidden"
     >
       {/* Background subtle glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />

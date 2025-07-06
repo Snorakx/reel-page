@@ -8,7 +8,7 @@ export default function Reel1Hero({ lang = 'pl' }: Reel1HeroProps) {
   const t = useTranslations(lang);
 
   return (
-    <section className="reel reel-1 h-screen w-full bg-black text-white flex items-center justify-center relative overflow-hidden">
+    <section className="reel reel-1 h-[100dvh] w-full bg-black text-white flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
       
       {/* Background Pattern */}
