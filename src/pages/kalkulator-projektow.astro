@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCalculator from '../components/calculator/ProjectCalculator.tsx';
+---
+
+<Layout 
+  title="Kalkulator Projektowy - Coderno | Wycena w 5 minut"
+  description="Skonfiguruj swój projekt i otrzymaj spersonalizowaną wycenę w kilka minut. Strony internetowe, systemy ERP, narzędzia AI - sprawdź ile kosztuje Twój projekt."
+  keywords="kalkulator projektowy, wycena strony internetowej, koszt aplikacji, Coderno, MVP, AI tools, ERP systems"
+>
+  <main>
+    <!-- Project Calculator Component -->
+    <ProjectCalculator client:load />
+  </main>
+
+  <!-- Custom animations for calculator -->
+  <style>
+    .animation-delay-2s {
+      animation-delay: 2s;
+    }
+    
+    .animation-delay-4s {
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Custom scrollbar for calculator */
+    .calculator-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .calculator-scroll::-webkit-scrollbar-track {
+      background: rgba(55, 65, 81, 0.3);
+      border-radius: 4px;
+    }
+
+    .calculator-scroll::-webkit-scrollbar-thumb {
+      background: rgba(16, 185, 129, 0.3);
+      border-radius: 4px;
+    }
+
+    .calculator-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.5);
+    }
+
+    /* Smooth transitions */
+    * {
+      scroll-behavior: smooth;
+    }
+
+    /* Better focus outline for accessibility */
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid #10B981;
+      outline-offset: 2px;
+    }
+
+    /* Hide default checkbox appearance */
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    /* Custom line-clamp utilities */
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .line-clamp-4 {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Prevent text selection on UI elements */
+    .no-select {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Ensure proper z-index stacking */
+    .calculator-overlay {
+      z-index: 9999;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .fixed.right-0 {
+        width: 100% !important;
+        height: auto !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        right: 0 !important;
+        max-height: 50vh;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      .bg-gray-900\/50 {
+        background-color: rgba(0, 0, 0, 0.9) !important;
+      }
+      
+      .border-gray-800 {
+        border-color: #ffffff !important;
+      }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      
+      .animate-pulse,
+      .animate-spin {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <!-- Analytics and tracking script -->
+  <script is:inline>
+    // Analytics tracking for calculator usage
+    function trackCalculatorEvent(eventName, data) {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', eventName, {
+          event_category: 'Project Calculator',
+          custom_parameters: data || {}
+        });
+      }
+    }
+
+    // Track page view
+    document.addEventListener('DOMContentLoaded', function() {
+      trackCalculatorEvent('calculator_page_view');
+    });
+
+    // Track step completion (will be called from components)
+    window.trackCalculatorStep = function(step, data) {
+      trackCalculatorEvent('calculator_step_completed', {
+        step: step,
+        data: data || {}
+      });
+    };
+
+    // Track lead submission
+    window.trackCalculatorSubmission = function(data) {
+      trackCalculatorEvent('calculator_lead_submitted', data || {});
+    };
+  </script>
+</Layout> 
