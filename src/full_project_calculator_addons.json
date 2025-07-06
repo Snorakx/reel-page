@@ -3,27 +3,27 @@
     {
       "label": "Zapis na Newsletter",
       "description": "Integracja z Mailchimp, Mailerlite lub podobnym narzędziem",
-      "price": 500
+      "price": 1000
     },
     {
       "label": "Integracja Analityki",
       "description": "Google Analytics 4, Tag Manager, ewentualnie Hotjar",
-      "price": 600
+      "price": 2500
     },
     {
       "label": "Projekt Logo i Branding",
       "description": "Logo, paleta kolorów, typografia i ogólna identyfikacja wizualna",
-      "price": 1200
+      "price": 5000
     },
     {
       "label": "Wersja Ciemna / Jasna",
       "description": "Możliwość przełączania motywu przez użytkownika",
-      "price": 400
+      "price": 2500
     },
     {
       "label": "Wersje Językowe",
       "description": "Strona w 2 językach (PL / EN), integracja z i18n",
-      "price": 800
+      "price": 2500
     },
     {
       "label": "WCAG 2.1 / Strona Dostosowana",
@@ -33,123 +33,123 @@
     {
       "label": "Aplikacja Mobilna (PWA)",
       "description": "Strona jako aplikacja offline z ikoną na telefonie",
-      "price": 2000
+      "price": 8000
     }
   ],
   "ecommerce": [
     {
       "label": "Integracja z Płatnościami Online",
       "description": "np. Przelewy24, Stripe, PayPal",
-      "price": 900
+      "price": 5000
     },
     {
       "label": "Integracja z Kurierami / Wysyłką",
       "description": "np. InPost, DPD, Allegro Smart, Furgonetka",
-      "price": 1000
+      "price": 5000
     },
     {
       "label": "Zapis na Newsletter",
       "description": "Automatyczne zapisywanie klientów do listy marketingowej",
-      "price": 400
+      "price": 1000
     },
     {
       "label": "System Kuponów i Promocji",
       "description": "Możliwość dodawania kodów rabatowych i promocji czasowych",
-      "price": 700
+      "price": 7500
     },
     {
       "label": "Moduł Subskrypcji",
       "description": "Sprzedaż produktów cyklicznych (np. miesięcznie)",
-      "price": 1300
+      "price": 10000
     },
     {
       "label": "Zaawansowane Filtrowanie i Wyszukiwanie",
       "description": "Dynamiczne sortowanie, tagi, wyszukiwarka z podpowiedziami",
-      "price": 800
+      "price": 9000
     },
     {
       "label": "Integracja z ERP / CRM",
       "description": "Połączenie ze stanem magazynowym lub systemem sprzedażowym",
-      "price": 1500
+      "price": 50000
     }
   ],
   "ai_tools": [
     {
       "label": "Agent AI (czat, rekomendacje, wsparcie klienta)",
       "description": "Custom GPT lub integracja z API OpenAI",
-      "price": 2500
+      "price": 19900
     },
     {
       "label": "Automatyczne Raporty i Analityka",
       "description": "Generowanie PDF, dashboardy danych, wykresy",
-      "price": 1500
+      "price": 19900
     },
     {
       "label": "Integracja z API zewnętrznymi",
       "description": "Połączenie z systemami firm trzecich (np. kalendarz, fakturowanie, OCR)",
-      "price": 1000
+      "price": 19900
     },
     {
       "label": "Autoryzacja i Role Użytkowników",
       "description": "Logowanie, poziomy dostępu, konta użytkowników",
-      "price": 1100
+      "price": 50000
     },
     {
       "label": "Pulpit nawigacyjny / Dashboard",
       "description": "Podgląd danych, statusów, powiadomień – layout administracyjny",
-      "price": 1300
+      "price": 25000
     },
     {
       "label": "Automatyzacja Emaili",
       "description": "Triggerowanie maili w zależności od akcji użytkownika",
-      "price": 700
+      "price": 2000
     },
     {
       "label": "Uczenie Maszynowe (ML Starter)",
       "description": "Wdrożenie prostej predykcji lub klasyfikacji (np. scoring leadów)",
-      "price": 1800
+      "price": 25000
     }
   ],
   "erp_systems": [
     {
       "label": "Moduł Zarządzania Użytkownikami",
       "description": "Logowanie, autoryzacja, przypisywanie ról, uprawnienia",
-      "price": 1200
+      "price": 50000
     },
     {
       "label": "Moduł CRM (klienci, leady, kontakt)",
       "description": "Baza klientów z historią działań i relacji",
-      "price": 1500
+      "price": 150000
     },
     {
       "label": "Moduł Faktur / Dokumentów",
       "description": "Wystawianie faktur, generowanie PDF, ewidencja",
-      "price": 1400
+      "price": 50000
     },
     {
       "label": "Kalendarz i Zadania",
       "description": "Kalendarz z terminami i przypomnieniami, zadania przypisane do użytkowników",
-      "price": 1000
+      "price": 30000
     },
     {
       "label": "Moduł Magazynowy",
       "description": "Zarządzanie stanami magazynowymi i przepływem towaru",
-      "price": 1700
+      "price": 17000
     },
     {
       "label": "Integracja z API zewnętrznymi",
       "description": "np. integracja z systemami bankowymi, księgowymi, wysyłkowymi",
-      "price": 1300
+      "price": 17000
     },
     {
       "label": "Moduł Raportowania i Eksportu",
       "description": "Wykresy, dashboardy + eksport CSV/PDF",
-      "price": 1000
+      "price": 10000
     },
     {
       "label": "Mobilny panel (PWA)",
       "description": "Dostosowana wersja systemu na telefon, z instalacją jako aplikacja",
-      "price": 900
+      "price": 90000
     }
   ]
 }

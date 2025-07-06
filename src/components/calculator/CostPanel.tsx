@@ -78,11 +78,25 @@ const CostPanel: React.FC<CostPanelProps> = ({
         <AnimatePresence>
           {!isMinimized && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex-1 overflow-y-auto"
+              className="flex-1 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600"
+              style={{ maxHeight: 'calc(100vh - 200px)' }}
+              onWheel={(e) => {
+                const currentTarget = e.currentTarget;
+                const atTop = currentTarget.scrollTop === 0;
+                const atBottom = currentTarget.scrollTop >= (currentTarget.scrollHeight - currentTarget.clientHeight);
+                
+                // Only allow parent scroll if we're at the boundaries and scrolling in that direction
+                if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+                  return; // Allow parent scroll
+                }
+                
+                // Stop propagation for internal scrolling
+                e.stopPropagation();
+              }}
             >
               <div className="p-6">
                 {/* Project type */}
